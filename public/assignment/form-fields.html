@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Forms</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../bootstrap-3.3.5-dist/css/dashboard.css" rel="stylesheet">
+    <link href="../bootstrap-3.3.5-dist/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Niyati's Assignment 2</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="#">UserName</a></li>
+                <li><a href="home.html">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="home.html">Home<span class="sr-only">(current)</span></a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li><a href="forms.html">Forms</a></li>
+            </ul>
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-8 main">
+            <h1>Form Fields</h1>
+            <ul class="nav nav-tabs">
+                <li role="forms"><a href="forms.html">Form</a></li>
+                <li role="fields" class="active"><a href="form-fields.html">Fields</a></li>
+            </ul>
+            <table class="table table-striped table-bordered table-responsive">
+                <thead>
+                <tr>
+                    <th> Fields</th>
+                    <th> Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <label>First Name:</label> <br/>
+                        <input type="text" placeholder="First Name"/>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-warning">
+                            <scan class="glyphicon glyphicon-pencil"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-plus"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-remove"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-align-justify"></scan>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Last Name:</label> <br/>
+                        <input type="text" placeholder="Last Name"/>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-warning">
+                            <scan class="glyphicon glyphicon-pencil"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-plus"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-remove"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-align-justify"></scan>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Date of Birth:</label> <br/>
+                        <input type="DATE" placeholder="Select Date"/>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-warning">
+                            <scan class="glyphicon glyphicon-pencil"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-plus"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-remove"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-align-justify"></scan>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Gender:</label> <br/>
+                        <select type="text" name="Gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-warning">
+                            <scan class="glyphicon glyphicon-pencil"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-plus"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-remove"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-align-justify"></scan>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label> Roles:</label> <br/>
+                        <input type="checkbox" value="Admin" name="Admin" content="Admin"> Admin<br/>
+                        <input type="checkbox" value="Student" name="Student"/> Student<br/>
+                        <input type="checkbox" value="User" name="User"> User
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-warning">
+                            <scan class="glyphicon glyphicon-pencil"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-plus"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-remove"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-align-justify"></scan>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label> License Agreement:</label> <br/>
+                        <input type="radio" name="license"> Yes<br/>
+                        <input type="radio" name="license"> No
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-warning">
+                            <scan class="glyphicon glyphicon-pencil"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-plus"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-remove"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-align-justify"></scan>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td> <td></td></tr>
+                <tr>
+                    <td>
+                        <label>Add New Field:</label> <br/>
+                        <select type="text" name="Gender">
+                            <option value="Single">Single Line Text</option>
+                            <option value="Date">Date</option>
+                            <option value="Dropdown">Dropdown</option>
+                            <option value="Checkboxes">Checkboxes</option>
+                            <option value="Radio buttons">Radio buttons</option>
+                            <option value="Paragraph Text">Paragraph Text</option>
+                        </select>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-plus"></scan> </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!--<script src="../../dist/js/bootstrap.min.js"></script>-->
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<!--<script src="../../assets/js/vendor/holder.min.js"></script>-->
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+</body>
+</html>

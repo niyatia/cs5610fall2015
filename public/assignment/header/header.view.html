@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Header</title>
-    <script src="header.controller.js"></script>
-</head>
-<body>
-<nav ng-controller="HeaderController">
-    <a class="navbar-brand" href="#">Niyati's Assignment 2</a>
-    <ul class="nav navbar-nav navbar-right">
-    <a href="#/register"  class="btn" ng-class="{'btn-primary' : $location.url() == '/register'}">Register</a>
-    <a href="#/login" class="btn" ng-class="{'btn-primary' : $location.url() == '/login'}">Login</a>
-    <a href="#/logout"   class="btn" ng-class="{'btn-primary' : $location.url() == '/logout'}">Logout</a>
-    </ul>
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand">Niyati's Assignment</a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse" ng-controller="HeaderController">
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/register">Register</a></li>
+                <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
+                <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#">UserName</a></li>
+                <li ng-class="{'active' : $location.url().indexOf('logout') != -1}"><a href="#/logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
 </nav>
-</body>
-</html>

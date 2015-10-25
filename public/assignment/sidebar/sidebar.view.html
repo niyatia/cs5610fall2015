@@ -1,25 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>SideBar</title>
-    <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="../bootstrap/css/dashboard.css" rel="stylesheet">
-    <link href="../bootstrap/css/style.css" rel="stylesheet">
-    <script src="sidebar.controller.js"></script>
-</head>
-<body>
-<div>
-    <ul class="nav nav-sidebar" ng-controller="SidebarController">
-        <li><a href="#/home"  class="btn" ng-class="{'btn-primary' : $location.url() == '/home'}">Home</a></li>
-        <li><a href="#/profile"  class="btn" ng-class="{'btn-primary' : $location.url() == '/profile'}">Profile</a></li>
-        <li><a href="#/admin"  class="btn" ng-class="{'btn-primary' : $location.url() == '/admin'}">Admin</a></li>
-        <li><a href="#/forms"  class="btn" ng-class="{'btn-primary' : $location.url() == '/forms'}">Forms</a></li>
-    </ul>
-</div>
-
-</body>
-</html>
+<ul class="nav nav-sidebar" ng-controller="SidebarController">
+    <li role="presentation" ng-class="{'active' : $location.url().indexOf('home') != -1}"><a href="#/home">Home</a></li>
+    <li role="presentation" ng-class="{'active' : $location.url().indexOf('profile') != -1}"><a href="#/profile">Profile</a></li>
+    <li role="presentation" ng-class="{'active' : $location.url().indexOf('admin') != -1}"><a href="#/admin">Admin</a></li>
+    <li role="presentation" ng-class="{'active' : $location.url().indexOf('form') != -1}"><a href="#/form">Forms</a></li>
+</ul>

@@ -1,7 +1,10 @@
-(function(){
+"use strict";
+(function() {
     angular
-        .module("FormBuilderApp", ["ngRoute"])
-        .controller("SidebarController", function($scope, $location){
-            $scope.$location = $location;
-        });
+        .module("FormBuilderApp")
+        .controller("SidebarController", SidebarController);
+
+    function SidebarController ($scope, $location) {
+        $scope.$location = $location;
+    }
 })();

@@ -7,7 +7,12 @@
 
     function FormService () {
 
-        var forms = [];
+        var form = {
+            id: 1,
+            userId: 1,
+            name: "Registration Form"
+        }
+        var forms = [form];
 
         var service = {
             createFormForUser: createFormForUser,
@@ -25,15 +30,6 @@
         }
 
         function findAllFormsForUser (userId, callback) {
-
-            var userForms = [];
-
-            for(var i in forms) {
-                if(forms[i].userId == userId) {
-                    userForms.push(forms[i]);
-                }
-            }
-
             callback(userForms);
         }
 
@@ -47,14 +43,6 @@
         }
 
         function updateFormById (formId, updatedForm, callback) {
-            for(var i in forms) {
-                if(forms[i].id == formId) {
-                    forms.splice(i,1);
-                    updatedForm.id = formId;
-                    forms.push(updatedForm);
-                }
-            }
-
             callback(updatedForm);
         }
 

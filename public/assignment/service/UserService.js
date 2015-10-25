@@ -8,7 +8,7 @@
 
         var firstUser = {
             id: 1,
-            userName: "niyati",
+            username: "niyati",
             password: "a1b2c3",
             email: "abc@mail.com"
         };
@@ -24,10 +24,13 @@
         };
 
         function findUserByUsernameAndPassword(findUserName, findPassword, callback) {
+
             for (var i in users) {
-                if((users[i].userName == findUserName) && (users[i].password == findPassword)) {
+                if((users[i].username == findUserName) && (users[i].password == findPassword)) {
+                    console.log(users[i].username);
                     callback(users[i]);
-                    break;
+
+                    return;
                 }
             }
         }

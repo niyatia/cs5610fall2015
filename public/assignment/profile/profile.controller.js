@@ -1,16 +1,23 @@
-(function(){
+"use strict";
+(function () {
     angular
         .module("FormBuilderApp")
-        .controller("ProfileController", ProfileController);
+        .controller("ProfileController", ProfileController)
 
-    function ProfileController($scope, $location, $rootScope) {
+    function ProfileController ($scope, $rootScope, UserService) {
+
+        console.log($rootScope.user);
         $scope.user = $rootScope.user;
-        $scope.$location = $location;
-        $scope.update = update();
-        function update(){
-            console.log("Testing  Profile");
+
+        $scope.update = function () {
+            var userId = $scope.user.id;
+            var newUser = $scope.user;
+
+            UserService.updateUser(userId, newUser, updatedUser);
+        }
+
+        function updatedUser (user) {
+            console.log(user);
         }
     }
-
-
-})();
+}) ();

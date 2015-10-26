@@ -6,13 +6,7 @@
         .factory("FormService", FormService);
 
     function FormService () {
-
-        var form = {
-            id: 1,
-            userId: 1,
-            name: "Registration Form"
-        }
-        var forms = [form];
+        var forms = [];
 
         var service = {
             createFormForUser: createFormForUser,
@@ -21,16 +15,14 @@
             updateFormById: updateFormById
         }
 
+        function findAllFormsForUser (userId, callback) {
+            callback(forms);
+        }
+
         function createFormForUser (userId, newForm, callback) {
             newForm.id = guid();
             newForm.userId = userId;
-            forms.push(newForm);
-
             callback(newForm);
-        }
-
-        function findAllFormsForUser (userId, callback) {
-            callback(userForms);
         }
 
         function deleteFormById (formId, callback) {
@@ -43,7 +35,12 @@
         }
 
         function updateFormById (formId, updatedForm, callback) {
-            callback(updatedForm);
+            for(var i in forms) {
+                if(forms[i].id == formId) {
+                    forms[i] = updatedForm;
+                }
+            }
+            callback(forms);
         }
 
         function guid() {

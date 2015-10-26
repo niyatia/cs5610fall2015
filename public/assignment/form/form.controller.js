@@ -9,39 +9,35 @@
 		var currUser = $rootScope.user;
 
 		FormService.findAllFormsForUser(currUser.id, foundForms);
-
 		function foundForms (userForms) {
 			$scope.forms = userForms;
 		}
 
-		$scope.addForm = function(newForm) {
-			var myNewForm = {};
-
-			myNewForm.name = newForm.name;
-			FormService.createFormForUser(currUser.id, myNewForm, formCreated);
+		$scope.addForm = function() {
+			FormService.createFormForUser(currUser.id, $scope.newForm, formCreated);
 
             function formCreated(updatedForm) {
-                var newForm = updatedForm;
-                $scope.forms.push(newForm);
+                $scope.forms.push(updatedForm);
+                $scope.newForm = {};
             }
 		}
 
 		$scope.updateForm = function() {
-
+            FormService.updateFormById($scope.newForm.id, $scope.newForm, function (allForms) {
+                FormService.findAllFormsForUser(currUser.id, foundForms);
+                $scope.newForm = {};
+            });
 		}
 
-		$scope.deleteForm = function(form) {
-            console.log(form.name);
-            FormService.deleteFormById(form.id, formDeleted);
-
-            function formDeleted(remainingForms){
-                $scope.forms = remainingForms;
-            }
+		$scope.deleteForm = function(index) {
+            FormService.deleteFormById($scope.forms[index].id, function (allForms) {
+                FormService.findAllFormsForUser(currUser.id, foundForms);
+            });
 		}
 
-		$scope.selectForm = function() {
+		$scope.selectForm = function(index) {
+            var newValue = $scope.forms[index];
+            $scope.newForm = newValue;
 		}
-
-
 	}
 }) ();

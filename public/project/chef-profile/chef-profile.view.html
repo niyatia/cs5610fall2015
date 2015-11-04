@@ -1,0 +1,26 @@
+<div ng-controller="ChefProfileController">
+<h1>Welcome, Chef</h1>
+    <label>Your dishes:</label>
+    <table class="table table-responsive table-bordered">
+        <thead>
+        <th>Title</th>
+        <th>Cuisine</th>
+        <th>Type</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Ingredients</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="dish in recipes">
+            <td>{{dish.title}}</td>
+            <td>{{dish.cuisine}}</td>
+            <td>{{dish.type}}</td>
+            <td>{{dish.price}}</td>
+            <td>{{dish.quantity}}</td>
+            <td>{{dish.ingredients}}</td>
+        </tr>
+        </tbody>
+
+    </table>
+    <a href="" ng-click="addDish()">Add a dish</a>
+</div>

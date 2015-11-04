@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="HomeMadeDinnerApp">
+<head>
+    <title>Index</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap/css/dashboard.css">
+    <script src="../bootstrap/js/carousel.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../bootstrap/css/style.css">
+
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
+
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <script src="header/header.controller.js"></script>
+    <script src="register/register.controller.js"></script>
+    <script src="service/UserService.js"></script>
+    <script src="service/DishService.js"></script>
+
+    <script src="user-profile/user-profile.controller.js"></script>
+    <script src="chef-profile/chef-profile.controller.js"></script>
+    <script src="driver-profile/driver-profile.controller.js"></script>
+    <script src="login/login.controller.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div ng-include="'header/header.view.html'"></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 col-md-10 main" ng-view>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

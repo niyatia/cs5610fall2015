@@ -11,7 +11,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json()); // for parsing application/json
 
 require("./public/assignment/server/services/user.service.server.js")(app);
-//require("./public/assignment/server/services/form.service.js")(app);
+require("./public/assignment/server/services/form.service.server.js")(app);
 //require("./public/assignment/server/services/field.service.js")(app);
 
 app.listen(port,ipaddress);

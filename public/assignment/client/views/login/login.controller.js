@@ -11,20 +11,15 @@
         function login() {
             var username = model.username;
             var pwd = model.password;
-            UserService.findAllUsers()
+            UserService.findUserByUsernameAndPassword(username, pwd)
                 .then(function(user){
                     console.log("test1");
                     if (user != null) {
-                        $rootScope.username = user.username;
-                        $rootScope.password = user.password;
-                        $rootScope.id = user.id;
-                        $rootScope.email = user.email;
-                        $rootScope.firstname = user.firstName;
-                        $rootScope.lastname = user.lastName;
+                        console.log(user);
+                        $rootScope.user = user;
                         $location.url("/profile");
                     }
                 }
             )};
-
     }
 })();

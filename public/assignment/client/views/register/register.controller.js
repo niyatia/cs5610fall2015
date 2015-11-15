@@ -7,17 +7,15 @@
 
 	function RegisterController ($scope, $rootScope, $location, UserService) {
 		
-		var newUser;
-
-		$scope.newUser = newUser;
+		var model = this;
 		
-		$scope.register = function register () {
-			UserService.createUser($scope.newUser, userCreated);
-		}
-
-		function userCreated (createdUser) {
-			$rootScope.user = createdUser;
-			$location.url("/profile");
+		model.register = function register () {
+            var userObj = {username: model.newUser.username, password: model.newUser.password , email: model.newUser.email};
+			UserService.createUser(model.newUser)
+                .then(function(createdUser) {
+                    $rootScope.user = createdUser;
+                    $location.url("/profile");
+                })
 		}
 	}
 }) ();

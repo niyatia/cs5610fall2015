@@ -4,10 +4,10 @@ module.exports = function(app) {
     app.get("/api/assignment/user/username=:username&password=:password", findUserByUsernameAndPassword);
     app.get("/api/assignment/user", findAllUsers);
     app.get("/api/assignment/user/:id", findUserById);
+    app.get("/api/assignment/user/username=:username", findUserByUsername);
     app.post("/api/assignment/user", createUser);
     app.put("/api/assignment/user/:id", updateUser);
     app.delete("/api/assignment/user/:id", deleteUser);
-    //app.get("/api/assignment/user/username=:username", findUserByUsername);
 
     function findAllUsers(req, res) {
 

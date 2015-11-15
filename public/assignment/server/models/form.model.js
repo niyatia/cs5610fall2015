@@ -17,7 +17,6 @@ module.exports = function(app) {
         var deferred = q.defer();
         for(var form in forms) {
             if(forms[form].id.localeCompare(formId) == 0) {
-                console.log("Found form!");
                 deferred.resolve(forms[form]);
             }
         }
@@ -78,19 +77,25 @@ module.exports = function(app) {
         return deferred.promise;
     }
 
-    function updateForm(formId, formObj) {
+    function updateForm(formId, updatedForm) {
 
         var deferred = q.defer();
+        var userForms = [];
+        var userId  = "0";
         for(var i = 0; i < forms.length; i++)  {
             console.log(forms[i].id);
-            if(forms[form].id.localeCompare(formId) == 0) {
-                forms[i].username = formObj.username;
-                forms[i].password = formObj.password;
-                forms[i].firstName = formObj.firstName;
-                forms[i].lastName = formObj.lastName;
-                deferred.resolve(forms[i]);
+            if(forms[i].id.localeCompare(formId) == 0) {
+                forms[i].title = updatedForm.title;
+                userId = forms[i].userId;
             }
         }
+
+        for(var form in forms) {
+            if(forms[form].userId == userId) {
+                userForms.push(forms[form]);
+            }
+        }
+        deferred.resolve(userForms);
         return deferred.promise;
     }
 };

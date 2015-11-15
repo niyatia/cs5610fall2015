@@ -11,6 +11,8 @@ module.exports = function(app) {
     function createForm(req, res) {
 
         var form = req.body;
+        console.log("create form in server.service");
+        console.log(form);
         model
             .createForm(form)
             .then(function(forms){
@@ -31,9 +33,10 @@ module.exports = function(app) {
 
     function findFormById(req, res){
 
-        var userId = req.params.userId;
+        var formId = req.params.formId;
+        console.log(formId);
         model
-            .findFormById(userId)
+            .findFormById(formId)
             .then(function(form){
                 res.json(form);
             });
@@ -49,9 +52,11 @@ module.exports = function(app) {
     }
 
     function updateForm(req, res) {
-
+        console.log("inside update form server.service");
         var formId = req.params.formId;
+        console.log(formId);
         var formObj = req.body;
+        console.log(formObj);
         model
             .updateForm(formId, formObj)
             .then(function(form){

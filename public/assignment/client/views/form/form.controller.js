@@ -19,15 +19,18 @@
             var newForm = { userId: $rootScope.user.id, title: model.title};
 			FormService.createFormForUser($rootScope.user.id, newForm)
                 .then(function(form){
-                    model.currentform = form;
-                    model.forms.push(model.currentform);
+                    model.currentForm = form;
+                    model.forms.push(model.currentForm);
                 });
 		}
 
         model.updateForm = function() {
-            FormService.updateFormById(model.currentform.formId, newForm)
-                .then(function(form){
-                    model.currentform = form;
+            console.log(model.currentForm);
+            var newForm = { id : model.currentForm.id, title : model.title};
+            FormService.updateFormById(model.currentForm.id, newForm)
+                .then(function(forms){
+                    model.forms= forms;
+                    model.title = "";
                 });
 		}
 
@@ -39,9 +42,14 @@
                 });
 		}
 
-        model.selectForm = function(index) {
-            var newValue = $scope.forms[index];
-            $scope.newForm = newValue;
-		}
+        model.selectForm = function(formId) {
+            console.log(formId);
+            FormService.findFormById(formId)
+                .then(function(form){
+                    console.log(form.title);
+                    model.title = form.title;
+                    model.currentForm = form;
+                });
+        }
 	}
 }) ();

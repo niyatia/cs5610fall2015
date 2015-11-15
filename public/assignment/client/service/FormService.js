@@ -11,7 +11,8 @@
             createFormForUser: createFormForUser,
             findAllFormsForUser: findAllFormsForUser,
             deleteFormById: deleteFormById,
-            updateFormById: updateFormById
+            updateFormById: updateFormById,
+            findFormById: findFormById
         };
 
         return api;
@@ -28,10 +29,22 @@
             return deferred.promise;
         }
 
+        function findFormById (formId) {
+
+            var deferred = $q.defer();
+            $http.get("/api/assignment/form/"+formId)
+                .success(function(form){
+                    console.log(form);
+                    deferred.resolve(form);
+                });
+
+            return deferred.promise;
+        }
+
         function createFormForUser (userId, newForm) {
             var deferred = $q.defer();
             var id = guid();
-            form.id = id;
+            newForm.id = id;
             $http.post("/api/assignment/user/" + userId + "/form", newForm)
                 .success(function(forms){
                     deferred.resolve(forms);
@@ -53,9 +66,9 @@
         function updateFormById (formId, updatedForm) {
             var deferred = $q.defer();
 
-            $http.post("/api/assignment/form/" + formId, updatedForm)
-                .success(function(form){
-                    deferred.resolve(form);
+            $http.put("/api/assignment/form/" + formId, updatedForm)
+                .success(function(forms){
+                    deferred.resolve(forms);
                 });
 
             return deferred.promise;

@@ -32,10 +32,10 @@
 					<a href="">{{form.title}}</a>
 				</td>
 				<td>
-                    <button  ng-click="model.selectForm($index)" class="btn btn-warning">
+                    <button  ng-click="model.selectForm(form.id)" class="btn btn-warning">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>
-					<button ng-click="model.deleteForm($index)" class="btn btn-danger">
+					<button ng-click="model.deleteForm(form.id)" class="btn btn-danger">
 						<span class="glyphicon glyphicon-remove"></span>
 					</button>
 				</td>

@@ -11,34 +11,30 @@
         model.addField = addField;
         model.removeField = removeField;
 
-        FormService.findFormById(formId).then(initiateFindFormById);
+        FormService.findFormById(formId)
+            .then(foundFormById);
 
-        function initiateFindFormById (response) {
-            console.log(response);
+        function foundFormById (response) {
             model.form = response;
-            console.log(model.form);
         }
 
-        loadFields();
+        initFields();
 
-        console.log(userId + " " +formId);
-
-        function loadFields () {
-            FieldService.getFieldsForForm(formId).then(initiateGetFieldsForForm);
+        function initFields () {
+            FieldService.getFieldsForForm(formId)
+                .then(initiateGetFieldsForForm);
             function initiateGetFieldsForForm (response) {
                 model.fields = response;
-                console.log(response);
             }
         }
 
         function removeField (field) {
-            FieldService.deleteFieldFromForm(formId, field.id).then(initiateDelete);
+            FieldService.deleteFieldFromForm(formId, field.id)
+                .then(initiateDelete);
             function initiateDelete (response) {
-                console.log("in controller after delete");
-                console.log(response);
                 model.fields = response;
             }
-            loadFields();
+            initFields();
         }
 
         function addField (fieldType) {
@@ -106,10 +102,9 @@
 
             FieldService.createNewFieldForForm (formId, newField)
                 .then(function(){
-
                 });
 
-                loadFields(formId);
+                initFields(formId);
         }
     }
 }) ();

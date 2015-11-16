@@ -2,38 +2,38 @@
 <h1 class="page-header">Forms : {{model.form.title}}</h1>
 <ul class="nav nav-tabs">
     <ul class="nav nav-tabs">
-        <li ng-class="{'active' : $location.url().indexOf('forms') != -1}"><a href="#/form">Forms</a></li>
-        <li ng-class="{'active' : $location.url().indexOf('fields') != -1}"><a href="#/fields">Fields</a></li>
+        <li ng-class="{'active' : $location.url().indexOf('form') != -1}" role="presentation"><a href="#/form">Forms</a></li>
+        <li ng-class="{'active' : $location.url().indexOf('fields') != -1}" role="presentation"><a href="#/fields">Fields</a></li>
     </ul>
 </ul>
 <br>
 <form>
-    <div ng-repeat="currField in model.fields">
+    <div ng-repeat="curField in model.fields">
         <div class="form-group">
-            <label>{{currField.label}}</label>
+            <label>{{curField.label}}</label>
             <div class="input-group">
-                <div ng-switch="currField.type">
+                <div ng-switch="curField.type">
                     <div ng-switch-when="TEXT">
-                        <input class="form-control" type="text" placeholder="{{currField.placeholder}}">
+                        <input class="form-control" type="text" placeholder="{{curField.placeholder}}">
                     </div>
                     <div ng-switch-when="TEXTAREA">
-                        <textarea class="form-control" placeholder="{{currField.placeholder}}"></textarea>
+                        <textarea class="form-control" placeholder="{{curField.placeholder}}"></textarea>
                     </div>
                     <div ng-switch-when="EMAIL">
-                        <input class="form-control" type="email" placeholder="{{currField.placeholder}}">
+                        <input class="form-control" type="email" placeholder="{{curField.placeholder}}">
                     </div>
                     <div ng-switch-when="DATE">
                         <input class="form-control" type="date">
                     </div>
                     <div ng-switch-when="RADIOS">
                         <div class = "radio">
-                            <div ng-repeat="currOption in currField.options">
-                                <label><input type="radio" name="{{currField.label}}" value="{{currOption.value}}">{{currOption.label}}</label>
+                            <div ng-repeat="currOption in curField.options">
+                                <label><input type="radio" name="{{curField.label}}" value="{{currOption.value}}">{{currOption.label}}</label>
                             </div>
                         </div>
                     </div>
                     <div ng-switch-when="CHECKBOXES">
-                        <div ng-repeat="currOption in currField.options">
+                        <div ng-repeat="currOption in curField.options">
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" value="{{currOption.value}}">{{currOption.label}}
@@ -43,14 +43,14 @@
                     </div>
                     <div ng-switch-when="OPTIONS">
                         <select class="form-control">
-                            <option ng-repeat="currOption in currField.options" value="{{currOption.value}}">{{currOption.label}}</option>
+                            <option ng-repeat="currOption in curField.options" value="{{currOption.value}}">{{currOption.label}}</option>
                         </select>
                     </div>
                 </div>
                         <span class="input-group-btn">
                              <button class="btn btn-warning" type="button"><span class="glyphicon glyphicon-pencil"></span></button>
                              <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-plus"></span></button>
-                             <button class="btn btn-danger" type="button" ng-click="model.removeField(currField)"><span class="glyphicon glyphicon-remove"></span></button>
+                             <button class="btn btn-danger" type="button" ng-click="model.removeField(curField)"><span class="glyphicon glyphicon-remove"></span></button>
                              <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-align-justify"></span></button>
                         </span>
             </div>

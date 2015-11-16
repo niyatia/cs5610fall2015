@@ -16,8 +16,7 @@ module.exports = function(app) {
         findAllFieldsForForm : findAllFieldsForForm,
         findFieldByFieldAndFormId : findFieldByFieldAndFormId,
         deleteFieldByFieldAndFormId : deleteFieldByFieldAndFormId,
-        createNewFieldForForm : createNewFieldForForm,
-        updateFieldByFieldAndFormId : updateFieldByFieldAndFormId
+        createNewFieldForForm : createNewFieldForForm
     };
     return api;
 
@@ -47,7 +46,6 @@ module.exports = function(app) {
             }
         }
 
-        console.log(userForms);
         deferred.resolve(userForms);
         return deferred.promise;
     }
@@ -57,11 +55,9 @@ module.exports = function(app) {
         var deferred = q.defer();
         var userForms = [];
         var userId  = "0";
-        console.log("starting for loop");
+
         for(var form in forms) {
-            console.log(formId + " " + forms[form].id);
             if(forms[form].id.localeCompare(formId) == 0) {
-                console.log(formId + " " + forms[form].userId);
                 userId = forms[form].userId;
                 forms.splice(form, 1);
                 break;
@@ -77,21 +73,18 @@ module.exports = function(app) {
     }
 
     function createForm(newForm) {
-
         var deferred = q.defer();
-        console.log(newForm);
         forms.push(newForm);
         deferred.resolve(newForm);
         return deferred.promise;
     }
 
     function updateForm(formId, updatedForm) {
-
         var deferred = q.defer();
         var userForms = [];
         var userId  = "0";
         for(var i = 0; i < forms.length; i++)  {
-            console.log(forms[i].id);
+
             if(forms[i].id.localeCompare(formId) == 0) {
                 forms[i].title = updatedForm.title;
                 userId = forms[i].userId;
@@ -109,7 +102,7 @@ module.exports = function(app) {
 
     function findAllFieldsForForm (formId) {
         var deferred = q.defer();
-        console.log("inside forms model");
+
         var fieldsToReturn = [];
         for (var i = 0; i < forms.length; i++) {
             if (forms[i].id == formId) {
@@ -117,7 +110,7 @@ module.exports = function(app) {
                 break;
             }
         }
-        console.log(fieldsToReturn);
+
         deferred.resolve(fieldsToReturn);
         return deferred.promise;
     }
@@ -136,14 +129,13 @@ module.exports = function(app) {
     }
 
     function deleteFieldByFieldAndFormId (formId, fieldId) {
-        console.log(formId + " " +fieldId);
+
         var deferred = q.defer();
         for (var i = 0; i < forms.length; i++) {
             if (forms[i].id == formId) {
                 var fields = forms[i].fields;
                 for (var j = 0; j < fields.length; j++) {
                     if (fields[j].id == fieldId) {
-                        console.log("inside if condition");
                         forms[i].fields.splice(j, 1);
                         break;
                     }
@@ -165,24 +157,6 @@ module.exports = function(app) {
         }
         deferred.resolve(forms);
         return deferred.promise;
-    }
-
-    function updateFieldByFieldAndFormId (formId, fieldId, updatedField) {
-        for (var i = 0; i < forms.length; i++) {
-            if (forms[i].id == formId) {
-                var fields = forms[i].fields;
-                for (var j = 0; j < fields.length; j++) {
-                    if (fields[j].id == fieldId) {
-                        forms[i].fields[j].id = updatedField.id;
-                        forms[i].fields[j].label = updatedField.label;
-                        forms[i].fields[j].type = updatedField.type;
-                        forms[i].fields[j].placeholder = updatedField.placeholder;
-                        break;
-                    }
-                }
-            }
-        }
-        return forms[i];
     }
 
     function guid() {

@@ -8,37 +8,13 @@ module.exports = function(app) {
     app.put("/api/assignment/form/:formId", updateForm);
     app.delete("/api/assignment/form/:formId", deleteForm);
 
-    function createForm(req, res) {
-
-        var form = req.body;
-        console.log("create form in server.service");
-        console.log(form);
-        model
-            .createForm(form)
-            .then(function(forms){
-                res.json(forms);
-            });
-    }
-
     function findAllFormsForUser(req, res){
-        console.log(req.params.userId);
+
         var userId = req.params.userId;
         model
             .findAllFormsForUser(userId)
             .then(function(forms){
-                console.log(forms);
                 res.json(forms);
-            });
-    }
-
-    function findFormById(req, res){
-
-        var formId = req.params.formId;
-        console.log(formId);
-        model
-            .findFormById(formId)
-            .then(function(form){
-                res.json(form);
             });
     }
 
@@ -51,12 +27,32 @@ module.exports = function(app) {
             });
     }
 
-    function updateForm(req, res) {
-        console.log("inside update form server.service");
+    function findFormById(req, res){
+
         var formId = req.params.formId;
-        console.log(formId);
+
+        model
+            .findFormById(formId)
+            .then(function(form){
+                res.json(form);
+            });
+    }
+
+    function createForm(req, res) {
+        var form = req.body;
+
+        model
+            .createForm(form)
+            .then(function(forms){
+                res.json(forms);
+            });
+    }
+
+    function updateForm(req, res) {
+
+        var formId = req.params.formId;
         var formObj = req.body;
-        console.log(formObj);
+
         model
             .updateForm(formId, formObj)
             .then(function(form){

@@ -12,7 +12,6 @@
 
 		FormService.findAllFormsForUser(currUser.id)
             .then(function(forms){
-                console.log(forms);
                 model.forms = forms;
             });
 
@@ -26,9 +25,9 @@
 		}
 
         model.updateForm = function() {
-            console.log(model.currentForm);
-            var newForm = { id : model.currentForm.id, title : model.title};
-            FormService.updateFormById(model.currentForm.id, newForm)
+
+            var updatedForm = { id : model.currentForm.id, title : model.title};
+            FormService.updateFormById(model.currentForm.id, updatedForm)
                 .then(function(forms){
                     model.forms= forms;
                     model.title = "";
@@ -38,16 +37,14 @@
         model.deleteForm = function(index) {
             FormService.deleteFormById(index)
                 .then(function(forms){
-                    console.log(forms);
                     model.forms = forms;
                 });
 		}
 
         model.selectForm = function(formId) {
-            console.log(formId);
+
             FormService.findFormById(formId)
                 .then(function(form){
-                    console.log(form.title);
                     model.title = form.title;
                     model.currentForm = form;
                 });

@@ -34,12 +34,10 @@
         }
 
         function deleteFieldFromForm (formId, fieldId) {
-            console.log(formId + " " + fieldId);
             var deferred = $q.defer();
             $http
                 .delete("/api/assignment/form/" + formId + "/field/" + fieldId)
                 .success(function (response) {
-                    console.log("successful delete");
                     deferred.resolve(response);
                 });
             return deferred.promise;

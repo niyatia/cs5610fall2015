@@ -22,7 +22,6 @@
             var deferred = $q.defer();
             $http.get("/api/assignment/user/"+userId+"/form")
                 .success(function(forms){
-                    console.log(forms);
                     deferred.resolve(forms);
                 });
 
@@ -34,7 +33,6 @@
             var deferred = $q.defer();
             $http.get("/api/assignment/form/"+formId)
                 .success(function(form){
-                    console.log(form);
                     deferred.resolve(form);
                 });
 
@@ -95,7 +93,5 @@
             return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
                 s4() + '-' + s4() + s4() + s4();
         }
-
-        return service;
     }
 }) ();

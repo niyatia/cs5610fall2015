@@ -29,10 +29,8 @@
 
         function findAllUsers() {
             var deferred = $q.defer();
-            console.log("in client service");
             $http.get("/api/assignment/user/")
                 .success(function(users){
-                    console.log(users);
                     deferred.resolve(users);
                 });
 
@@ -52,7 +50,9 @@
 
         function createUser(newUser) {
             var deferred = $q.defer();
-            newUser.id = guid;
+            newUser.id = guid();
+            newUser.firstName = "";
+            newUser.lastName = "";
             $http.post("/api/assignment/user", newUser)
                 .success(function(user){
                     deferred.resolve(user);

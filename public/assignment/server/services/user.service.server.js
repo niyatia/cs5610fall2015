@@ -10,7 +10,6 @@ module.exports = function(app) {
     app.delete("/api/assignment/user/:id", deleteUser);
 
     function findAllUsers(req, res) {
-
         model
             .findAllUsers()
             .then(function(users){
@@ -19,7 +18,6 @@ module.exports = function(app) {
     }
 
     function findUserByUsername(req, res) {
-
         var username = req.params.username;
         model
             .findUserByUsername(username)
@@ -29,7 +27,6 @@ module.exports = function(app) {
     }
 
     function findUserByUsernameAndPassword(req, res) {
-
         var username = req.params.username;
         var pwd = req.params.password;
         var credentials = {
@@ -44,7 +41,6 @@ module.exports = function(app) {
     }
 
     function createUser(req, res) {
-
         var user = req.body;
         model
             .createUser(user)
@@ -54,7 +50,6 @@ module.exports = function(app) {
     }
 
     function findUserById(req, res){
-
         var userId = req.params.id;
         model
             .findUserById(userId)
@@ -64,10 +59,8 @@ module.exports = function(app) {
     }
 
     function updateUser(req, res) {
-
         var userId = req.params.id;
         var userObj = req.body;
-        console.log(req.body);
         model
             .updateUser(userId, userObj)
             .then(function(user){
@@ -76,7 +69,6 @@ module.exports = function(app) {
     }
 
     function deleteUser(req, res) {
-
         var userId = req.params.id;
         model
             .deleteUser(userId)

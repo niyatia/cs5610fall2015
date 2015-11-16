@@ -56,9 +56,9 @@ module.exports = function(app){
     function deleteUser(userId) {
 
         var deferred = q.defer();
-        for(var user in users) {
+        for(var i = 0; i < users.length; i++)  {
             if(users[i].id == userId) {
-                users.splice(user, 1);
+                users.splice(i, 1);
                 deferred.resolve(users);
             }
         }
@@ -66,10 +66,8 @@ module.exports = function(app){
     }
 
     function createUser(newUser) {
-        console.log("inside user.model.js addNewUser");
         var deferred = q.defer();
         var newUser = newUser;
-        console.log(newUser);
         users.push(newUser);
         deferred.resolve(newUser);
         return deferred.promise;
@@ -79,12 +77,12 @@ module.exports = function(app){
 
         var deferred = q.defer();
         for(var i = 0; i < users.length; i++)  {
-            console.log(users[i].id);
+
             if(users[i].id == userId) {
                 users[i].username = userObj.username;
                 users[i].password = userObj.password;
-                users[i].firstName = userObj.firstname;
-                users[i].lastName = userObj.lastname;
+                users[i].firstName = userObj.firstName;
+                users[i].lastName = userObj.lastName;
                 deferred.resolve(users[i]);
             }
         }

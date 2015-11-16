@@ -136,21 +136,26 @@ module.exports = function(app) {
     }
 
     function deleteFieldByFieldAndFormId (formId, fieldId) {
+        console.log(formId + " " +fieldId);
+        var deferred = q.defer();
         for (var i = 0; i < forms.length; i++) {
             if (forms[i].id == formId) {
                 var fields = forms[i].fields;
                 for (var j = 0; j < fields.length; j++) {
                     if (fields[j].id == fieldId) {
+                        console.log("inside if condition");
                         forms[i].fields.splice(j, 1);
                         break;
                     }
                 }
             }
         }
-        return forms;
+        deferred.resolve(forms);
+        return deferred.promise;
     }
 
     function createNewFieldForForm (formId, newField) {
+        var deferred = q.defer();
         newField.id = guid();
         for (var i = 0; i < forms.length; i++) {
             if (forms[i].id == formId) {
@@ -158,7 +163,8 @@ module.exports = function(app) {
                 break;
             }
         }
-        return forms;
+        deferred.resolve(forms);
+        return deferred.promise;
     }
 
     function updateFieldByFieldAndFormId (formId, fieldId, updatedField) {

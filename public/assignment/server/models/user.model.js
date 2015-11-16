@@ -83,8 +83,8 @@ module.exports = function(app){
             if(users[i].id == userId) {
                 users[i].username = userObj.username;
                 users[i].password = userObj.password;
-                users[i].firstName = userObj.firstName;
-                users[i].lastName = userObj.lastName;
+                users[i].firstName = userObj.firstname;
+                users[i].lastName = userObj.lastname;
                 deferred.resolve(users[i]);
             }
         }

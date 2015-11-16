@@ -45,6 +45,7 @@
             var deferred = $q.defer();
             var id = guid();
             newForm.id = id;
+            newForm.fields = [];
             $http.post("/api/assignment/user/" + userId + "/form", newForm)
                 .success(function(forms){
                     deferred.resolve(forms);

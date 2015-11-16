@@ -33,7 +33,11 @@
 
         function removeField (field) {
             FieldService.deleteFieldFromForm(formId, field.id).then(initiateDelete);
-            function initiateDelete (response) {}
+            function initiateDelete (response) {
+                console.log("in controller after delete");
+                console.log(response);
+                model.fields = response;
+            }
             loadFields();
         }
 
@@ -99,14 +103,13 @@
                         "placeholder" : "New Field"
                     };
             }
-            console.log(fieldType);
-            console.log(newField);
 
-            FieldService.createNewFieldForForm(formId, newField).then(initiateFieldCreate);
-            function initiateFieldCreate (response) {
-            }
+            FieldService.createNewFieldForForm (formId, newField)
+                .then(function(){
 
-            loadFields(formId);
+                });
+
+                loadFields(formId);
         }
     }
 }) ();

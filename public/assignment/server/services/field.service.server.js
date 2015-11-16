@@ -58,7 +58,7 @@ module.exports = function(app) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
         model
-            .deleteFieldByFormIdAndFieldId(fieldId, formId)
+            .deleteFieldByFieldAndFormId(formId, fieldId)
             .then(function(form){
                 res.json(form);
             });

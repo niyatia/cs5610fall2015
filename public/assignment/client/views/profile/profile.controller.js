@@ -17,13 +17,13 @@
 
             var userId = $rootScope.user.id;
             var updatedUser = {username: model.username, password: model.password, id: $rootScope.user.id,
-                email: model.email, firstName: model.firstname, lastName: model.lastname};
+                email: model.email, firstname: model.firstname, lastname: model.lastname};
 
             UserService.updateUser(userId, updatedUser)
                 .then(function(user){
                     if(user != null){
                         $rootScope.user = user;
-                        console.log($rootScope.user);
+                        console.log(user);
                     }
                 })
         }

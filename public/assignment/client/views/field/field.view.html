@@ -1,0 +1,76 @@
+<div ng-controller="FieldController">
+<h1 class="page-header">Forms : {{model.form.title}}</h1>
+<ul class="nav nav-tabs">
+    <ul class="nav nav-tabs">
+        <li ng-class="{'active' : $location.url().indexOf('forms') != -1}"><a href="#/form">Forms</a></li>
+        <li ng-class="{'active' : $location.url().indexOf('fields') != -1}"><a href="#/fields">Fields</a></li>
+    </ul>
+</ul>
+<br>
+<form>
+    <div ng-repeat="currField in model.fields">
+        <div class="form-group">
+            <label>{{currField.label}}</label>
+            <div class="input-group">
+                <div ng-switch="currField.type">
+                    <div ng-switch-when="TEXT">
+                        <input class="form-control" type="text" placeholder="{{currField.placeholder}}">
+                    </div>
+                    <div ng-switch-when="TEXTAREA">
+                        <textarea class="form-control" placeholder="{{currField.placeholder}}"></textarea>
+                    </div>
+                    <div ng-switch-when="EMAIL">
+                        <input class="form-control" type="email" placeholder="{{currField.placeholder}}">
+                    </div>
+                    <div ng-switch-when="DATE">
+                        <input class="form-control" type="date">
+                    </div>
+                    <div ng-switch-when="RADIOS">
+                        <div class = "radio">
+                            <div ng-repeat="currOption in currField.options">
+                                <label><input type="radio" name="{{currField.label}}" value="{{currOption.value}}">{{currOption.label}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-switch-when="CHECKBOXES">
+                        <div ng-repeat="currOption in currField.options">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="{{currOption.value}}">{{currOption.label}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-switch-when="OPTIONS">
+                        <select class="form-control">
+                            <option ng-repeat="currOption in currField.options" value="{{currOption.value}}">{{currOption.label}}</option>
+                        </select>
+                    </div>
+                </div>
+                        <span class="input-group-btn">
+                             <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                             <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span></button></a>
+                             <button class="btn btn-default" type="button" ng-click="model.removeField(currField)"><span class="glyphicon glyphicon-remove"></span></button>
+                             <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-align-justify"></span></button></a>
+                        </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="addnewfield">Add New Field:</label>
+        <div class="input-group">
+            <select class="form-control" id="addnewfield" ng-model="model.fieldType">
+                <option value="Single Line Text">Single Line Text</option>
+                <option value="Date">Date</option>
+                <option value="Dropdown">Dropdown</option>
+                <option value="Checkboxes">Checkboxes</option>
+                <option value="Radio buttons">Radio buttons</option>
+                <option value="Multi Line Text">Multi Line Text</option>
+            </select>
+                  <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-click="model.addField(model.fieldType)"><span class="glyphicon glyphicon-plus"></span></button>
+                  </span>
+        </div>
+    </div>
+</form>
+</div>

@@ -2,8 +2,8 @@
 	<h1 class="page-header">Forms</h1>
 
 	<ul class="nav nav-tabs">
-		<li class="active" role="forms"><a href="#">Forms</a></li>
-		<li role="fields"><a href="#/form-fields">Fields</a></li>
+		<li class="active" role="forms"><a href="#/form">Forms</a></li>
+		<li role="fields"><a href="#">Fields</a></li>
 	</ul>
 
 	<table class="table table-striped table-responsive">
@@ -29,7 +29,7 @@
 			</thead>
 			<tr ng-repeat="form in model.forms">
 				<td>
-					<a href="">{{form.title}}</a>
+					<a href="#/user/{{model.user.id}}/form/{{form.id}}/fields">{{form.title}}</a>
 				</td>
 				<td>
                     <button  ng-click="model.selectForm(form.id)" class="btn btn-warning">

@@ -35,8 +35,12 @@
                 controller: "FormController",
                 controllerAs: "model"
             })
-            .when("/form-field/:formId",
-            {
+            .when("/fields", {
+                templateUrl: "views/field/field.view.html",
+                controller: "FieldController",
+                controllerAs: "model"
+            })
+            .when("/user/:userId/form/:formId/fields", {
                 templateUrl: "views/field/field.view.html",
                 controller: "FieldController",
                 controllerAs: "model"

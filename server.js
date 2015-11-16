@@ -14,6 +14,6 @@ app.use(multer());//for parsing multipart/form-data
 
 require("./public/assignment/server/services/user.service.server.js")(app);
 require("./public/assignment/server/services/form.service.server.js")(app);
-//require("./public/assignment/server/services/field.service.js")(app);
+require("./public/assignment/server/services/field.service.server.js")(app);
 
 app.listen(port,ipaddress);

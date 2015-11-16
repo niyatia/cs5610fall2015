@@ -4,10 +4,11 @@
 	.module("FormBuilderApp")
 	.controller("FormController", FormController);
 
-	function FormController ($scope, $rootScope, UserService, FormService) {
+	function FormController ($rootScope, UserService, FormService) {
 		
 		var currUser = $rootScope.user;
         var model = this;
+        model.user = currUser;
 
 		FormService.findAllFormsForUser(currUser.id)
             .then(function(forms){
@@ -16,8 +17,8 @@
             });
 
         model.addForm = function() {
-            var newForm = { userId: $rootScope.user.id, title: model.title};
-			FormService.createFormForUser($rootScope.user.id, newForm)
+            var newForm = { userId: currUser.id, title: model.title};
+			FormService.createFormForUser(currUser.id, newForm)
                 .then(function(form){
                     model.currentForm = form;
                     model.forms.push(model.currentForm);

@@ -14,10 +14,11 @@
 
         model.update = function(){
 
-            var userId = $rootScope.user.id;
-            var updatedUser = {username: model.username, password: model.password, id: $rootScope.user.id,
+            var userId = $rootScope.user._id;
+            console.log(userId);
+            var updatedUser = {username: model.username, password: model.password, _id: $rootScope.user._id,
                 email: model.email, firstName: model.firstname, lastName: model.lastname};
-
+            console.log(updatedUser);
             UserService.updateUser(userId, updatedUser)
                 .then(function(user){
                     if(user != null){

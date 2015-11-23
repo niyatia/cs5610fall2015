@@ -21,6 +21,7 @@
 
             $http.get("/api/assignment/user/username=" + findUserName + "&password=" + findPassword)
                 .success(function(user){
+                    console.log(user);
                     deferred.resolve(user);
                 });
 
@@ -74,7 +75,7 @@
 
         function updateUser(userId, newUser) {
             var deferred = $q.defer();
-
+            console.log(userId);
             $http.put("/api/assignment/user/"+userId, newUser)
                 .success(function(response){
                     deferred.resolve(response);

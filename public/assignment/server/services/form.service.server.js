@@ -1,6 +1,6 @@
 var model = require("../models/form.model.js")();
 
-module.exports = function(app) {
+module.exports = function(app, model) {
     app.get("/api/assignment/user/:userId/form", findAllFormsForUser);
     app.get("/api/assignment/form", findAllForms);
     app.get("/api/assignment/form/:formId", findFormById);

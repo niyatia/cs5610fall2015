@@ -1,6 +1,4 @@
-var model = require("../models/user.model.js")();
-
-module.exports = function(app) {
+module.exports = function(app, model) {
     app.get("/api/assignment/user/username=:username&password=:password", findUserByUsernameAndPassword);
     app.get("/api/assignment/user", findAllUsers);
     app.get("/api/assignment/user/:id", findUserById);
@@ -14,6 +12,7 @@ module.exports = function(app) {
             .findAllUsers()
             .then(function(users){
                 res.json(users);
+                console.log(users);
             });
     }
 
@@ -36,6 +35,7 @@ module.exports = function(app) {
         model
             .findUserByCredentials(credentials)
             .then(function(user){
+                console.log(user);
                 res.json(user);
             });
     }
@@ -59,7 +59,10 @@ module.exports = function(app) {
     }
 
     function updateUser(req, res) {
-        var userId = req.params.id;
+
+        console.log(req.params.id);
+        console.log(req.body);
+        var userId = req.params._id;
         var userObj = req.body;
         model
             .updateUser(userId, userObj)

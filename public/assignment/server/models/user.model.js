@@ -1,16 +1,9 @@
-//var userSchema = require('../models/user.schema.js');
 var q = require("q");
 
 module.exports = function(mongoose, db){
-    var UserSchema = mongoose.Schema({
-        "firstName": String,
-        "lastName" : String,
-        "username" : String,
-        "password" : String
-    }, {collection: "user"});
 
-
-    var userModel = mongoose.model("user", UserSchema);
+    var UserSchema = require('./user.schema.js')(mongoose);
+    var userModel = mongoose.model("userModel", UserSchema);
 
     var api = {
         findUserById : findUserById,
@@ -86,11 +79,18 @@ module.exports = function(mongoose, db){
        delete userObj._id;
         console.log(userObj);
 
-        userModel.update({_id: userId}, {$set: userObj},
-            function(err,result){
-                    deferred.resolve(result);
-                console.log(result);
-            });
+        userModel.update({_id: userId}, {$set: userObj}, function(err, user) {
+            if(err) {
+                console.log("Cud not find Usr!!");
+                deferred.reject(err);
+            } else {
+                console.log("Update successful!");
+                userModel.findById(userId, function(err,usr) {
+                    console.log(usr);
+                    deferred.resolve(usr);
+                });
+            }
+        });
 
         return deferred.promise;
     }

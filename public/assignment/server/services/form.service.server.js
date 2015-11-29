@@ -1,10 +1,8 @@
-var model = require("../models/form.model.js")();
-
 module.exports = function(app, model) {
     app.get("/api/assignment/user/:userId/form", findAllFormsForUser);
     app.get("/api/assignment/form", findAllForms);
     app.get("/api/assignment/form/:formId", findFormById);
-    app.post("/api/assignment/user/:userId/form", createForm);
+    app.post("/api/assignment/user/form", createForm);
     app.put("/api/assignment/form/:formId", updateForm);
     app.delete("/api/assignment/form/:formId", deleteForm);
 
@@ -40,10 +38,13 @@ module.exports = function(app, model) {
 
     function createForm(req, res) {
         var form = req.body;
+        console.log("inside service.createForm");
+        console.log(form);
 
         model
             .createForm(form)
             .then(function(forms){
+                console.log("after model.createForm");
                 res.json(forms);
             });
     }

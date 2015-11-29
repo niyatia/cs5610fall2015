@@ -5,31 +5,38 @@
 	.controller("FormController", FormController);
 
 	function FormController ($rootScope, UserService, FormService) {
-		
+
 		var currUser = $rootScope.user;
         var model = this;
         model.user = currUser;
 
-		FormService.findAllFormsForUser(currUser.id)
-            .then(function(forms){
-                model.forms = forms;
-            });
+        loadAllForms();
+		function loadAllForms() {
+            FormService.findAllFormsForUser(currUser._id)
+                .then(function (forms) {
+                    model.forms = forms;
+                    console.log(model.forms);
+                });
+        }
 
         model.addForm = function() {
-            var newForm = { userId: currUser.id, title: model.title};
-			FormService.createFormForUser(currUser.id, newForm)
+            console.log($rootScope.user);
+            var newForm = { userId: currUser._id, title: model.title};
+
+            console.log(newForm);
+			FormService.createFormForUser(newForm)
                 .then(function(form){
-                    model.currentForm = form;
-                    model.forms.push(model.currentForm);
+                    loadAllForms();
+                    model.title = "";
                 });
 		}
 
         model.updateForm = function() {
 
-            var updatedForm = { id : model.currentForm.id, title : model.title};
-            FormService.updateFormById(model.currentForm.id, updatedForm)
+            var updatedForm = { _id : model.currentForm._id, title : model.title, userId: currUser._id};
+            FormService.updateFormById(model.currentForm._id, updatedForm)
                 .then(function(forms){
-                    model.forms= forms;
+                    loadAllForms();
                     model.title = "";
                 });
 		}
@@ -37,7 +44,7 @@
         model.deleteForm = function(index) {
             FormService.deleteFormById(index)
                 .then(function(forms){
-                    model.forms = forms;
+                    loadAllForms();
                 });
 		}
 

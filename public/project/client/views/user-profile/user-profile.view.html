@@ -2,10 +2,10 @@
     <div class="navbar-right">
         <a href="user-register.view.html">Update Profile</a>
     </div>
-    <h3>Welcome {{name}},</h3>
+    <h3>Welcome {{model.user.username}},</h3>
     <br/>
     <div>
-        <label>Enter the title, cuisine or type of dish to order: <input ng-model="searchText"></label>
+        <label>Enter the title, cuisine or type of dish to order: <input ng-model="model.searchText"></label>
         <br/>
         <br/>
         <table class="table table-responsive">
@@ -18,7 +18,7 @@
             <th>Image</th>
             <th>Action</th>
             </thead>
-            <tr ng-repeat="recipe in recipes | filter: searchText:strict">
+            <tr ng-repeat="recipe in model.recipes | filter: searchText:strict">
                 <td>
                     <a href="" ng-click="createDialog($index)">{{recipe.title}}</a>
                 </td>
@@ -38,7 +38,7 @@
                     <img src="../images/download.jpg"/>
                 </td>
                 <td>
-                    <button  ng-click="addToCart($index)" class="btn btn-success">
+                    <button  ng-click="model.addToCart()" class="btn btn-success">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </td>
@@ -46,6 +46,6 @@
             </tr>
 
         </table>
-        <button  ng-click="checkOut()" class="btn btn-default">Check Out</button>
+        <button  ng-click="model.checkOut()" class="btn btn-default">Check Out</button>
     </div>
 </div>

@@ -29,13 +29,13 @@
 			</thead>
 			<tr ng-repeat="form in model.forms">
 				<td>
-					<a href="#/user/{{model.user.id}}/form/{{form.id}}/fields">{{form.title}}</a>
+					<a href="#/user/{{model.user._id}}/form/{{form._id}}/fields">{{form.title}}</a>
 				</td>
 				<td>
-                    <button  ng-click="model.selectForm(form.id)" class="btn btn-warning">
+                    <button  ng-click="model.selectForm(form._id)" class="btn btn-warning">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>
-					<button ng-click="model.deleteForm(form.id)" class="btn btn-danger">
+					<button ng-click="model.deleteForm(form._id)" class="btn btn-danger">
 						<span class="glyphicon glyphicon-remove"></span>
 					</button>
 				</td>

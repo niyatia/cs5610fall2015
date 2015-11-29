@@ -39,13 +39,12 @@
             return deferred.promise;
         }
 
-        function createFormForUser (userId, newForm) {
+        function createFormForUser (newForm) {
             var deferred = $q.defer();
-            var id = guid();
-            newForm.id = id;
             newForm.fields = [];
-            $http.post("/api/assignment/user/" + userId + "/form", newForm)
+            $http.post("/api/assignment/user/form", newForm)
                 .success(function(forms){
+                    console.log(forms);
                     deferred.resolve(forms);
                 });
 

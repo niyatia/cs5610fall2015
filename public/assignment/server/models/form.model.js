@@ -1,7 +1,10 @@
 var forms = require('../models/form.mock.json');
 var q = require("q");
 
-module.exports = function(app) {
+module.exports = function(mongoose, db) {
+
+    var FormSchema = require("./form.schema.js")(mongoose);
+    var formModel = mongoose.model("formModel", FormSchema);
 
     var api = {
         //form api
@@ -22,81 +25,80 @@ module.exports = function(app) {
 
     function findFormById(formId) {
         var deferred = q.defer();
-        for(var form in forms) {
-            if(forms[form].id.localeCompare(formId) == 0) {
-                deferred.resolve(forms[form]);
-            }
-        }
+        formModel.findById(formId, function(err, forms){
+            deferred.resolve(forms);
+        });
         return deferred.promise;
     }
 
     function findAllForms() {
         var deferred = q.defer();
-        deferred.resolve(forms);
+        formModel.find(function(err, forms) {
+            deferred.resolve(forms);
+        });
         return deferred.promise;
     }
 
     function findAllFormsForUser(userId) {
-
         var deferred = q.defer();
-        var userForms = [] ;
-        for(var form in forms) {
-            if(forms[form].userId == userId) {
-                userForms.push(forms[form]);
-            }
-        }
-
-        deferred.resolve(userForms);
+        formModel.find({userId: userId}, function(err, forms){
+            deferred.resolve(forms);
+        });
         return deferred.promise;
     }
 
     function deleteForm(formId) {
 
         var deferred = q.defer();
-        var userForms = [];
-        var userId  = "0";
+        var userId = formModel.find( { }, { title: 0 } );
+        formModel.remove({_id: formId}, function(err, forms){
+            if(err) {
+                console.log("Error deleting form for user!");
+                deferred.reject(err);
+            } else {
+                formModel.find({userId: userId}, function(err, form){
+                    deferred.resolve(form);
+                });
+            }
+        });
 
-        for(var form in forms) {
-            if(forms[form].id.localeCompare(formId) == 0) {
-                userId = forms[form].userId;
-                forms.splice(form, 1);
-                break;
-            }
-        }
-        for(var form in forms) {
-            if(forms[form].userId == userId) {
-                userForms.push(forms[form]);
-            }
-        }
-        deferred.resolve(userForms);
         return deferred.promise;
     }
 
     function createForm(newForm) {
         var deferred = q.defer();
-        forms.push(newForm);
-        deferred.resolve(newForm);
+        console.log("inside model.createForm");
+        console.log(newForm);
+        var userId = newForm.userId;
+        formModel.create(newForm, function(err, form){
+            console.log(form);
+            if(err) {
+                console.log("Error adding form for user!");
+                console.log(err);
+                deferred.reject(err);
+            } else {
+                formModel.find({userId: userId}, function(err, forms){
+                    deferred.resolve(forms);
+                });
+            }
+        });
         return deferred.promise;
     }
 
     function updateForm(formId, updatedForm) {
         var deferred = q.defer();
-        var userForms = [];
-        var userId  = "0";
-        for(var i = 0; i < forms.length; i++)  {
-
-            if(forms[i].id.localeCompare(formId) == 0) {
-                forms[i].title = updatedForm.title;
-                userId = forms[i].userId;
+        var userId = formModel.find( { }, { title: 0 } );
+        formModel.update({_id: formId}, {$set: updatedForm}, function(err, forms) {
+            if(err) {
+                console.log("Cud not find Usr!!");
+                deferred.reject(err);
+            } else {
+                console.log("Update successful!");
+                formModel.find({userId: userId}, function(err, form){
+                    deferred.resolve(form);
+                });
             }
-        }
-
-        for(var form in forms) {
-            if(forms[form].userId == userId) {
-                userForms.push(forms[form]);
-            }
-        }
-        deferred.resolve(userForms);
+        });
         return deferred.promise;
     }
 

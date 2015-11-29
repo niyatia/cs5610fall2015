@@ -4,14 +4,15 @@
         .module("HomeMadeDinnerApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($scope, $rootScope, $location, UserService) {
-        console.log("login test0");
-        $scope.username = "";
-        $scope.password = "";
-        console.log($scope.username);
-        $scope.login =  function login(){
-            console.log("login test");
-            UserService.findUserByUsernameAndPassword($scope.username, $scope.password, getUser);
+    function LoginController($rootScope, $location, UserService) {
+        var model = this;
+        model.login = login;
+
+        model.login =  function login(){
+            var username = model.username;
+            var password = model.password;
+            UserService.findUserByUsernameAndPassword(username, password)
+                .then(getUser);
         };
 
         function getUser(loggedInUser){

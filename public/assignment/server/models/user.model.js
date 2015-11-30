@@ -28,8 +28,12 @@ module.exports = function(mongoose, db){
 
         var deferred = q.defer();
         userModel.findOne({username: credentials.username, password: credentials.password}, function(err, users){
-            console.log(users);
-            deferred.resolve(users);
+            if(err){
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(users);
+            }
         });
         return deferred.promise;
     }
@@ -38,7 +42,12 @@ module.exports = function(mongoose, db){
 
         var deferred = q.defer();
         userModel.findOne({username: username}, function(err, users){
-            deferred.resolve(users);
+            if(err){
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(users);
+            }
         });
         return deferred.promise;
     }
@@ -47,16 +56,25 @@ module.exports = function(mongoose, db){
 
         var deferred = q.defer();
         userModel.find(function(err, users){
-            deferred.resolve(users);
+            if(err){
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(users);
+            }
         });
         return deferred.promise;
     }
 
     function deleteUser(userId) {
-
         var deferred = q.defer();
         userModel.remove({_id: userId},function(err, users){
-            deferred.resolve(users);
+            if(err){
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(users);
+            }
         });
         return deferred.promise;
     }
@@ -66,7 +84,12 @@ module.exports = function(mongoose, db){
         var newUser = newUser;
 
         userModel.create(newUser, function(err, users){
-                deferred.resolve(users);
+                if(err){
+                    deferred.reject(err);
+                }
+                else{
+                    deferred.resolve(users);
+                }
         });
 
         return deferred.promise;
@@ -81,12 +104,9 @@ module.exports = function(mongoose, db){
 
         userModel.update({_id: userId}, {$set: userObj}, function(err, user) {
             if(err) {
-                console.log("Cud not find Usr!!");
                 deferred.reject(err);
             } else {
-                console.log("Update successful!");
                 userModel.findById(userId, function(err,usr) {
-                    console.log(usr);
                     deferred.resolve(usr);
                 });
             }

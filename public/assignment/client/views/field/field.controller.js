@@ -29,10 +29,8 @@
             }
         }
 
-        function removeField (field) {
-            console.log(field);
-            console.log(formId);
-            FieldService.deleteFieldFromForm(formId, field._id)
+        function removeField (fieldIndex) {
+            FieldService.deleteFieldFromForm(formId, fieldIndex)
                 .then(initiateDelete);
             function initiateDelete (response) {
                 initFields();

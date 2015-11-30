@@ -1,5 +1,3 @@
-var model = require("../models/form.model.js")();
-
 module.exports = function(app, model) {
     app.get("/api/assignment/form/:formId/field", findAllFieldsForForm);
     app.post("/api/assignment/form/:formId/field", createNewFieldForForm);

@@ -24,42 +24,42 @@
             FieldService.getFieldsForForm(formId)
                 .then(initiateGetFieldsForForm);
             function initiateGetFieldsForForm (response) {
-                model.fields = response;
+                console.log(response);
+                model.fields = response.fields;
             }
         }
 
         function removeField (field) {
-            FieldService.deleteFieldFromForm(formId, field.id)
+            console.log(field);
+            console.log(formId);
+            FieldService.deleteFieldFromForm(formId, field._id)
                 .then(initiateDelete);
             function initiateDelete (response) {
-                model.fields = response;
+                initFields();
             }
-            initFields();
         }
 
         function addField (fieldType) {
             var newField;
+
             switch (fieldType) {
                 case "Single Line Text" :
                     newField = {
-                        "id" : null,
                         "label" : "New Text Field",
-                        "type" : "TEXT",
+                        "fieldType" : "TEXT",
                         "placeholder" : "New Field"
                     };
                     break;
                 case "Date" :
                     newField = {
-                        "id" : null,
                         "label" : "New Date Field",
-                        "type" : "DATE"
+                        "fieldType" : "DATE"
                     };
                     break;
                 case "Dropdown" :
                     newField = {
-                        "id" : null,
                         "label" : "New Dropdown",
-                        "type" : "OPTIONS",
+                        "fieldType" : "OPTIONS",
                         "options" : [
                             {"label": "Option 1", "value": "OPTION_1"},
                             {"label": "Option 2", "value": "OPTION_2"},
@@ -69,9 +69,8 @@
                     break;
                 case "Checkboxes" :
                     newField = {
-                        "id" : null,
                         "label" : "New Checkboxes",
-                        "type" : "CHECKBOXES",
+                        "fieldType" : "CHECKBOXES",
                         "options" : [
                             {"label": "Option A", "value": "OPTION_A"},
                             {"label": "Option B", "value": "OPTION_B"},
@@ -81,9 +80,8 @@
                     break;
                 case "Radio buttons" :
                     newField = {
-                        "id": null,
                         "label": "New Radio Buttons",
-                        "type": "RADIOS",
+                        "fieldType": "RADIOS",
                         "options": [
                             {"label": "Option X", "value": "OPTION_X"},
                             {"label": "Option Y", "value": "OPTION_Y"},
@@ -93,18 +91,16 @@
                     break;
                 case "Multi Line Text" :
                     newField = {
-                        "id" : null,
                         "label" : "New Text Field",
-                        "type" : "TEXTAREA",
+                        "fieldType" : "TEXTAREA",
                         "placeholder" : "New Field"
                     };
             }
 
             FieldService.createNewFieldForForm (formId, newField)
                 .then(function(){
+                    initFields();
                 });
-
-                initFields(formId);
         }
     }
 }) ();

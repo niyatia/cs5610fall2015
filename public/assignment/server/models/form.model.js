@@ -82,14 +82,14 @@ module.exports = function(mongoose, db) {
 
     function updateForm(formId, updatedForm) {
         var deferred = q.defer();
-        var userId = formModel.find( { }, { title: 0 } );
+
+        delete updatedForm["_id"];
+
         formModel.update({_id: formId}, {$set: updatedForm}, function(err, forms) {
             if(err) {
                 deferred.reject(err);
             } else {
-                formModel.find({userId: userId}, function(err, form){
-                    deferred.resolve(form);
-                });
+                deferred.resolve(forms);
             }
         });
         return deferred.promise;

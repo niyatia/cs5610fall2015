@@ -12,6 +12,7 @@ module.exports = function(app, model) {
             username: username,
             password: pwd
         };
+        console.log(credentials);
         model
             .findUserByCredentials(credentials)
             .then(function(user){

@@ -18,9 +18,11 @@
             UserService.createUser(model.newUser)
                 .then(function(createdUser) {
                     console.log("inside user created");
+                    console.log(createdUser);
                     $rootScope.user = createdUser;
 
                     if($rootScope.user.userType == 0){
+                        console.log("inside if");
                         $location.url("/user-profile");
                     }
                     if($rootScope.user.userType == 1){

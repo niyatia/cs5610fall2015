@@ -3,19 +3,9 @@ var q = require("q");
 
 module.exports = function(mongoose, db){
 
-    var UserSchema = mongoose.Schema({
-        "firstName": String,
-        "lastName" : String,
-        "username" : String,
-        "password" : String,
-        "phone": String,
-        "address": String,
-        "zip": Number,
-        "email": String,
-        "userType": Number
-    }, {collection: "user"});
+    var UserSchema = require("./user.schema.js")(mongoose);
 
-    var userModel = mongoose.model("userModel", UserSchema);
+    var userModel = mongoose.model("user", UserSchema);
 
     var api = {
         findUserByCredentials: findUserByCredentials,
@@ -30,7 +20,7 @@ module.exports = function(mongoose, db){
     function findUserByCredentials(credentials) {
 
         var deferred = q.defer();
-        userModel.findOne({username: credentials.userName, password: credentials.password}, function(err, users){
+        userModel.findOne({username: credentials.username, password: credentials.password}, function(err, users){
             console.log(users);
             deferred.resolve(users);
         });

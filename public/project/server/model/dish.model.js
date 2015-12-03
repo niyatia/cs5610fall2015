@@ -1,16 +1,7 @@
 var q = require("q");
 
 module.exports = function(mongoose, db){
-    var DishSchema =  mongoose.Schema({
-        title: String,
-        cuisine: String,
-        type: String,
-        price: Number,
-        quantity: Number,
-        ingredients: String,
-        img: String,
-        chef: String,
-        user: String}, {collection: "dish"});
+    var DishSchema =  require("./dish.schema.js")(mongoose);
 
     var dishModel = mongoose.model("dishModel", DishSchema);
 
@@ -27,7 +18,7 @@ module.exports = function(mongoose, db){
     function filterDishByUsername(username) {
 
         var deferred = q.defer();
-        dishModel.findOne({chef: username}, function(err, dishes){
+        dishModel.find({chef: username}, function(err, dishes){
             console.log(dishes);
             deferred.resolve(dishes);
         });

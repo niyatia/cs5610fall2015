@@ -4,34 +4,21 @@
         .module("HomeMadeDinnerApp")
         .controller("ChefProfileController", ChefProfileController)
 
-    function ChefProfileController ($scope, $rootScope, UserService, $location, DishService) {
-        var recipe = {};
-        var dishes = [];
+    function ChefProfileController ($rootScope, UserService, $location, DishService) {
 
-        DishService.filterDishByUsername($rootScope.user.username, dishesFound);
+        var model = this;
+        model.user = $rootScope.user;
 
-        function dishesFound(chefDishes){
+        DishService.filterDishByUsername($rootScope.user.username)
+            .then(function (chefDishes){
+            console.log("init");
             console.log(chefDishes);
-            dishes= chefDishes;
-        }
-        $scope.addDish = addDish;
+            model.dishes= chefDishes;
+        });
+
+        model.addDish = addDish;
         function addDish(){
             $location.url("/add-dish");
         }
-
-        $scope.add = add;
-        function add(){
-            console.log($rootScope.user);
-            $scope.recipe.chef = $rootScope.user.username;
-            DishService.createDish($scope.recipe, dishCreated);
-
-            function dishCreated(recipe){
-                $location.url("/chef-profile");
-            }
-        }
-
-        $scope.recipes = dishes;
-        console.log($rootScope.user);
-        $scope.user = $rootScope.user;
     }
 }) ();

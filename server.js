@@ -26,5 +26,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use(multer());//for parsing multipart/form-data
 
 require("./public/assignment/server/app.js")(app, db, mongoose);
+require("./public/project/server/app.js")(app, db, mongoose);
 
 app.listen(port,ipaddress);

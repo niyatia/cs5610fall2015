@@ -4,66 +4,70 @@
         .module("HomeMadeDinnerApp")
         .controller("UserProfileController", UserProfileController)
 
-    function UserProfileController ($scope, $rootScope, UserService, $location, DishService) {
-        var recipe = {};
-        var dishes = [];
-        var userSelectedDishes = [];
+    function UserProfileController ($rootScope, UserService, $location, DishService) {
 
         var model = this;
         model.user = $rootScope.user;
 
-       // model.name = $rootScope.user.fullname;
+        model.recipe = $rootScope.recipe;
 
-        DishService.findAllDishes(getDishes);
-        function getDishes(listOfDish){
-            dishes = listOfDish;
+        initDishes();
+        function initDishes() {
+            DishService.findAllDishes()
+                .then(function (listOfDish) {
+                    model.dishes = listOfDish;
+                    model.userSelectedDishes = [];
+                });
         }
 
         model.createDialog = createDialog;
 
         function createDialog(index){
-            $rootScope.recipe = dishes[index];
+            console.log("inside create dialog");
+            $rootScope.recipe = model.dishes[index];
             $location.url("/recipeDetails");
         }
 
         model.goBack = goBack;
 
         function goBack(){
-            $scope.recipe = $rootScope.recipe;
             $location.url("/user-profile");
         }
 
         model.addToCart = addToCart;
 
         function addToCart(index) {
-            if(dishes[index].quantity == 0){
+            if(model.dishes[index].quantity == 0){
 
             }
             else{
                 var isAdded = false;
-                var selectedItem = dishes[index];
+                var selectedItem = model.dishes[index];
 
-                for(var i = 0; i < userSelectedDishes.length; i++){
-                    if(userSelectedDishes[i].title == selectedItem.title){
-                        userSelectedDishes[i].quantity++;
-                        isAdded = true;
+                if(model.userSelectedDishes != null){
+                    for(var i = 0; i < model.userSelectedDishes.length; i++){
+                        if(model.userSelectedDishes[i].title == selectedItem.title){
+                            model.userSelectedDishes[i].quantity++;
+                            isAdded = true;
+                        }
                     }
                 }
 
-                if(!isAdded){
+                if (!isAdded) {
                     selectedItem.user = $rootScope.user.username;
 
-                    dishes[index].quantity--;
+                    model.dishes[index].quantity--;
                     selectedItem.quantity = 1;
-                    userSelectedDishes.push(selectedItem);
+                    model.userSelectedDishes.push(selectedItem);
                 }
+
             }
         }
 
         model.checkOut = checkOut;
 
         function checkOut(){
-            $rootScope.userSelectedDishes = userSelectedDishes;
+            $rootScope.userSelectedDishes = model.userSelectedDishes;
             $location.url("/paymentDetails");
         }
 
@@ -83,11 +87,5 @@
 
             return total;
         }
-
-        console.log(model.userSelectedDishes);
-        //$scope.totalAmount = totalAmount;
-        model.recipes = dishes;
-
-       // model.user = $rootScope.user;
     }
 }) ();

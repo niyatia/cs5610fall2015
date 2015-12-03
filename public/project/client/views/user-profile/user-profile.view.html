@@ -18,9 +18,9 @@
             <th>Image</th>
             <th>Action</th>
             </thead>
-            <tr ng-repeat="recipe in model.recipes | filter: searchText:strict">
+            <tr ng-repeat="recipe in model.dishes | filter: model.searchText:strict">
                 <td>
-                    <a href="" ng-click="createDialog($index)">{{recipe.title}}</a>
+                    <a href="" ng-click="model.createDialog($index)">{{recipe.title}}</a>
                 </td>
                 <td>
                     {{recipe.cuisine}}
@@ -38,7 +38,7 @@
                     <img src="../images/download.jpg"/>
                 </td>
                 <td>
-                    <button  ng-click="model.addToCart()" class="btn btn-success">
+                    <button  ng-click="model.addToCart($index)" class="btn btn-success">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </td>

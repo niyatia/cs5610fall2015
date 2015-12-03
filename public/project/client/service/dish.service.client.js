@@ -20,9 +20,10 @@
             var deferred = $q.defer();
 
             $http.get("/api/project/dish/username=" + username)
-                .success(function(dish){
-                    console.log(dish);
-                    deferred.resolve(dish);
+                .success(function(dishes){
+                    console.log(dishes);
+                    deferred.resolve(dishes);
+                    console.log("returned from service.client");
                 });
 
             return deferred.promise;
@@ -40,10 +41,10 @@
 
         function createDish(newDish) {
             var deferred = $q.defer();
-            newDish.id = guid();
 
             $http.post("/api/project/dish", newDish)
                 .success(function(dish){
+                    console.log("dish created- back in client service");
                     deferred.resolve(dish);
                 });
 

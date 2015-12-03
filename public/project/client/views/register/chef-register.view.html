@@ -3,18 +3,18 @@
     <form class="form-horizontal">
         <div class="form-group col-sm-6">
             <label for="userName" class="control-label">Username: </label>
-            <input ng-model="newUser.username" type="text" name="userName" id="userName" placeholder="Username" class="form-control">
+            <input ng-model="model.newUser.username" type="text" name="userName" id="userName" placeholder="Username" class="form-control">
 
         </div>
         <div class="form-group col-sm-6">
             <label for="name" class="control-label col-sm-offset-2">Full name: </label>
-            <input ng-model="newUser.fullname" type="text" name="name" id="name" placeholder="Full name" class="form-control col-sm-offset-2">
+            <input ng-model="model.newUser.fullname" type="text" name="name" id="name" placeholder="Full name" class="form-control col-sm-offset-2">
 
         </div>
 
         <div class="form-group col-sm-6">
             <label for="password" class="control-label">Password: </label>
-            <input ng-model="newUser.password" type="password" name="password" id="password" placeholder="Password" class="form-control">
+            <input ng-model="model.newUser.password" type="password" name="password" id="password" placeholder="Password" class="form-control">
 
         </div>
         <div class="form-group col-sm-6">
@@ -24,25 +24,25 @@
 
         <div class="form-group col-sm-6">
             <label for="email">Email: </label>
-            <input ng-model="newUser.email" type="email" name="email" id="email" placeholder="Email" class="form-control">
+            <input ng-model="model.newUser.email" type="email" name="email" id="email" placeholder="Email" class="form-control">
         </div>
         <div class="form-group col-sm-6">
             <label for="phone" class="control-label col-sm-offset-2">Phone: </label>
-            <input ng-model="newUser.phone" type="number" name="phone" id="phone" placeholder="Phone" class="form-control col-sm-offset-2">
+            <input ng-model="model.newUser.phone" type="number" name="phone" id="phone" placeholder="Phone" class="form-control col-sm-offset-2">
         </div>
 
         <div class="form-group col-sm-6">
             <label for="address">Address: </label>
-            <input ng-model="newUser.address" type="text" name="address" id="address" placeholder="Address" class="form-control">
+            <input ng-model="model.newUser.address" type="text" name="address" id="address" placeholder="Address" class="form-control">
         </div>
         <div class="form-group col-sm-6">
             <label for="zip" class="control-label col-sm-offset-2">Zip Code: </label>
-            <input ng-model="newUser.zip" type="number" name="zip" id="zip" placeholder="Zip Code" class="form-control col-sm-offset-2">
+            <input ng-model="model.newUser.zip" type="number" name="zip" id="zip" placeholder="Zip Code" class="form-control col-sm-offset-2">
         </div>
         <input type="number" ng-model="newUser.userType" class="hidden">
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-10">
-                <button ng-click="register(1)" type="submit" class="btn btn-default">Register</button>
+                <button ng-click="model.register(1)" type="submit" class="btn btn-default">Register</button>
             </div>
         </div>
     </form>

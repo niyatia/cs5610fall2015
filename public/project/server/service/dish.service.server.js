@@ -9,7 +9,7 @@ module.exports = function(app, model) {
     function filterDishByUsername(req, res) {
         var username = req.params.username;
         model
-            .findUserByCredentials(username)
+            .filterDishByUsername(username)
             .then(function(dish){
                 console.log(dish);
                 res.json(dish);

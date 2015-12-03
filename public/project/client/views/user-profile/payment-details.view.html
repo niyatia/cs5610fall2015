@@ -9,7 +9,7 @@
         <th>Price</th>
         <th>Quantity</th>
         </thead>
-        <tr ng-repeat="recipe in userSelectedDishes">
+        <tr ng-repeat="recipe in model.userSelectedDishes">
             <td>
                {{recipe.title}}
             </td>
@@ -26,43 +26,41 @@
                 {{recipe.quantity}}
             </td>
             <td>
-                <button  ng-click="remove($index)" class="btn btn-danger">
+                <button  ng-click="model.remove($index)" class="btn btn-danger">
                     <span class="glyphicon glyphicon-minus"></span>
                 </button>
             </td>
         </tr>
         </table>
-    <label>Total Amount:</label> <label>{{totalAmount}}</label>
+    <label>Total Amount:</label> <label>{{model.totalAmount}}</label>
 
     <h4>Payment Information</h4>
-    <form class="form-control">
+    <form class="form-horizontal col-sm-offset-1">
         <div class="form-group">
-            <p>Cardholder Name:</p>
-            <div>
-                <input ng-model = "cardName" type="text" class="form-control" id="cardName" placeholder="Cardholder Name">
-            </div>
+            <label for="cardNumber" class="control-label">Cardholder Name:</label>
+            <input ng-model = "model.cardName" type="text" class="form-control" id="cardName" placeholder="Cardholder Name">
         </div>
         <div class="form-group">
             <label for="cardNumber" class="control-label">Card Number:</label>
             <div>
-                <input ng-model = "cardNumber" type="number" class="form-control" id="cardNumber" placeholder="Card Number">
+                <input ng-model = "model.cardNumber" type="number" class="form-control" id="cardNumber" placeholder="Card Number">
             </div>
         </div>
         <div class="form-group">
             <label for="cvv" class="control-label">CVV:</label>
             <div>
-                <input ng-model = "cvv" type="number" class="form-control" id="cvv" placeholder="CVV">
+                <input ng-model = "model.cvv" type="number" class="form-control" id="cvv" placeholder="CVV">
             </div>
         </div>
         <div class="form-group">
             <label for="expiry" class="control-label">Expiry Date:</label>
             <div>
-                <input ng-model = "expiry" type="date" class="form-control" id="expiry" placeholder="Expiry Date">
+                <input ng-model = "model.expiry" type="date" class="form-control" id="expiry" placeholder="Expiry Date">
             </div>
         </div>
         <div class="form-group">
             <div>
-                <button ng-click="pay()" type="submit" class="form-control btn btn-default">Check out</button>
+                <button ng-click="model.pay()" type="submit" class="form-control btn btn-default">Check out</button>
             </div>
         </div>
     </form>

@@ -5,6 +5,7 @@
         .config(Configure);
 
     function Configure ($routeProvider) {
+        console.log("inside config.js");
         $routeProvider
             .when("/home", {
                 templateUrl: "views/home/home.view.html"
@@ -12,7 +13,7 @@
             .when("/user-profile",
             {
                 templateUrl: "views/user-profile/user-profile.view.html",
-                controller: "ProfileController",
+                controller: "UserProfileController",
                 controllerAs: "model"
             })
             .when("/user-register", {
@@ -46,13 +47,19 @@
                 controllerAs: "model"
             })
             .when("/add-dish", {
-                templateUrl: "chef-profile/add-dish.view.html"
+                templateUrl: "views/chef-profile/add-dish.view.html",
+                controller: "AddDishController",
+                controllerAs: "model"
             })
             .when("/chef-profile", {
-                templateUrl: "chef-profile/chef-profile.view.html"
+                templateUrl: "views/chef-profile/chef-profile.view.html",
+                controller: "ChefProfileController",
+                controllerAs: "model"
             })
             .when("/driver-profile", {
-                templateUrl: "driver-profile/driver-profile.view.html"
+                templateUrl: "views/driver-profile/driver-profile.view.html",
+                controller: "DriverProfileController",
+                controllerAs: "model"
             })
             .otherwise({
                 redirectTo: "/home"

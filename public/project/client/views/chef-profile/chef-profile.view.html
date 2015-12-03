@@ -11,7 +11,7 @@
         <th>Ingredients</th>
         </thead>
         <tbody>
-        <tr ng-repeat="dish in recipes">
+        <tr ng-repeat="dish in model.dishes">
             <td>{{dish.title}}</td>
             <td>{{dish.cuisine}}</td>
             <td>{{dish.type}}</td>
@@ -22,5 +22,5 @@
         </tbody>
 
     </table>
-    <a href="" ng-click="addDish()">Add a dish</a>
+    <a href="" ng-click="model.addDish()">Add a dish</a>
 </div>

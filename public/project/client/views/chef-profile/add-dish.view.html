@@ -1,46 +1,46 @@
-<div ng-controller="ChefProfileController">
+<div ng-controller="AddDishController">
     <h1>Add a Dish</h1>
     <form class="form-horizontal">
         <div class="form-group">
             <label for="title" class="col-sm-2 control-label">Title: </label>
             <div class="col-sm-10">
-                <input ng-model="recipe.title" type="text" name="title" id="title" placeholder="Title" class="form-control">
+                <input ng-model="model.recipe.title" type="text" name="title" id="title" placeholder="Title" class="form-control">
             </div>
         </div>
         <div class="form-group">
             <label for="cuisine" class="col-sm-2 control-label">Cuisine: </label>
             <div class="col-sm-10">
-                <input ng-model="recipe.cuisine" type="text" name="cuisine" id="cuisine" placeholder="Cuisine" class="form-control">
+                <input ng-model="model.recipe.cuisine" type="text" name="cuisine" id="cuisine" placeholder="Cuisine" class="form-control">
             </div>
         </div>
         <div class="form-group">
             <label for="type" class="col-sm-2 control-label">Type: </label>
             <div class="col-sm-10">
-                <input ng-model="recipe.type" type="text" name="type" id="type" placeholder="Type" class="form-control">
+                <input ng-model="model.recipe.type" type="text" name="type" id="type" placeholder="Type" class="form-control">
             </div>
         </div>
         <div class="form-group">
             <label for="price" class="col-sm-2 control-label">Price: </label>
             <div class="col-sm-10">
-                <input ng-model="recipe.price" type="number" name="price" id="price" placeholder="Price" class="form-control">
+                <input ng-model="model.recipe.price" type="number" name="price" id="price" placeholder="Price" class="form-control">
             </div>
         </div>
         <div class="form-group">
             <label for="quantity" class="col-sm-2 control-label">Quantity: </label>
             <div class="col-sm-10">
-                <input ng-model="recipe.quantity" type="number" name="quantity" id="quantity" placeholder="Quantity" class="form-control">
+                <input ng-model="model.recipe.quantity" type="number" name="quantity" id="quantity" placeholder="Quantity" class="form-control">
             </div>
         </div>
         <div class="form-group">
             <label for="ingredients" class="col-sm-2 control-label">Ingredients: </label>
             <div class="col-sm-10">
-                <input ng-model="recipe.ingredients" type="text" name="ingredients" id="ingredients" placeholder="Ingredients" class="form-control">
+                <input ng-model="model.recipe.ingredients" type="text" name="ingredients" id="ingredients" placeholder="Ingredients" class="form-control">
             </div>
         </div>
         <input ng-model="recipe.chef" class="hidden"/>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button ng-click="add()" type="submit" class="btn btn-default">Add</button>
+                <button ng-click="model.add()" type="submit" class="btn btn-default">Add</button>
             </div>
         </div>
     </form>

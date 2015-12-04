@@ -41,6 +41,11 @@
                 controller: "UserProfileController",
                 controllerAs: "model"
             })
+            .when("/order", {
+                templateUrl: "views/order/order.view.html",
+                controller: "OrderController",
+                controllerAs: "model"
+            })
             .when("/paymentDetails", {
                 templateUrl: "views/user-profile/payment-details.view.html",
                 controller: "UserProfileController",

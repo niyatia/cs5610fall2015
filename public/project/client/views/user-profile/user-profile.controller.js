@@ -68,7 +68,7 @@
 
         function checkOut(){
             $rootScope.userSelectedDishes = model.userSelectedDishes;
-            $location.url("/paymentDetails");
+            $location.url("/order");
         }
 
         model.pay = pay;

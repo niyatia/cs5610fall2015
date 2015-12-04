@@ -1,11 +1,10 @@
 module.exports = function(mongoose) {
-    var DishSchema = require ("./dish.schema.js") (mongoose);
+
     var OrderSchema = mongoose.Schema({
-        orderId: String,
         customerId: String,
-        dishes: [DishSchema],
+        dishes: [String],
         totalAmount: Number,
-        creditCardId: Number
+        creditCardId: String
 
     }, {collection: "project.order"});
 

@@ -4,7 +4,8 @@ module.exports = function(mongoose) {
         customerId: String,
         dishes: [String],
         totalAmount: Number,
-        creditCardId: String
+        creditCardId: String,
+        paymentId: String
 
     }, {collection: "project.order"});
 

@@ -23,7 +23,7 @@
 
                     if($rootScope.user.userType == 0){
                         console.log("inside if");
-                        $location.url("/user-profile");
+                        $location.url("/user-home");
                     }
                     if($rootScope.user.userType == 1){
                         $location.url("/chef-profile");

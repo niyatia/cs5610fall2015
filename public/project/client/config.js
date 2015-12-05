@@ -8,7 +8,15 @@
         console.log("inside config.js");
         $routeProvider
             .when("/home", {
-                templateUrl: "views/home/home.view.html"
+                templateUrl: "views/home/home.view.html",
+                controller : "HomeController",
+                controllerAs: "model"
+            })
+            .when("/user-home",
+            {
+                templateUrl: "views/user-profile/user-home.view.html",
+                controller: "UserHomeController",
+                controllerAs: "model"
             })
             .when("/user-profile",
             {
@@ -48,6 +56,11 @@
             })
             .when("/paymentDetails", {
                 templateUrl: "views/user-profile/payment-details.view.html",
+                controller: "UserProfileController",
+                controllerAs: "model"
+            })
+            .when("/thankyou", {
+                templateUrl: "views/user-profile/thankyou.view.html",
                 controller: "UserProfileController",
                 controllerAs: "model"
             })

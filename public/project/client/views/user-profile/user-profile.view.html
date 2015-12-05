@@ -1,51 +1,50 @@
 <div ng-controller="UserProfileController">
-    <div class="navbar-right">
-        <a href="user-register.view.html">Update Profile</a>
-    </div>
-    <h3>Welcome {{model.user.username}},</h3>
-    <br/>
-    <div>
-        <label>Enter the title, cuisine or type of dish to order: <input ng-model="model.searchText"></label>
-        <br/>
-        <br/>
-        <table class="table table-responsive">
-            <thead>
-            <th>Title</th>
-            <th>Cuisine</th>
-            <th>Type</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Image</th>
-            <th>Action</th>
-            </thead>
-            <tr ng-repeat="recipe in model.dishes | filter: model.searchText:strict">
-                <td>
-                    <a href="" ng-click="model.createDialog($index)">{{recipe.title}}</a>
-                </td>
-                <td>
-                    {{recipe.cuisine}}
-                </td>
-                <td>
-                    {{recipe.type}}
-                </td>
-                <td>
-                    {{recipe.price}}
-                </td>
-                <td>
-                    {{recipe.quantity}}
-                </td>
-                <td>
-                    <img src="../images/download.jpg"/>
-                </td>
-                <td>
-                    <button  ng-click="model.addToCart($index)" class="btn btn-success">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-                </td>
+    <h2 class="page-header">Register</h2>
+    <form class="form-horizontal">
+        <div class="form-group col-sm-6">
+            <label for="userName" class="control-label">Username: </label>
+            <input ng-model="model.username" type="text" name="userName" id="userName" placeholder="Username" class="form-control">
 
-            </tr>
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="name" class="control-label col-sm-offset-2">Full name: </label>
+            <input ng-model="model.fullname" type="text" name="name" id="name" placeholder="Full name" class="form-control col-sm-offset-2">
 
-        </table>
-        <button  ng-click="model.checkOut()" class="btn btn-default">Check Out</button>
-    </div>
+        </div>
+
+        <div class="form-group col-sm-6">
+            <label for="password" class="control-label">Password: </label>
+            <input ng-model="model.password" type="password" name="password" id="password" placeholder="Password" class="form-control">
+
+        </div>
+
+        <div class="form-group col-sm-6">
+            <label for="verifyPassword" class="control-label col-sm-offset-2">Verify Password: </label>
+            <input type="password" name="verifyPassword" id="verifyPassword" placeholder="Password" class="form-control col-sm-offset-2">
+        </div>
+
+        <div class="form-group col-sm-6">
+            <label for="email" class="control-label">Email: </label>
+            <input ng-model="model.email" type="email" name="email" id="email" placeholder="Email" class="form-control">
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="phone" class="control-label col-sm-offset-2">Phone: </label>
+            <input ng-model="model.newUser.phone" type="number" name="phone" id="phone" placeholder="Phone" class="form-control col-sm-offset-2">
+        </div>
+
+        <div class="form-group col-sm-6">
+            <label for="address" class="control-label ">Address: </label>
+            <input ng-model="model.address" type="text" name="address" id="address" placeholder="Address" class="form-control">
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="zip" class="control-label col-sm-offset-2">Zip Code: </label>
+            <input ng-model="model.zip" type="number" name="zip" id="zip" placeholder="Zip Code" class="form-control col-sm-offset-2">
+        </div>
+        <input type="number" ng-model="model.newUser.userType" class="hidden">
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-10">
+                <button ng-click="model.register(0)" type="submit" class="btn btn-default">Register</button>
+            </div>
+        </div>
+    </form>
 </div>

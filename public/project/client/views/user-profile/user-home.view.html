@@ -1,0 +1,52 @@
+<div ng-controller="UserHomeController">
+    <div class="navbar-right">
+        <a ng-show="loggedInUser" href="" ng-click="model.updateProfile()">Update Profile</a>
+    </div>
+    <h3 ng-show="model.loggedInUser">Welcome {{model.user.username}},</h3>
+    <a ng-hide="model.loggedInUser"  class="ng-hide" href="#/user-register">Sign-up now to order</a>
+    <br/>
+    <div>
+        <label>Enter the title, cuisine or type of dish to order: <input ng-model="model.searchText"></label>
+        <br/>
+        <br/>
+        <table class="table table-responsive">
+            <thead>
+            <th>Title</th>
+            <th>Cuisine</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Image</th>
+            <th ng-show="model.loggedInUser">Action</th>
+            </thead>
+            <tr ng-repeat="recipe in model.dishes | filter: model.searchText:strict">
+                <td>
+                    <a href="" ng-click="model.createDialog($index)">{{recipe.title}}</a>
+                </td>
+                <td>
+                    {{recipe.cuisine}}
+                </td>
+                <td>
+                    {{recipe.type}}
+                </td>
+                <td>
+                    {{recipe.price}}
+                </td>
+                <td>
+                    {{recipe.quantity}}
+                </td>
+                <td>
+                    <img src="../images/download.jpg"/>
+                </td>
+                <td ng-show="model.loggedInUser">
+                    <button  ng-click="model.addToCart($index)" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </td>
+
+            </tr>
+
+        </table>
+        <button ng-show="model.loggedInUser" ng-click="model.checkOut()" class="btn btn-default">Check Out</button>
+    </div>
+</div>

@@ -9,21 +9,41 @@
         var model = this;
         model.user = $rootScope.user;
         model.userSelectedDishes = $rootScope.userSelectedDishes;
-        model.totalAmount = $rootScope.totalAmount;
+        model.dataloaded = true;
+        console.log(model.dataloaded);
+        calculateTotalAmount();
+        model.remove = remove;
+
+        function remove(index){
+            model.userSelectedDishes.splice(index,1);
+            calculateTotalAmount();
+        }
+
+        model.months = [ 1,2,3,4,5,6,7,8,9,10,11,12 ]
+        model.years =  [ 2015, 2016, 2017, 2018, 2019, 2020]
 
         model.pay = pay;
 
         function pay(){
+            model.dataloaded = false;
+            console.log(model.cardDetails);
             var order = {
                 customerId: model.user._id,
-                creditCardDetails: model.creditCardDetails,
+                creditCardDetails: model.cardDetails,
                 totalAmount : model.totalAmount,
                 dishes : model.userSelectedDishes
             };
 
             OrderService.placeOrder(order)
-                .then(function(){
-                    $location.url("/thankyou");
+                .then(function(orders){
+                    console.log(orders);
+                    model.dataloaded = true;
+                    if(orders.error == "VALIDATION_ERROR"){
+                        model.cardError = "Incorrect cardNumber";
+                    }
+                    else {
+                        $location.url("/thankyou");
+                    }
                 });
         }
 
@@ -33,7 +53,7 @@
                 total += model.userSelectedDishes[i].price * model.userSelectedDishes[i].quantity;
             }
 
-            return total;
+            model.totalAmount = total;
         }
     }
 }) ();

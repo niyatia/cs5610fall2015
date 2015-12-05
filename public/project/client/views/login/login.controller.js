@@ -19,7 +19,7 @@
             console.log("login test 1");
             $rootScope.user = loggedInUser;
             if($rootScope.user.userType == 0){
-                $location.url("/user-profile");
+                $location.url("/user-home");
             }
             if($rootScope.user.userType == 1){
                 $location.url("/chef-profile");

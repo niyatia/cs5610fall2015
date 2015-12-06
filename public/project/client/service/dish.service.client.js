@@ -41,6 +41,8 @@
 
         function createDish(newDish) {
             var deferred = $q.defer();
+            var path = Path.Combine(Server.MapPath("~/Photos/") + file.FileName);
+            file.SaveAs(path);
 
             $http.post("/api/project/dish", newDish)
                 .success(function(dish){

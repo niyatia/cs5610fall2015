@@ -1,0 +1,39 @@
+<div ng-Controller="UserOrderController">
+    <table class="table table-responsive table-bordered table-striped">
+        <thead>
+            <th>Order</th>
+            <th>
+                TotalAmount
+            </th>
+            <th>
+                &nbsp;
+            </th>
+            <th>
+                &nbsp;
+            </th>
+            <th>
+                &nbsp;
+            </th>
+        </thead>
+        <tbody ng-repeat="row in model.orders">
+        <tr>{{row._id}}</tr>
+        <tr>{{row.totalAmount}}</tr>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Chef</th>
+            <th>Rate the dish</th>
+        </tr>
+        <tr ng-repeat="sub in row.dishes">
+            <td>{{sub.title}}</td>
+            <td>{{sub.price}}</td>
+            <td>{{sub.quantity}}</td>
+            <td>{{sub.chef}}</td>
+            <td>  <button  ng-click="model.rateDish(sub)" class="btn btn-success">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

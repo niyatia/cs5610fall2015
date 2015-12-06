@@ -24,6 +24,12 @@
                 controller: "UserProfileController",
                 controllerAs: "model"
             })
+            .when("/user-order",
+            {
+                templateUrl: "views/user-profile/user-order.view.html",
+                controller: "UserOrderController",
+                controllerAs: "model"
+            })
             .when("/user-register", {
                 templateUrl: "views/register/user-register.view.html",
                 controller: "RegisterController",
@@ -45,8 +51,8 @@
                 controllerAs: "model"
             })
             .when("/recipeDetails", {
-                templateUrl: "views/user-profile/recipeDetails.view.html",
-                controller: "UserProfileController",
+                templateUrl: "views/dish/dish-detail.view.html",
+                controller: "DishDetailController",
                 controllerAs: "model"
             })
             .when("/order", {
@@ -65,7 +71,7 @@
                 controllerAs: "model"
             })
             .when("/add-dish", {
-                templateUrl: "views/chef-profile/add-dish.view.html",
+                templateUrl: "views/dish/add-dish.view.html",
                 controller: "AddDishController",
                 controllerAs: "model"
             })

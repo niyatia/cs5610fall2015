@@ -27,6 +27,7 @@
         function pay(){
             model.dataloaded = false;
             console.log(model.cardDetails);
+
             var order = {
                 customerId: model.user._id,
                 creditCardDetails: model.cardDetails,

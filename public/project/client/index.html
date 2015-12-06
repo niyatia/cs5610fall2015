@@ -28,11 +28,15 @@
     <script src="service/user.service.client.js"></script>
     <script src="service/dish.service.client.js"></script>
     <script src="service/order.service.client.js"></script>
+    <script src="service/rating.service.client.js"></script>
 
     <script src="views/user-profile/user-home.controller.js"></script>
     <script src="views/user-profile/user-profile.controller.js"></script>
+    <script src="views/user-profile/user-order.controller.js"></script>
+
     <script src="views/chef-profile/chef-profile.controller.js"></script>
-    <script src="views/chef-profile/add-dish.controller.js"></script>
+    <script src="views/dish/add-dish.controller.js"></script>
+    <script src="views/dish/dish-detail.controller.js"></script>
     <script src="views/driver-profile/driver-profile.controller.js"></script>
     <script src="views/login/login.controller.js"></script>
     <script src="views/order/order.controller.js"></script>
@@ -46,10 +50,37 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-sm-3 col-md-10 main" ng-view>
+        <div class="main" ng-view>
         </div>
     </div>
 </div>
 
 </body>
+<footer class="nav-sidebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <span class="copyright">Copyright &copy; HomeMadeDinner 2015</span>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-inline social-buttons">
+                    <li><a href="#home"><i class="fa fa-twitter fa-2x"></i></a>
+                    </li>
+                    <li><a href="#home"><i class="fa fa-facebook fa-2x"></i></a>
+                    </li>
+                    <li><a href="#home"><i class="fa fa-google-plus fa-2x"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-inline quicklinks">
+                    <li><a href="#home">Privacy Policy</a>
+                    </li>
+                    <li><a href="#home">Terms of Use</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
 </html>

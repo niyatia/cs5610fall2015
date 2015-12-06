@@ -9,5 +9,8 @@ module.exports = function(app, db, mongoose, paypal) {
     var orderModel = require("./model/order.model.js") (mongoose, db);
     require("./service/order.service.server.js")(app, orderModel, paypal);
 
+    var ratingModel = require("./model/rating.model.js") (mongoose, db);
+    require("./service/rating.service.server.js")(app, ratingModel);
+
 
 };

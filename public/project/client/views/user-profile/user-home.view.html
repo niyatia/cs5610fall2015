@@ -1,8 +1,10 @@
 <div ng-controller="UserHomeController">
     <div class="navbar-right">
-        <a ng-show="loggedInUser" href="" ng-click="model.updateProfile()">Update Profile</a>
+        <button ng-show="model.loggedInUser" ng-click="model.checkOut()" class="btn-success glyphicon glyphicon-shopping-cart"></button>
+        <button ng-show="model.loggedInUser" ng-click="model.updateProfile()" class="btn-success glyphicon glyphicon-user"></button><br/>
+        <button ng-show="model.loggedInUser" ng-click="model.myOrders()" class="btn-success">My Orders</button>
     </div>
-    <h3 ng-show="model.loggedInUser">Welcome {{model.user.username}},</h3>
+    <h3 ng-show="model.loggedInUser">Welcome {{model.user.username}}</h3>
     <a ng-hide="model.loggedInUser"  class="ng-hide" href="#/user-register">Sign-up now to order</a>
     <br/>
     <div>
@@ -21,7 +23,7 @@
             </thead>
             <tr ng-repeat="recipe in model.dishes | filter: model.searchText:strict">
                 <td>
-                    <a href="" ng-click="model.createDialog($index)">{{recipe.title}}</a>
+                    <a href="" ng-click="model.dishDetail($index)">{{recipe.title}}</a>
                 </td>
                 <td>
                     {{recipe.cuisine}}
@@ -47,6 +49,5 @@
             </tr>
 
         </table>
-        <button ng-show="model.loggedInUser" ng-click="model.checkOut()" class="btn btn-default">Check Out</button>
     </div>
 </div>

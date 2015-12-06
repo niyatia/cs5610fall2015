@@ -1,6 +1,7 @@
 module.exports = function(app, model, paypal) {
 
     app.post("/api/project/order", createDish);
+    app.get("/api/project/order/customerId=:customerId", findOrdersByCustomerId);
 
     function createDish(req, res) {
         var newOrder = req.body;
@@ -60,12 +61,14 @@ module.exports = function(app, model, paypal) {
                         } else {
                             console.log("Create Payment Response");
                             console.log(payment);
+
                             var order = {
                                 customerId: newOrder.customerId,
-                                paymentId : payment.id,
                                 dishes: newOrder.dishes,
                                 totalAmount: newOrder.totalAmount,
-                                creditCardId: credit_card.id }
+                                creditCardId: credit_card.id,
+                                paymentId : payment.id
+                                 }
 
                             model
                                 .createOrder(order)
@@ -81,5 +84,16 @@ module.exports = function(app, model, paypal) {
                 }
             }
         })
+    }
+
+    function findOrdersByCustomerId(req,res){
+        var customerId = req.params.customerId;
+        console.log(customerId);
+        model
+            .findOrdersByCustomerId(customerId)
+            .then(function(myOrders){
+                console.log(myOrders);
+                res.json(myOrders);
+            });
     }
 }

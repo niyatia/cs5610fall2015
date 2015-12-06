@@ -1,7 +1,7 @@
 module.exports = function(mongoose){
     var UserSchema = mongoose.Schema({
         "fullname": String,
-        "username" : String,
+        "username" :  { type: String, unique: true },
         "password" : String,
         "phone": String,
         "carId" : String,

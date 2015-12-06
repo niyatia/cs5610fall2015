@@ -26,6 +26,7 @@ module.exports = function(app, model) {
 
     function createDish(req, res) {
         var newDish = req.body;
+
         model
             .createDish(newDish)
             .then(function(dishes) {

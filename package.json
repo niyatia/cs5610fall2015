@@ -27,6 +27,7 @@
     "express": "~3.4.4",
     "mongoose": "^4.2.8",
     "multer": "^1.1.0",
+    "ng-file-upload": "^10.1.8",
     "paypal-rest-sdk": "^1.6.6",
     "q": "^1.4.1"
   },

@@ -37,6 +37,11 @@
                 <input ng-model="model.recipe.ingredients" type="text" name="ingredients" id="ingredients" placeholder="Ingredients" class="form-control">
             </div>
         </div>
+      <div>
+          <label for="image" class="col-sm-2 control-label">Image: </label>
+          <input type="file" accept="image/*" class="form-control" ng-model="image" id="image"
+                 onchange="angular.element(this).scope().imageChanged(this)">
+      </div>
         <input ng-model="recipe.chef" class="hidden"/>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">

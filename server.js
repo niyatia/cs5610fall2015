@@ -8,7 +8,7 @@ var paypal = require('paypal-rest-sdk');
 paypal.configure({
     'mode': 'sandbox',
     'client_id': 'AY6kks-uafhNV1qzbc7kxxrvX4-qfST8O7O46HPl4r8U6apsC6C_xGAwhyDh5lQ6ICvdmXiNjGpR8dvG',
-    'client_secret': 'EIMfuZOIGIejO-B9UrFdUaTDjgScEzEO-llHAGGxlvmuDF5C31obF9ZVudzlhMs_5yYDM4S9Kb-oZjGA'
+    'client_secret': 'EL2_owUzMTztBqhoJsldAOt6cNHz1Fwcxt2311FS_Hm8XUOqoOFMFcXBEcpOvNSxkPewjNBBajicESPl'
 });
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;

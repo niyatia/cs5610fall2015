@@ -4,7 +4,7 @@
         .module("HomeMadeDinnerApp")
         .controller("UserHomeController", UserHomeController)
 
-    function UserHomeController ($rootScope, UserService, $location, DishService) {
+    function UserHomeController ($rootScope, $location, DishService, OrderService) {
 
         var model = this;
         if($rootScope.user){
@@ -24,7 +24,15 @@
             $location.url("/user-profile");
         }
 
-        model.recipe = $rootScope.recipe;
+        model.myOrders = getMyOrders;
+
+        function getMyOrders(){
+            OrderService.findOrderByCustomerId($rootScope.user._id)
+                .then(function(myOrders){
+                   $rootScope.myOrders = myOrders;
+                    $location.url("/user-order");
+                });
+        }
 
         initDishes();
         function initDishes() {
@@ -35,18 +43,13 @@
                 });
         }
 
-        model.createDialog = createDialog;
+        model.dishDetail = dishDetail;
 
-        function createDialog(index){
+        function dishDetail(index){
             console.log("inside create dialog");
+            $rootScope.fromMyOrders = false;
             $rootScope.recipe = model.dishes[index];
             $location.url("/recipeDetails");
-        }
-
-        model.goBack = goBack;
-
-        function goBack(){
-            $location.url("/user-profile");
         }
 
         model.addToCart = addToCart;
@@ -72,7 +75,9 @@
 
                     console.log(model.dishes[index].quantity);
                     model.dishes[index].quantity--;
-                    var selected_item = {title : model.dishes[index].title,
+                    var selected_item = {
+                        _id : model.dishes[index]._id,
+                        title : model.dishes[index].title,
                         cuisine : model.dishes[index].cuisine,
                         type: model.dishes[index].type,
                         price : model.dishes[index].price,
@@ -82,8 +87,6 @@
                         quantity : 1};
 
                     console.log(model.dishes[index].quantity);
-                   // selectedItem.quantity = 1;
-
                     console.log(model.dishes[index].quantity);
                     model.userSelectedDishes.push(selected_item);
                 }

@@ -8,6 +8,7 @@ module.exports = function(mongoose, db){
     var api = {
         filterDishByUsername: filterDishByUsername,
         findAllDishes: findAllDishes,
+        findDishById: findDishById,
         createDish: createDish,
         deleteDishById: deleteDishById,
         updateDish: updateDish
@@ -29,6 +30,16 @@ module.exports = function(mongoose, db){
         var deferred = q.defer();
         dishModel.find(function(err, dishes){
             deferred.resolve(dishes);
+        });
+        return deferred.promise;
+    }
+
+    function findDishById(dishId) {
+
+        var deferred = q.defer();
+        dishModel.findOne({_id: dishId}, function(err, dish){
+            console.log(dish);
+            deferred.resolve(dish);
         });
         return deferred.promise;
     }

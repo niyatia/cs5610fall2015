@@ -1,5 +1,5 @@
 <div ng-controller="OrderController" ng-hide ="model.dataloaded"  class="text-center" >
-    <i class="fa fa-spinner fa-spin fa-5x"></i>
+    <i class="fa fa-spinner fa-spin fa-lg"></i>
 </div>
 <div ng-controller="OrderController" ng-show="model.dataloaded">
     <h3>Review Details</h3>
@@ -10,6 +10,7 @@
         <th>Type</th>
         <th>Price</th>
         <th>Quantity</th>
+        <th>Remove item</th>
         </thead>
         <tr ng-repeat="recipe in model.userSelectedDishes">
             <td>
@@ -34,7 +35,7 @@
             </td>
         </tr>
     </table>
-    <label>Total Amount:</label> <label>{{model.totalAmount}}</label>
+    <h4>Total Amount:</h4> <label>{{model.totalAmount}}</label>
 
     <h4>Payment Information</h4>
     <form class="form-horizontal col-sm-offset-1">

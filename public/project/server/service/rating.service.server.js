@@ -5,6 +5,7 @@ module.exports = function(app, model, paypal) {
 
     function createRating(req, res) {
         var rating = req.body;
+
         model
             .createRating(rating)
             .then(function(newRating) {

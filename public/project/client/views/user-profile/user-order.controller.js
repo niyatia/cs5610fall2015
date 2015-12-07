@@ -14,7 +14,7 @@
         function rateDish(dish){
             console.log(dish);
             $rootScope.recipe = dish;
-            $rootScope.fromMyOrders = false;
+            $rootScope.fromMyOrders = true;
             $location.url('/recipeDetails');
         }
     }

@@ -9,9 +9,10 @@
         var api = {
             filterDishByUsername: filterDishByUsername,
             findAllDishes: findAllDishes,
+            findDishById : findDishById,
             createDish: createDish,
             deleteDishById: deleteDishById,
-            updateUser: updateUser
+            updateDish: updateDish
         };
 
         return api;
@@ -29,6 +30,16 @@
             return deferred.promise;
         }
 
+        function findDishById(dishId) {
+            var deferred = $q.defer();
+            $http.get("/api/project/dish/dishId=" + dishId)
+                .success(function(dish){
+                    deferred.resolve(dish);
+                });
+
+            return deferred.promise;
+        }
+
         function findAllDishes() {
             var deferred = $q.defer();
             $http.get("/api/project/dish/")
@@ -41,8 +52,6 @@
 
         function createDish(newDish) {
             var deferred = $q.defer();
-            var path = Path.Combine(Server.MapPath("~/Photos/") + file.FileName);
-            file.SaveAs(path);
 
             $http.post("/api/project/dish", newDish)
                 .success(function(dish){
@@ -64,27 +73,15 @@
             return deferred.promise;
         }
 
-        function updateUser(dishId, newDish) {
+        function updateDish(dishId, newDish) {
             var deferred = $q.defer();
             console.log(dishId);
-            $http.put("/api/project/user/"+dishId, newDish)
+            $http.put("/api/project/dish/"+dishId, newDish)
                 .success(function(response){
                     deferred.resolve(response);
                 });
 
             return deferred.promise;
-        }
-
-
-        function guid() {
-            function s4() {
-                return Math.floor((1 + Math.random()) * 0x10000)
-                    .toString(16)
-                    .substring(1);
-            }
-
-            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-                s4() + '-' + s4() + s4() + s4();
         }
     }
 })();

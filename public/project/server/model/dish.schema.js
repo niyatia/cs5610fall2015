@@ -8,7 +8,8 @@ module.exports = function(mongoose) {
         ingredients: String,
         image: Buffer,
         chef: String,
-        user: String
+        user: String,
+        rating: Number
     }, {collection: "project.dish"});
 
     return DishSchema;

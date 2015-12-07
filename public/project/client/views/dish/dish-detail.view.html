@@ -1,3 +1,8 @@
+<script xmlns="http://www.w3.org/1999/html">// initialize with defaults
+$("#ratingId").rating();
+$("#ratingId2").rating();
+$("#DishRatingId").rating({hoverEnabled: false});
+</script>
 <div ng-controller="DishDetailController">
     <h1>{{model.recipe.title}}</h1>
     <div class="form-control-static">
@@ -6,19 +11,33 @@
         <label>Food Type:</label>
         <label>{{model.recipe.type}}</label><br/>
         <label>Ingredients:</label>
-        <label>{{model.recipe.ingredients}}</label>
-        <label>Rating:</label>
-        <label>{{model.recipe.rating}}</label>
-        <label>Add Rating:</label>
-        <select ng-model="model.recipe.newRating">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-        </select>
-        <button class="btn btn-success" ng-click="model.addRating(model.recipe.newRating)">Add Rating</button>
-        <br/> <br/>
-        <button class="btn-default glyphicon glyphicon-arrow-left" ng-click="model.goBack()">Go Back</button>
+        <label>{{model.recipe.ingredients}}</label><br/>
+        <label>Current Rating:</label>
+        <li class="list-inline" ng-repeat="Star in [1,2,3,4,5]">
+            <div style="width:auto" ng-switch="model.recipe.rating >= Star">
+                <div style="float:left;width:50px;height:50px"ng-switch-when="true">
+                    <i class="fa fa-star fa-4x glyphicon-text-color"></i>
+                </div>
+                <div ng-switch-when="false">
+                    <div style="float:left;width:50px;height:50px" ng-switch="model.recipe.rating > (Star-1)">
+                        <div ng-switch-when="true">
+                            <i class="fa fa-star-half-empty fa-4x"></i>
+                        </div>
+                        <div ng-switch-when="false">
+                            <i class="fa fa-star-o fa-4x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <br/><br/>
+        <br/><br/>
+        <div ng-show="model.fromMyOrders">
+            <label>Rate this item:</label>
+            <input id="ratingId" type="number" ng-model="model.recipe.newRating" class="rating" min=0 max=5 step=0.5 data-size="lg" >
+            <button class="btn btn-success"  ng-click="model.addRating(model.recipe.newRating)">Add</button>
+        </div>
+        <br/> <br/> <br/>
+        <button class="btn-success glyphicon glyphicon-arrow-left" ng-click="model.goBack()"></button>
     </div>
 </div>

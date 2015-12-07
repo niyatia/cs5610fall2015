@@ -84,6 +84,8 @@
                         img: model.dishes[index].img,
                         chef: model.dishes[index].chef,
                         user: model.dishes[index].user,
+                        ingredients: model.dishes[index].ingredients,
+                        rating: model.dishes[index].rating,
                         quantity : 1};
 
                     console.log(model.dishes[index].quantity);

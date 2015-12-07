@@ -2,8 +2,9 @@ module.exports = function(app, model) {
 
     app.get("/api/project/dish/username=:username", filterDishByUsername);
     app.get("/api/project/dish", findAllDishes);
+    app.get("/api/project/dish/dishId=:dishId", findDishById);
     app.post("/api/project/dish", createDish);
-    app.put("/api/project/dish/:id", updateUser);
+    app.put("/api/project/dish/:id", updateDish);
     app.delete("/api/project/dish/:id", deleteDish);
 
     function filterDishByUsername(req, res) {
@@ -21,6 +22,17 @@ module.exports = function(app, model) {
             .findAllDishes()
             .then(function(dishes) {
                 res.json(dishes);
+            });
+    }
+
+    function findDishById(req, res) {
+        var dishId = req.params.dishId;
+        console.log(dishId);
+        model
+            .findDishById(dishId)
+            .then(function(dish){
+                console.log(dish);
+                res.json(dish);
             });
     }
 
@@ -43,11 +55,13 @@ module.exports = function(app, model) {
             });
     }
 
-    function updateUser(req,res) {
+    function updateDish(req,res) {
         var dishId = req.params.id;
+        console.log(dishId);
         var dishObj = req.body;
+        console.log(dishObj);
         model
-            .updateUser(dishId, dishObj)
+            .updateDish(dishId, dishObj)
             .then(function(dish){
                 res.json(dish);
             });

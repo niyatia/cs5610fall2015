@@ -15,7 +15,12 @@
         model.remove = remove;
 
         function remove(index){
-            model.userSelectedDishes.splice(index,1);
+            if(model.userSelectedDishes[index].quantity > 1){
+                model.userSelectedDishes[index].quantity--;
+            }else{
+                model.userSelectedDishes.splice(index,1);
+            }
+
             calculateTotalAmount();
         }
 

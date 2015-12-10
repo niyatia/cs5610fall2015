@@ -1,5 +1,5 @@
 <div ng-controller="UserProfileController">
-    <h2 class="page-header">Register</h2>
+    <h2 class="page-header">Update Profile</h2>
     <form class="form-horizontal">
         <div class="form-group col-sm-6">
             <label for="userName" class="control-label">Username: </label>
@@ -43,7 +43,7 @@
         <input type="number" ng-model="model.newUser.userType" class="hidden">
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-10">
-                <button ng-click="model.register(0)" type="submit" class="btn btn-default">Register</button>
+                <button ng-click="model.update()" type="submit" class="btn btn-default">Register</button>
             </div>
         </div>
     </form>

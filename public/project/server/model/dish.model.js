@@ -9,9 +9,12 @@ module.exports = function(mongoose, db){
         filterDishByUsername: filterDishByUsername,
         findAllDishes: findAllDishes,
         findDishById: findDishById,
+        getCuisines : getCuisines,
+        getTypes : getTypes,
         createDish: createDish,
         deleteDishById: deleteDishById,
-        updateDish: updateDish
+        updateDish: updateDish,
+        updateDishQuantity : updateDishQuantity
     };
 
     return api;
@@ -35,12 +38,25 @@ module.exports = function(mongoose, db){
     }
 
     function findDishById(dishId) {
-
         var deferred = q.defer();
         dishModel.findOne({_id: dishId}, function(err, dish){
             console.log(dish);
             deferred.resolve(dish);
         });
+        return deferred.promise;
+    }
+
+    // Returns all the cuisine
+    function getCuisines() {
+        var deferred = q.defer();
+        deferred.resolve(dishModel.schema.path('cuisine').enumValues);
+        return deferred.promise;
+    }
+
+    // Returns all the types
+    function getTypes() {
+        var deferred = q.defer();
+        deferred.resolve(dishModel.schema.path('type').enumValues);
         return deferred.promise;
     }
 
@@ -76,6 +92,31 @@ module.exports = function(mongoose, db){
                 deferred.resolve(dish);
             });
 
+        return deferred.promise;
+    }
+
+    function updateDishQuantity(dishId, quantity) {
+
+        var deferred = q.defer();
+        console.log("in dish model");
+        dishModel.findOne({_id: dishId}, function(err, dish){
+            console.log("found dish");
+            console.log(dish);
+            dish.quantity = dish.quantity - quantity;
+            if(dish.quantity == 0){
+                dishModel.remove({_id: dishId},function(err, dishes){
+                    deferred.resolve(dishes);
+                });
+            }
+            else{
+                delete dish._id;
+                dishModel.update({_id: dishId}, {$set: dish},
+                    function(err,dish){
+                        console.log(dish);
+                        deferred.resolve(dish);
+                    });
+            }
+        });
         return deferred.promise;
     }
 }

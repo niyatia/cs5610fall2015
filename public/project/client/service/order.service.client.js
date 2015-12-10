@@ -8,7 +8,8 @@
 
         var api = {
             placeOrder: placeOrder,
-            findOrderByCustomerId : findOrderByCustomerId
+            findOrderByCustomerId : findOrderByCustomerId,
+            findOrders : findOrders
         };
 
         return api;
@@ -18,8 +19,21 @@
 
             $http.post("/api/project/order", order)
                 .success(function(orderComplete){
-                    console.log("order created- back in client service");
-                    deferred.resolve(orderComplete);
+                    var result = [];
+                    var error;
+                    console.log(orderComplete);
+                    if(orderComplete.error == "VALIDATION_ERROR"){
+                        error = "VALIDATION_ERROR";
+                        return error;
+                    }
+                    else if(orderComplete.error == "PAYMENT_ERROR"){
+                        error = "PAYMENT_ERROR";
+                        return error;
+                    }
+                    else {
+                        deferred.resolve(orderComplete);
+                        console.log("order created- back in client service");
+                    }
                 });
 
             return deferred.promise;
@@ -30,7 +44,6 @@
 
             $http.get("/api/project/order/customerId="+customerId)
                 .success(function(myOrders){
-
                     console.log("order fetched- back in client service");
                     console.log(myOrders);
                     deferred.resolve(myOrders);
@@ -39,6 +52,17 @@
             return deferred.promise;
         }
 
+        function findOrders(chefname){
+            var deferred = $q.defer();
 
+            $http.get("/api/project/order/chefname="+chefname)
+                .success(function(myOrders){
+                    console.log("order fetched- back in client service");
+                    console.log(myOrders);
+                    deferred.resolve(myOrders);
+                });
+
+            return deferred.promise;
+        }
     }
 })();

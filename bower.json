@@ -1,0 +1,22 @@
+{
+  "name": "niyatia",
+  "version": "1.5.3",
+  "authors": [
+    "niyatia <niyatia@ccs.neu.edu>"
+  ],
+  "description": "test",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ng-file-upload": "~10.1.9"
+  }
+}

@@ -17,10 +17,10 @@
             model.loggedInUser = false;
         }
 
+
         model.updateProfile = updateProfile;
 
         function updateProfile(){
-            $rootScope.user = model.user;
             $location.url("/user-profile");
         }
 
@@ -38,7 +38,14 @@
         function initDishes() {
             DishService.findAllDishes()
                 .then(function (listOfDish) {
+                    for(var i = 0; i < listOfDish.length; i++){
+                        console.log(listOfDish[i].quantityOver);
+                        listOfDish[i].quantityOver = false;
+                        console.log(listOfDish[i].quantityOver);
+                    }
+
                     model.dishes = listOfDish;
+
                     model.userSelectedDishes = [];
                 });
         }
@@ -56,7 +63,7 @@
 
         function addToCart(index) {
             if(model.dishes[index].quantity == 0){
-
+                model.dishes[index].quantityOver = true;
             }
             else{
                 var isAdded = false;
@@ -66,6 +73,7 @@
                     for(var i = 0; i < model.userSelectedDishes.length; i++){
                         if(model.userSelectedDishes[i].title == selectedItem.title){
                             model.userSelectedDishes[i].quantity++;
+                            model.dishes[index].quantity--;
                             isAdded = true;
                         }
                     }
@@ -88,10 +96,17 @@
                         rating: model.dishes[index].rating,
                         quantity : 1};
 
-                    console.log(model.dishes[index].quantity);
-                    console.log(model.dishes[index].quantity);
                     model.userSelectedDishes.push(selected_item);
                 }
+
+                DishService.findDishById(model.dishes[index]._id)
+                    .then(function(dish){
+                        dish.quantity--;
+                        DishService.updateDish(dish._id, dish)
+                            .then(function(dish) {
+                                console.log(dish);
+                            });
+                    })
 
             }
         }

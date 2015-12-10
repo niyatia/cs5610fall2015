@@ -1,6 +1,7 @@
 <div ng-controller="ChefProfileController">
-<h1>Welcome, Chef</h1>
-    <label>Your dishes:</label>
+<h1>Welcome, {{model.user.fullname}}</h1>
+    <a class="navbar-right" href="" ng-click="model.addDish()">Add a dish</a>
+    <label>Your remaining dishes:</label>
     <table class="table table-responsive table-bordered">
         <thead>
         <th>Title</th>
@@ -22,5 +23,41 @@
         </tbody>
 
     </table>
-    <a href="" ng-click="model.addDish()">Add a dish</a>
+
+    <label>Your Orders:</label>
+
+    <table class="table table-responsive table-bordered table-striped">
+        <thead>
+        <th>Order</th>
+        <th>
+            TotalAmount
+        </th>
+        <th>
+            &nbsp;
+        </th>
+        <th>
+            &nbsp;
+        </th>
+        <th>
+            &nbsp;
+        </th>
+        </thead>
+        <tbody ng-repeat="row in model.orders">
+        <tr>{{row._id}}</tr>
+        <tr>{{row.totalAmount}}</tr>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Rating</th>
+        </tr>
+        <tr ng-repeat="sub in row.dishes">
+            <td>{{sub.title}}</td>
+            <td>{{sub.price}}</td>
+            <td>{{sub.quantity}}</td>
+            <td>{{sub.rating}}</td>
+
+        </tr>
+        </tbody>
+    </table>
 </div>

@@ -1,9 +1,10 @@
 <div ng-controller="OrderController" ng-hide ="model.dataloaded"  class="text-center" >
+    <p>Your payment is being processed. Thank you for your patience.</p>
     <i class="fa fa-spinner fa-spin fa-lg"></i>
 </div>
 <div ng-controller="OrderController" ng-show="model.dataloaded">
-    <h3>Review Details</h3>
-    <table class="table table-responsive">
+    <h2>Review Details</h2>
+    <table class="table table-responsive table-bordered">
         <thead>
         <th>Title</th>
         <th>Cuisine</th>
@@ -35,7 +36,7 @@
             </td>
         </tr>
     </table>
-    <h4>Total Amount:</h4> <label>{{model.totalAmount}}</label>
+    <h4>Total Amount:</h4> <h4>{{model.totalAmount}}</h4>
 
     <h4>Payment Information</h4>
     <form class="form-horizontal col-sm-offset-1">

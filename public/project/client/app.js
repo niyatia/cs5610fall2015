@@ -1,5 +1,5 @@
 "use strict";
 (function() {
     angular
-        .module("HomeMadeDinnerApp", ["ngRoute"]);
+        .module("HomeMadeDinnerApp", ["ngRoute", "ngFileUpload"]);
 })();

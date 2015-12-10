@@ -1,8 +1,10 @@
-module.exports = function(app, model) {
+module.exports = function(app, model, multipart) {
 
     app.get("/api/project/dish/username=:username", filterDishByUsername);
     app.get("/api/project/dish", findAllDishes);
     app.get("/api/project/dish/dishId=:dishId", findDishById);
+    app.get("/api/project/dish/cuisine", getCuisines);
+    app.get("/api/project/dish/type", getTypes);
     app.post("/api/project/dish", createDish);
     app.put("/api/project/dish/:id", updateDish);
     app.delete("/api/project/dish/:id", deleteDish);
@@ -36,9 +38,27 @@ module.exports = function(app, model) {
             });
     }
 
+    function getCuisines(req, res) {
+        model
+            .getCuisines()
+            .then(function(cuisine){
+                console.log(cuisine);
+                res.json(cuisine);
+            });
+    }
+
+    function getTypes(req, res) {
+        model
+            .getTypes()
+            .then(function(types){
+                console.log(types);
+                res.json(types);
+            });
+    }
+
     function createDish(req, res) {
         var newDish = req.body;
-
+        console.log(newDish);
         model
             .createDish(newDish)
             .then(function(dishes) {
@@ -49,7 +69,7 @@ module.exports = function(app, model) {
     function deleteDish(req, res) {
         var dishId = req.params.id;
         model
-            .deleteDish(dishId)
+            .deleteDishById(dishId)
             .then(function(dishes){
                 res.json(dishes);
             });
@@ -66,4 +86,5 @@ module.exports = function(app, model) {
                 res.json(dish);
             });
     }
+
 }

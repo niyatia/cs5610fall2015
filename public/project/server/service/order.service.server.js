@@ -1,7 +1,8 @@
-module.exports = function(app, model, paypal) {
+module.exports = function(app, model, paypal, transporter) {
 
     app.post("/api/project/order", createDish);
     app.get("/api/project/order/customerId=:customerId", findOrdersByCustomerId);
+    app.get("/api/project/order/chefname=:chefname", findOrders);
 
     function createDish(req, res) {
         var newOrder = req.body;
@@ -14,14 +15,7 @@ module.exports = function(app, model, paypal) {
             "expire_year":  newOrder.creditCardDetails.expire_year,
             "cvv2":  newOrder.creditCardDetails.cvv,
             "first_name":  newOrder.creditCardDetails.firstname,
-            "last_name":  newOrder.creditCardDetails.lastname,
-            "billing_address": {
-                "line1": "52 N Main ST",
-                "city": "Johnstown",
-                "state": "OH",
-                "postal_code": "43210",
-                "country_code": "US"
-            }
+            "last_name":  newOrder.creditCardDetails.lastname
         };
 
         paypal.creditCard.create(card_data, function(error, credit_card){
@@ -64,6 +58,7 @@ module.exports = function(app, model, paypal) {
 
                             var order = {
                                 customerId: newOrder.customerId,
+                                customerEmail: newOrder.customerEmail,
                                 dishes: newOrder.dishes,
                                 totalAmount: newOrder.totalAmount,
                                 creditCardId: credit_card.id,
@@ -74,7 +69,22 @@ module.exports = function(app, model, paypal) {
                                 .createOrder(order)
                                 .then(function(newOrder) {
                                     console.log("payment done");
-                                    res.json(payment);
+                                    var mailOptions = {
+                                        from: 'homemadedinnerapp@gmail.com', // sender address
+                                        to: order.customerEmail, // list of receivers
+                                        subject: 'Your dinner is on the way!', // Subject line
+                                        text: 'Thank you for the order. Your dinner will arrive to you between 5pm to 7pm' // plaintext body
+                                    };
+
+                                    // send mail with defined transport object
+                                    transporter.sendMail(mailOptions, function(error, info){
+                                        if(error){
+                                            return console.log(error);
+                                        }
+                                        console.log('Message sent: ' + info.response);
+
+                                    });
+                                    res.json(order);
                                 });
 
                         }
@@ -91,6 +101,17 @@ module.exports = function(app, model, paypal) {
         console.log(customerId);
         model
             .findOrdersByCustomerId(customerId)
+            .then(function(myOrders){
+                console.log(myOrders);
+                res.json(myOrders);
+            });
+    }
+
+    function findOrders(req,res){
+        var chefname = req.params.chefname;
+        console.log(chefname);
+        model
+            .findOrders(chefname)
             .then(function(myOrders){
                 console.log(myOrders);
                 res.json(myOrders);

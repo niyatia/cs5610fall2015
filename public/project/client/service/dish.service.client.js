@@ -10,6 +10,8 @@
             filterDishByUsername: filterDishByUsername,
             findAllDishes: findAllDishes,
             findDishById : findDishById,
+            getCuisines : getCuisines,
+            getTypes : getTypes,
             createDish: createDish,
             deleteDishById: deleteDishById,
             updateDish: updateDish
@@ -50,13 +52,33 @@
             return deferred.promise;
         }
 
+        function getCuisines() {
+            var deferred = $q.defer();
+            $http
+                .get("/api/project/dish/cuisine")
+                .success(function(cuisines) {
+                    deferred.resolve(cuisines);
+                });
+            return deferred.promise;
+        }
+
+        function getTypes() {
+            var deferred = $q.defer();
+            $http
+                .get("/api/project/dish/type")
+                .success(function(types) {
+                    deferred.resolve(types);
+                    console.log(types);
+                });
+            return deferred.promise;
+        }
+
         function createDish(newDish) {
             var deferred = $q.defer();
-
             $http.post("/api/project/dish", newDish)
-                .success(function(dish){
+                .success(function(dishes){
                     console.log("dish created- back in client service");
-                    deferred.resolve(dish);
+                    deferred.resolve(dishes);
                 });
 
             return deferred.promise;

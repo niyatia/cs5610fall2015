@@ -4,7 +4,7 @@
         .module("HomeMadeDinnerApp")
         .controller("UserProfileController", UserProfileController)
 
-    function UserProfileController ($rootScope, UserService) {
+    function UserProfileController ($rootScope, UserService, $location) {
         var model = this;
         console.log($rootScope.user);
         model.username = $rootScope.user.username;
@@ -26,12 +26,13 @@
                 fullname: model.fullname,
                 email: model.email,
                 phone: model.phone,
-                address: mode.address,
+                address: model.address,
                 zip: model.zip};
             UserService.updateUser(userId, updatedUser)
                 .then(function(user){
                     if(user != null){
                         $rootScope.user = user;
+                        $location.url("/user-home");
                     }
                 })
         }

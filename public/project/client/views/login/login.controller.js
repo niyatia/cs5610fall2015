@@ -4,7 +4,7 @@
         .module("HomeMadeDinnerApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($rootScope, $location, UserService) {
+    function LoginController($scope, $rootScope, $location, UserService) {
         var model = this;
        // model.login = login;
 

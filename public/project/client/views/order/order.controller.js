@@ -4,7 +4,7 @@
         .module("HomeMadeDinnerApp")
         .controller("OrderController", OrderController)
 
-    function OrderController ($rootScope, OrderService, $location) {
+    function OrderController ($rootScope, OrderService, $location, DishService) {
 
         var model = this;
         model.user = $rootScope.user;
@@ -17,7 +17,25 @@
         function remove(index){
             if(model.userSelectedDishes[index].quantity > 1){
                 model.userSelectedDishes[index].quantity--;
+                DishService.findDishById(model.userSelectedDishes[index]._id)
+                    .then(function(dish){
+                        dish.quantity++;
+                        DishService.updateDish(dish._id, dish)
+                            .then(function(dish) {
+                                console.log(dish);
+                            });
+                    })
+
             }else{
+
+                DishService.findDishById(model.userSelectedDishes[index]._id)
+                    .then(function(dish){
+                        dish.quantity++;
+                        DishService.updateDish(dish._id, dish)
+                            .then(function(dish) {
+                                console.log(dish);
+                            });
+                    })
                 model.userSelectedDishes.splice(index,1);
             }
 
@@ -35,6 +53,7 @@
 
             var order = {
                 customerId: model.user._id,
+                customerEmail : model.user.email,
                 creditCardDetails: model.cardDetails,
                 totalAmount : model.totalAmount,
                 dishes : model.userSelectedDishes
@@ -48,7 +67,7 @@
                         model.cardError = "Incorrect cardNumber";
                     }
                     else {
-                        $location.url("/thankyou");
+                       $location.url("/thankyou");
                     }
                 });
         }

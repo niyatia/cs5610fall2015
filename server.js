@@ -4,6 +4,24 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var mongoose = require('mongoose');
 var paypal = require('paypal-rest-sdk');
+var nodemailer = require('nodemailer');
+var multipart = require('connect-multiparty');
+app.use(multipart({
+    uploadDir: "./public/project/uploads"
+}));
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'homemadedinnerapp@gmail.com',
+        pass: 'homemadedinner'
+    }
+}, {
+    // default values for sendMail method
+    from: 'homemadedinnerapp@gmail.com',
+    headers: {
+        'My-Header': 'Home-made Dinner'
+    }
+});
 
 paypal.configure({
     'mode': 'sandbox',
@@ -27,11 +45,11 @@ var db = mongoose.connect(connectionString);
 // GET
 app.use(express.static(__dirname + '/public'));
 
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json({limit: '50mb'}));// for parsing application/json
+app.use(bodyParser.urlencoded({limit: '50mb', extended: false})); // for parsing application/x-www-form-urlencoded
 app.use(multer());//for parsing multipart/form-data
 
 require("./public/assignment/server/app.js")(app, db, mongoose);
-require("./public/project/server/app.js")(app, db, mongoose, paypal);
+require("./public/project/server/app.js")(app, db, mongoose, paypal, transporter, multipart);
 
 app.listen(port,ipaddress);

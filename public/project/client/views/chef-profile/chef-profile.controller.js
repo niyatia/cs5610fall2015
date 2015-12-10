@@ -4,7 +4,7 @@
         .module("HomeMadeDinnerApp")
         .controller("ChefProfileController", ChefProfileController)
 
-    function ChefProfileController ($rootScope, UserService, $location, DishService) {
+    function ChefProfileController ($rootScope, OrderService, $location, DishService) {
 
         var model = this;
         model.user = $rootScope.user;
@@ -15,6 +15,11 @@
             console.log(chefDishes);
             model.dishes= chefDishes;
         });
+
+        OrderService.findOrders($rootScope.user.username)
+            .then(function(myOrders){
+                model.orders = myOrders;
+            })
 
         model.addDish = addDish;
         function addDish(){

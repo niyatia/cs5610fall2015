@@ -7,7 +7,8 @@ module.exports = function(mongoose, db){
 
     var api = {
         createOrder: createOrder,
-        findOrdersByCustomerId : findOrdersByCustomerId
+        findOrdersByCustomerId : findOrdersByCustomerId,
+        findOrders : findOrders
     };
 
     return api;
@@ -29,6 +30,17 @@ module.exports = function(mongoose, db){
         var deferred = q.defer();
 
         orderModel.find({customerId: customerId}, function(err, orders){
+            console.log(orders);
+            deferred.resolve(orders);
+        });
+
+        return deferred.promise;
+    }
+
+    function findOrders(chefname){
+        var deferred = q.defer();
+
+        orderModel.find({'dishes.chef': chefname}, function(err, orders){
             console.log(orders);
             deferred.resolve(orders);
         });

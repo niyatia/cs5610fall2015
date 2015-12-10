@@ -247,6 +247,7 @@ th {
   }
   .label {
     border: 1px solid #000;
+      color: #808080;
   }
   .table {
     border-collapse: collapse !important;
@@ -2509,6 +2510,7 @@ legend {
 label {
   display: inline-block;
   max-width: 100%;
+    color:#808080;
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -2960,6 +2962,7 @@ select[multiple].input-lg {
     top: 0;
   }
 }
+
 .form-horizontal .radio,
 .form-horizontal .checkbox,
 .form-horizontal .radio-inline,

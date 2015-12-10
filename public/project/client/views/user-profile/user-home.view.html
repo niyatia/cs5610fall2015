@@ -1,53 +1,53 @@
 <div ng-controller="UserHomeController">
     <div class="navbar-right">
-        <button ng-show="model.loggedInUser" ng-click="model.checkOut()" class="btn-success glyphicon glyphicon-shopping-cart"></button>
-        <button ng-show="model.loggedInUser" ng-click="model.updateProfile()" class="btn-success glyphicon glyphicon-user"></button><br/>
-        <button ng-show="model.loggedInUser" ng-click="model.myOrders()" class="btn-success">My Orders</button>
+        <button ng-show="model.loggedInUser" ng-click="model.checkOut()" class="btn-default glyphicon glyphicon-shopping-cart"></button>
+        <button ng-show="model.loggedInUser" ng-click="model.updateProfile()" class="btn-default glyphicon glyphicon-user"></button><br/>
+        <button ng-show="model.loggedInUser" ng-click="model.myOrders()" class="btn-default">My Orders</button>
     </div>
     <h3 ng-show="model.loggedInUser">Welcome {{model.user.username}}</h3>
     <a ng-hide="model.loggedInUser"  class="ng-hide" href="#/user-register">Sign-up now to order</a>
     <br/>
     <div>
-        <label>Enter the title, cuisine or type of dish to order: <input ng-model="model.searchText"></label>
-        <br/>
-        <br/>
-        <table class="table table-responsive">
-            <thead>
-            <th>Title</th>
-            <th>Cuisine</th>
-            <th>Type</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Image</th>
-            <th ng-show="model.loggedInUser">Action</th>
-            </thead>
-            <tr ng-repeat="recipe in model.dishes | filter: model.searchText:strict">
-                <td>
-                    <a href="" ng-click="model.dishDetail($index)">{{recipe.title}}</a>
-                </td>
-                <td>
-                    {{recipe.cuisine}}
-                </td>
-                <td>
-                    {{recipe.type}}
-                </td>
-                <td>
-                    {{recipe.price}}
-                </td>
-                <td>
-                    {{recipe.quantity}}
-                </td>
-                <td>
-                    <img src="../images/download.jpg"/>
-                </td>
-                <td ng-show="model.loggedInUser">
-                    <button  ng-click="model.addToCart($index)" class="btn btn-success">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-                </td>
-
-            </tr>
-
-        </table>
+        <div class="center wow fadeInDown">
+            <h4>Enter the title, cuisine or type of dish to order:</h4>
+            <input ng-model="model.searchText">
+        </div>
     </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-4" ng-repeat="dish in model.dishes | filter: model.searchText:strict">
+
+                <div class="media services-wrap fadeInDown">
+                    <a href="" ng-click="model.dishDetail($index)">
+                    <div class="pull-left">
+                        <img class="img-responsive" id="img-fixed-search" src="{{dish.image}}"/>
+                        <p class="truncate center media-heading expandable">{{dish.title}}</p>
+                    </div>
+                    </a>
+                    <div class="media-body">
+
+                        <p class="truncate media-text-color expandable">
+                            <span class="glyphicon glyphicon-star"></span>
+                            {{dish.rating}}
+                        </p>
+                        <p class="truncate media-text-color expandable">
+                            <span class="glyphicon glyphicon-usd"></span>
+                            Price: {{dish.price}}
+                        </p>
+                        <p class="truncate media-text-color expandable">
+                            Made with <span class="glyphicon glyphicon-heart"></span> by: {{dish.chef}}
+                        </p>
+                        <p class="truncate media-text-color expandable">
+                            Quantity: {{dish.quantity}}
+                        </p >
+                        <p ng-show="model.loggedInUser" class="truncate media-text-color expandable">
+                            Add to cart
+                            <a  ng-click="model.addToCart($index)" class="btn btn-default">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+        </div>
+</div>
 </div>

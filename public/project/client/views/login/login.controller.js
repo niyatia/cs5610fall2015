@@ -9,22 +9,24 @@
        // model.login = login;
 
         model.login =  function login(){
-            var username = model.username;
-            var password = model.password;
-            UserService.findUserByUsernameAndPassword(username, password)
+            var user = {
+                username : model.username,
+                password : model.password
+            }
+            UserService.findUserByUsernameAndPassword(user)
                 .then(getUser);
         };
 
         function getUser(loggedInUser){
             console.log("login test 1");
-            $rootScope.user = loggedInUser;
-            if($rootScope.user.userType == 0){
+            $rootScope.loggedInUser = loggedInUser;
+            if($rootScope.loggedInUser.userType == 0){
                 $location.url("/user-home");
             }
-            if($rootScope.user.userType == 1){
+            if($rootScope.loggedInUser.userType == 1){
                 $location.url("/chef-profile");
             }
-            if($rootScope.user.userType == 2){
+            if($rootScope.loggedInUser.userType == 2){
                 $location.url("/driver-profile");
             }
         }

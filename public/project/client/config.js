@@ -16,19 +16,28 @@
             {
                 templateUrl: "views/user-profile/user-home.view.html",
                 controller: "UserHomeController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve : {
+                    loggedIn : checkLoggedInGeneral
+                }
             })
             .when("/user-profile",
             {
                 templateUrl: "views/user-profile/user-profile.view.html",
                 controller: "UserProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user-order",
             {
                 templateUrl: "views/user-profile/user-order.view.html",
                 controller: "UserOrderController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/user-register", {
                 templateUrl: "views/register/user-register.view.html",
@@ -53,40 +62,103 @@
             .when("/recipeDetails", {
                 templateUrl: "views/dish/dish-detail.view.html",
                 controller: "DishDetailController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/order", {
                 templateUrl: "views/order/order.view.html",
                 controller: "OrderController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/paymentDetails", {
                 templateUrl: "views/user-profile/payment-details.view.html",
                 controller: "UserProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
+
             })
             .when("/thankyou", {
                 templateUrl: "views/user-profile/thankyou.view.html",
                 controller: "UserProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/add-dish", {
                 templateUrl: "views/dish/add-dish.view.html",
                 controller: "AddDishController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/chef-profile", {
                 templateUrl: "views/chef-profile/chef-profile.view.html",
                 controller: "ChefProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when("/driver-profile", {
                 templateUrl: "views/driver-profile/driver-profile.view.html",
                 controller: "DriverProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
             })
             .otherwise({
                 redirectTo: "/home"
             });
     }
 })();
+
+var checkLoggedIn = function($q, $timeout, $http, $location, $rootScope)
+{
+    var deferred = $q.defer();
+
+    $http.get('/api/project/user/loggedin').success(function(user)
+    {
+        console.log("in config- check LoggedIn");
+        if (user != '0')
+        {
+            $rootScope.loggedInUser = user;
+            deferred.resolve();
+        }
+        else
+        {
+            $rootScope.errorMessage = 'You need to log in.';
+            deferred.reject();
+            $location.url('/login');
+        }
+    });
+
+    return deferred.promise;
+};
+
+var checkLoggedInGeneral = function($q, $timeout, $http, $location, $rootScope)
+{
+    var deferred = $q.defer();
+
+    $http.get('/api/project/user/loggedin').success(function(user)
+    {
+        console.log("in config- check LoggedIn general");
+        if (user != '0')
+        {
+            $rootScope.loggedInUser = user;
+            deferred.resolve();
+        } else
+            deferred.resolve();
+    });
+
+    return deferred.promise;
+};

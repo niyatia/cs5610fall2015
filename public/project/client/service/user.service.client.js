@@ -11,15 +11,16 @@
             findAllUsers: findAllUsers,
             createUser: createUser,
             deleteUserById: deleteUserById,
-            updateUser: updateUser
+            updateUser: updateUser,
+            logout: logout
         };
 
         return api;
 
-        function findUserByUsernameAndPassword(findUserName, findPassword) {
+        function findUserByUsernameAndPassword(user) {
             var deferred = $q.defer();
-
-            $http.get("/api/project/user/username=" + findUserName + "&password=" + findPassword)
+            console.log(user);
+            $http.post("/api/project/user/login", user)
                 .success(function(user){
                     console.log(user);
                     deferred.resolve(user);
@@ -51,6 +52,17 @@
             return deferred.promise;
         }
 
+        function logout () {
+            var deferred = $q.defer();
+            $http
+                .post("/api/project/user/logout")
+                .success(function(user){
+                    deferred.resolve(user);
+                });
+
+            return deferred.promise;
+        }
+
         function deleteUserById(userId) {
             var deferred = $q.defer();
 
@@ -71,17 +83,6 @@
                 });
 
             return deferred.promise;
-        }
-
-        function guid() {
-            function s4() {
-                return Math.floor((1 + Math.random()) * 0x10000)
-                    .toString(16)
-                    .substring(1);
-            }
-
-            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-                s4() + '-' + s4() + s4() + s4();
         }
     }
 })();

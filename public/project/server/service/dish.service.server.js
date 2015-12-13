@@ -14,7 +14,6 @@ module.exports = function(app, model, multipart) {
         model
             .filterDishByUsername(username)
             .then(function(dish){
-                console.log(dish);
                 res.json(dish);
             });
     }
@@ -33,7 +32,6 @@ module.exports = function(app, model, multipart) {
         model
             .findDishById(dishId)
             .then(function(dish){
-                console.log(dish);
                 res.json(dish);
             });
     }
@@ -42,7 +40,6 @@ module.exports = function(app, model, multipart) {
         model
             .getCuisines()
             .then(function(cuisine){
-                console.log(cuisine);
                 res.json(cuisine);
             });
     }
@@ -51,14 +48,12 @@ module.exports = function(app, model, multipart) {
         model
             .getTypes()
             .then(function(types){
-                console.log(types);
                 res.json(types);
             });
     }
 
     function createDish(req, res) {
         var newDish = req.body;
-        console.log(newDish);
         model
             .createDish(newDish)
             .then(function(dishes) {
@@ -79,7 +74,6 @@ module.exports = function(app, model, multipart) {
         var dishId = req.params.id;
         console.log(dishId);
         var dishObj = req.body;
-        console.log(dishObj);
         model
             .updateDish(dishId, dishObj)
             .then(function(dish){

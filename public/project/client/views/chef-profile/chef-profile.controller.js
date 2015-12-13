@@ -7,16 +7,16 @@
     function ChefProfileController ($rootScope, OrderService, $location, DishService) {
 
         var model = this;
-        model.user = $rootScope.user;
+        model.user = $rootScope.loggedInUser;
 
-        DishService.filterDishByUsername($rootScope.user.username)
+        DishService.filterDishByUsername($rootScope.loggedInUser.username)
             .then(function (chefDishes){
             console.log("init");
             console.log(chefDishes);
             model.dishes= chefDishes;
         });
 
-        OrderService.findOrders($rootScope.user.username)
+        OrderService.findOrders($rootScope.loggedInUser.username)
             .then(function(myOrders){
                 model.orders = myOrders;
             })

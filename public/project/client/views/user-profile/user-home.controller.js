@@ -7,13 +7,13 @@
     function UserHomeController ($rootScope, $location, DishService, OrderService) {
 
         var model = this;
-        if($rootScope.user){
-            console.log($rootScope.user);
+        if($rootScope.loggedInUser){
+            console.log($rootScope.loggedInUser);
             model.loggedInUser = true;
         }
         else{
-            console.log($rootScope.user);
-            model.user = $rootScope.user;
+            console.log($rootScope.loggedInUser);
+            model.user = $rootScope.loggedInUser;
             model.loggedInUser = false;
         }
 
@@ -27,7 +27,7 @@
         model.myOrders = getMyOrders;
 
         function getMyOrders(){
-            OrderService.findOrderByCustomerId($rootScope.user._id)
+            OrderService.findOrderByCustomerId($rootScope.loggedInUser._id)
                 .then(function(myOrders){
                    $rootScope.myOrders = myOrders;
                     $location.url("/user-order");

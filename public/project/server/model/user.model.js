@@ -1,7 +1,7 @@
 "use strict";
 var q = require("q");
 
-module.exports = function(mongoose, db){
+module.exports = function(mongoose, db, passport, localStrategy){
 
     var UserSchema = require("./user.schema.js")(mongoose);
 
@@ -14,6 +14,37 @@ module.exports = function(mongoose, db){
         deleteUserById: deleteUserById,
         updateUser: updateUser
     };
+
+    passport.use(new localStrategy(
+        function(username, password, done)
+        {
+            console.log("inside passport.use");
+            console.log(username);
+            console.log(password);
+            userModel.findOne({username: username, password: password}, function(err, user)
+            {
+                if (err) { return done(err); }
+                if (!user) { return done(null, false); }
+                return done(null, user);
+            })
+        }));
+
+    passport.serializeUser(function(user, done)
+    {
+        console.log("inside passport.serialize");
+        console.log(user);
+        done(null, user);
+    });
+
+    passport.deserializeUser(function(user, done)
+    {
+        console.log("inside passport.deserialize");
+        console.log(user);
+        userModel.findById(user._id, function(err, user)
+        {
+            done(err, user);
+        });
+    });
 
     return api;
 

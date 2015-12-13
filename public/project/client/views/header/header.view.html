@@ -1,44 +1,36 @@
-<div ng-controller="HeaderController">
-<header id="header">
-    <div class="top-bar">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-xs-8" style="float : right">
-                    <div class="social">
-                        <ul class="social-share">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
+<div ng-controller="HeaderController as model">
+    <div class="top">
+        <h1 class="header">Home-made Dinner</h1>
+        <div class="container-fluid">
+            <div class="col-sm-6 col-xs-8 navbar-right social">
+                <ul class="social-share">
+                    <li><a href="https://www.facebook.com/homemadedinner.chennai"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/search?q=homemadedinner&src=typd"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://plus.google.com/u/1/110909623986515780122/posts"><i class="fa fa-google-plus"></i></a></li>
+                </ul>
             </div>
         </div>
     </div>
-</header>
-
 
     <nav class="navbar navbar-inverse" role="banner">
         <div class="container">
-            <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#/home">Home-made Dinner</a>
-            </div>
-            <div id="navbar" class="navbar-collapse navbar-right collapse" style="float : right">
+            <div id="navbar" class="navbar-collapse navbar-right collapse">
 
-                <ul ng-show="!loggedInUser" class="nav navbar-nav navbar-right">
-                    <li ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/user-register">Register</a></li>
-                    <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-hide="loggedInUser"  ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/user-register">Register</a></li>
+                    <li ng-hide="loggedInUser"  ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
+                    <li ng-show="loggedInUser"  ><a ng-click="model.logout()" href="">Logout</a></li>
                 </ul>
 
                 <ul class="dropdown-menu">
                     <li><a href="#/profile">Profile</a></li>
-                    <li><a href="#/logout">Logout</a></li>
+
                 </ul>
 
             </div>

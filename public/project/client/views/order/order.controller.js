@@ -7,7 +7,7 @@
     function OrderController ($rootScope, OrderService, $location, DishService) {
 
         var model = this;
-        model.user = $rootScope.user;
+        model.user = $rootScope.loggedInUser;
         model.userSelectedDishes = $rootScope.userSelectedDishes;
         model.dataloaded = true;
         console.log(model.dataloaded);

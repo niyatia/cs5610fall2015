@@ -16,7 +16,7 @@
         function addRating(newRating){
             console.log(newRating);
             var newRatingObj = {
-                customerId : $rootScope.user._id,
+                customerId : $rootScope.loggedInUser._id,
                 chef : model.recipe.chef,
                 rating : newRating,
                 dishId : model.recipe._id

@@ -6,9 +6,24 @@ var mongoose = require('mongoose');
 var paypal = require('paypal-rest-sdk');
 var nodemailer = require('nodemailer');
 var multipart = require('connect-multiparty');
+var passport      = require('passport');
+var localStrategy = require('passport-local').Strategy;
+var cookieParser  = require('cookie-parser');
+var session       = require('express-session');
+
+app.use(bodyParser.json({limit: '50mb'}));// for parsing application/json
+app.use(bodyParser.urlencoded({limit: '50mb', extended: false})); // for parsing application/x-www-form-urlencoded
+app.use(multer());//for parsing multipart/form-data
+app.use(session({
+    secret: 'this is the secret' }));
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(multipart({
     uploadDir: "./public/project/uploads"
 }));
+
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -45,11 +60,7 @@ var db = mongoose.connect(connectionString);
 // GET
 app.use(express.static(__dirname + '/public'));
 
-app.use(bodyParser.json({limit: '50mb'}));// for parsing application/json
-app.use(bodyParser.urlencoded({limit: '50mb', extended: false})); // for parsing application/x-www-form-urlencoded
-app.use(multer());//for parsing multipart/form-data
-
 require("./public/assignment/server/app.js")(app, db, mongoose);
-require("./public/project/server/app.js")(app, db, mongoose, paypal, transporter, multipart);
+require("./public/project/server/app.js")(app, db, mongoose, paypal, transporter, multipart, passport, localStrategy);
 
 app.listen(port,ipaddress);

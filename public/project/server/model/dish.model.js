@@ -23,7 +23,6 @@ module.exports = function(mongoose, db){
 
         var deferred = q.defer();
         dishModel.find({chef: username}, function(err, dishes){
-            console.log(dishes);
             deferred.resolve(dishes);
         });
         return deferred.promise;
@@ -31,7 +30,7 @@ module.exports = function(mongoose, db){
 
     function findAllDishes() {
         var deferred = q.defer();
-        dishModel.find(function(err, dishes){
+        dishModel.find({quantity: {$gt: 0}}, function(err, dishes){
             deferred.resolve(dishes);
         });
         return deferred.promise;
@@ -40,7 +39,6 @@ module.exports = function(mongoose, db){
     function findDishById(dishId) {
         var deferred = q.defer();
         dishModel.findOne({_id: dishId}, function(err, dish){
-            console.log(dish);
             deferred.resolve(dish);
         });
         return deferred.promise;
@@ -88,7 +86,6 @@ module.exports = function(mongoose, db){
 
         dishModel.update({_id: dishId}, {$set: newDish},
             function(err,dish){
-                console.log(dish);
                 deferred.resolve(dish);
             });
 
@@ -101,7 +98,6 @@ module.exports = function(mongoose, db){
         console.log("in dish model");
         dishModel.findOne({_id: dishId}, function(err, dish){
             console.log("found dish");
-            console.log(dish);
             dish.quantity = dish.quantity - quantity;
             if(dish.quantity == 0){
                 dishModel.remove({_id: dishId},function(err, dishes){
@@ -112,7 +108,6 @@ module.exports = function(mongoose, db){
                 delete dish._id;
                 dishModel.update({_id: dishId}, {$set: dish},
                     function(err,dish){
-                        console.log(dish);
                         deferred.resolve(dish);
                     });
             }

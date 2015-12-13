@@ -1,13 +1,29 @@
-module.exports = function(app, model) {
-    app.get("/api/project/user/username=:username&password=:password", findUserByUsernameAndPassword);
-    app.get("/api/project/user", findAllUsers);
-    app.post("/api/project/user", createUser);
-    app.put("/api/project/user/:id", updateUser);
-    app.delete("/api/project/user/:id", deleteUser);
+module.exports = function(app, model, passport) {
+    var auth = function(req, res, next)
+    {
+        if (!req.isAuthenticated())
+            res.send(401);
+        else
+            next();
+    };
 
-    function findUserByUsernameAndPassword(req, res) {
-        var username = req.params.username;
-        var pwd = req.params.password;
+    app.post("/api/project/user/login", passport.authenticate('local'), findUserByCredentials);
+    app.get("/api/project/user", auth, findAllUsers);
+    app.post("/api/project/user/logout", auth, logout);
+    app.post("/api/project/user", createUser);
+    app.put("/api/project/user/:id", auth, updateUser);
+    app.delete("/api/project/user/:id", deleteUser);
+    app.get("/api/project/user/loggedin", getLoggedInUser);
+
+    function getLoggedInUser (req, res) {
+        console.log("inside loggedIn");
+        console.log(req.isAuthenticated());
+        res.send(req.isAuthenticated() ? req.user : '0');
+    }
+
+    function findUserByCredentials(req, res) {
+        var username = req.body.username;
+        var pwd = req.body.password;
         var credentials = {
             username: username,
             password: pwd
@@ -19,6 +35,12 @@ module.exports = function(app, model) {
                 console.log(user);
                 res.json(user);
             });
+    }
+
+    function logout (req, res) {
+        console.log("logging out");
+        req.logOut();
+        res.send(200);
     }
 
     function findAllUsers(req, res) {

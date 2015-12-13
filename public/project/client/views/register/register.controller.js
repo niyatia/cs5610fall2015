@@ -19,16 +19,16 @@
                 .then(function(createdUser) {
                     console.log("inside user created");
                     console.log(createdUser);
-                    $rootScope.user = createdUser;
+                    $rootScope.loggedInUser = createdUser;
 
-                    if($rootScope.user.userType == 0){
+                    if($rootScope.loggedInUser.userType == 0){
                         console.log("inside if");
                         $location.url("/user-home");
                     }
-                    if($rootScope.user.userType == 1){
+                    if($rootScope.loggedInUser.userType == 1){
                         $location.url("/chef-profile");
                     }
-                    if($rootScope.user.userType == 2){
+                    if($rootScope.loggedInUser.userType == 2){
                         $location.url("/driver-profile");
                     }
                 })

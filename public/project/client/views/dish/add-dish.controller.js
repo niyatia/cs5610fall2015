@@ -34,8 +34,8 @@
             console.log(newDish);
 
            // model.recipe.image = model.image;
-            newDish.chef = $rootScope.user.username;
-            newDish.chefEmail = $rootScope.user.email;
+            newDish.chef = $rootScope.loggedInUser.username;
+            newDish.chefEmail = $rootScope.loggedInUser.email;
             DishService.createDish(newDish)
                 .then(function (recipe){
                     console.log(recipe);
@@ -100,7 +100,7 @@
             return canvas.toDataURL();
         }
 
-        console.log($rootScope.user);
-        model.user = $rootScope.user;
+        console.log($rootScope.loggedInUser);
+        model.user = $rootScope.loggedInUser;
     }
 }) ();

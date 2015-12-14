@@ -8,6 +8,8 @@ module.exports = function(app, model, passport) {
     };
 
     app.post("/api/project/user/login", passport.authenticate('local'), findUserByCredentials);
+    app.get("/api/project/user/username=:username", auth, findUserByUsername);
+    app.get("/api/project/user/userId=:userId", auth, findUserById);
     app.get("/api/project/user", auth, findAllUsers);
     app.post("/api/project/user/logout", auth, logout);
     app.post("/api/project/user", createUser);
@@ -48,6 +50,27 @@ module.exports = function(app, model, passport) {
             .findAllUsers()
             .then(function(users){
                 res.json(users);
+                console.log(users);
+            });
+    }
+
+    function findUserByUsername(req, res) {
+        var username = req.params.username;
+        model
+            .findUserByUsername(username)
+            .then(function(users){
+                res.json(users);
+                console.log(users);
+            });
+    }
+
+    function findUserById(req, res) {
+        var userId = req.params.userId;
+        model
+            .findUserById(userId)
+            .then(function(users){
+                res.json(users);
+                console.log("inside user service server");
                 console.log(users);
             });
     }

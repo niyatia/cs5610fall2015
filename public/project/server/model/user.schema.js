@@ -3,13 +3,15 @@ module.exports = function(mongoose){
         "fullname": String,
         "username" :  { type: String, unique: true },
         "password" : String,
-        "phone": String,
+        "phone": Number,
         "carId" : String,
         "licenseId" : String,
         "address": String,
+        status: {type: String, enum : ["available", "unavailable"]},
         "zip": Number,
         "email": String,
-        "userType": Number
+        "userType": Number,
+        "created" :  { type: Date, default: Date.now }
     }, {collection: "project.user"});
 
     return UserSchema;

@@ -8,6 +8,8 @@
 
         var api = {
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
+            findUserByUsername: findUserByUsername,
+            findUserById :findUserById,
             findAllUsers: findAllUsers,
             createUser: createUser,
             deleteUserById: deleteUserById,
@@ -29,6 +31,26 @@
             return deferred.promise;
         }
 
+        function findUserByUsername(username) {
+            var deferred = $q.defer();
+            $http.get("/api/project/user/username="+username)
+                .success(function(users){
+                    deferred.resolve(users);
+                });
+
+            return deferred.promise;
+        }
+
+        function findUserById(userId) {
+            var deferred = $q.defer();
+            $http.get("/api/project/user/userId="+userId)
+                .success(function(users){
+                    deferred.resolve(users);
+                });
+
+            return deferred.promise;
+        }
+
         function findAllUsers() {
             var deferred = $q.defer();
             $http.get("/api/project/user/")
@@ -41,9 +63,6 @@
 
         function createUser(newUser) {
             var deferred = $q.defer();
-            newUser.id = guid();
-            newUser.firstName = "";
-            newUser.lastName = "";
             $http.post("/api/project/user", newUser)
                 .success(function(user){
                     deferred.resolve(user);

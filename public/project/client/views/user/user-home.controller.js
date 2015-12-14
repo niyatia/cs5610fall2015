@@ -9,11 +9,11 @@
         var model = this;
         if($rootScope.loggedInUser){
             console.log($rootScope.loggedInUser);
+            model.user = $rootScope.loggedInUser;
             model.loggedInUser = true;
         }
         else{
             console.log($rootScope.loggedInUser);
-            model.user = $rootScope.loggedInUser;
             model.loggedInUser = false;
         }
 
@@ -21,7 +21,7 @@
         model.updateProfile = updateProfile;
 
         function updateProfile(){
-            $location.url("/user-profile");
+            $location.url("/user");
         }
 
         model.myOrders = getMyOrders;
@@ -81,7 +81,8 @@
 
                 if (!isAdded) {
 
-                    console.log(model.dishes[index].quantity);
+                    console.log(model.dishes[index]);
+                    console.log(model.dishes[index]);
                     model.dishes[index].quantity--;
                     var selected_item = {
                         _id : model.dishes[index]._id,
@@ -93,7 +94,7 @@
                         chef: model.dishes[index].chef,
                         user: model.dishes[index].user,
                         ingredients: model.dishes[index].ingredients,
-                        rating: model.dishes[index].rating,
+                        rating: 3,
                         quantity : 1};
 
                     model.userSelectedDishes.push(selected_item);

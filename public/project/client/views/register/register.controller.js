@@ -13,6 +13,10 @@
         model.register = function register (userType) {
             console.log(userType);
             model.newUser.userType = userType;
+            if(userType == 2) {
+                model.newUser.status = "available";
+            }
+
             console.log(model.newUser);
 
             UserService.createUser(model.newUser)
@@ -26,10 +30,10 @@
                         $location.url("/user-home");
                     }
                     if($rootScope.loggedInUser.userType == 1){
-                        $location.url("/chef-profile");
+                        $location.url("/chef-home");
                     }
                     if($rootScope.loggedInUser.userType == 2){
-                        $location.url("/driver-profile");
+                        $location.url("/driver-home");
                     }
                 })
         }

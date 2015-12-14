@@ -39,7 +39,7 @@
             DishService.createDish(newDish)
                 .then(function (recipe){
                     console.log(recipe);
-                    $location.url("/chef-profile");
+                    $location.url("/chef-home");
             });
         }
 

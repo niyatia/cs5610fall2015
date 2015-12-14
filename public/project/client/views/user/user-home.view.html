@@ -1,14 +1,11 @@
 <div ng-controller="UserHomeController">
-    <div class="navbar-right">
-        <button ng-show="model.loggedInUser" ng-click="model.checkOut()" class="btn-default glyphicon glyphicon-shopping-cart"></button>
-        <button ng-show="model.loggedInUser" ng-click="model.updateProfile()" class="btn-default glyphicon glyphicon-user"></button><br/>
-        <button ng-show="model.loggedInUser" ng-click="model.myOrders()" class="btn-default">My Orders</button>
+    <div style="float: right" class="navbar-right">
+        <button ng-show="model.loggedInUser" ng-click="model.checkOut()" class="btn-success glyphicon glyphicon-shopping-cart">Check out</button>
+        <button ng-show="model.loggedInUser" ng-click="model.myOrders()" class="btn-success glyphicon glyphicon-tasks">My Orders</button>
     </div>
-    <h3 ng-show="model.loggedInUser">Welcome {{model.user.username}}</h3>
-    <a ng-hide="model.loggedInUser"  class="ng-hide" href="#/user-register">Sign-up now to order</a>
-    <br/>
+    <h3 ng-show="model.loggedInUser">Welcome {{model.user.fullname}}</h3>
     <div>
-        <div class="center wow fadeInDown">
+        <div class="center">
             <h4>Enter the title, cuisine or type of dish to order:</h4>
             <input ng-model="model.searchText">
         </div>
@@ -27,17 +24,18 @@
 
                         <p class="truncate media-text-color expandable">
                             <span class="glyphicon glyphicon-star"></span>
-                            {{dish.rating}}
+                            Rating: {{dish.rating}}
                         </p>
                         <p class="truncate media-text-color expandable">
                             <span class="glyphicon glyphicon-usd"></span>
                             Price: {{dish.price}}
                         </p>
                         <p class="truncate media-text-color expandable">
-                            Made with <span class="glyphicon glyphicon-heart"></span> by: {{dish.chef}}
+                            <span class="glyphicon glyphicon-user"></span> Chef: {{dish.chef}}
                         </p>
                         <p class="truncate media-text-color expandable">
-                            Quantity: {{dish.quantity}}
+                            <span class="glyphicon glyphicon-hourglass"></span>
+                            Quantity left: {{dish.quantity}}
                         </p >
                         <p ng-show="model.loggedInUser" class="truncate media-text-color expandable">
                             Add to cart

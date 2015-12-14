@@ -23,6 +23,8 @@
             <th>Price</th>
             <th>Quantity</th>
             <th>Chef</th>
+            <th>Rating</th>
+            <th>Ingrdients</th>
             <th>Rate the dish</th>
         </tr>
         <tr ng-repeat="sub in row.dishes">
@@ -30,8 +32,8 @@
             <td>{{sub.price}}</td>
             <td>{{sub.quantity}}</td>
             <td>{{sub.chef}}</td>
-            <td class="hidden">{{sub.rating}}</td>
-            <td class="hidden">{{sub.ingredients}}</td>
+            <td>{{sub.rating}}</td>
+            <td>{{sub.ingredients}}</td>
             <td>  <button  ng-click="model.rateDish(sub)" class="btn btn-success">
                 <span class="glyphicon glyphicon-plus"></span>
             </button></td>

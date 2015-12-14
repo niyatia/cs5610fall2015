@@ -2,9 +2,9 @@
 (function () {
     angular
         .module("HomeMadeDinnerApp")
-        .controller("ChefProfileController", ChefProfileController)
+        .controller("ChefHomeController", ChefHomeController)
 
-    function ChefProfileController ($rootScope, OrderService, $location, DishService) {
+    function ChefHomeController ($rootScope, OrderService, $location, DishService) {
 
         var model = this;
         model.user = $rootScope.loggedInUser;

@@ -14,7 +14,7 @@
         model.phone = $rootScope.loggedInUser.phone;
         model.address = $rootScope.loggedInUser.address;
         model.zip = $rootScope.loggedInUser.zip;
-
+        model.userType = $rootScope.loggedInUser.userType;
         model.update = function(){
 
             var userId = $rootScope.loggedInUser._id;
@@ -27,7 +27,9 @@
                 email: model.email,
                 phone: model.phone,
                 address: model.address,
-                zip: model.zip};
+                zip: model.zip,
+                userType : model.userType
+            };
             UserService.updateUser(userId, updatedUser)
                 .then(function(user){
                     if(user != null){

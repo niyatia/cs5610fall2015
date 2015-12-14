@@ -1,7 +1,8 @@
 <div ng-controller="HomeController">
 <div>
 <h1 class="page-header text-center">The Dinners that you want!</h1>
-    <a class="text-center" href="" ng-click="model.search()">Check out this week's menu!!</a>
+    <div class="center"><a style="font-size: large"  href="#/user-home" >Check out this week's menu!!</a>
+    </div>
 </div>
 <script>
     $(function () { $(".carousel").carousel({ interval: 3000
@@ -37,17 +38,15 @@
         </div>
     </div>
 </div> <!-- Carousel -->
-
     <section id="services">
         <div class="container">
-            <div class="row col-sm-offset-3 text-justify">
+            <div class="row col-sm-offset-2 text-justify">
                 <h3 class="section-heading">Want to join the exciting team of Home-made Dinner?</h3>
-                <h3 class="section-subheading text-muted">  </h3>
             </div>
             <div class=" row col-sm-offset-2 text-center">
                 <div class="col-md-4">
                     <span class="fa-stack fa-2x">
-                        <i class="fa fa-square fa-stack-2x media-text-color"></i>
+                        <i class="fa fa-square fa-stack-2x text-success"></i>
                         <i class="fa fa-male fa-stack-1x "></i>
                     </span>
                     <a href="#/chef-register">Join as Chef</a>
@@ -55,10 +54,10 @@
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-2x">
-                        <i class="fa fa-square fa-stack-2x media-text-color"></i>
+                        <i class="fa fa-square fa-stack-2x text-success"></i>
                         <i class="fa fa-male fa-stack-1x "></i>
                     </span>
-                    <a href="#/chef-register">Join as Driver</a>
+                    <a href="#/driver-register">Join as Driver</a>
                     <p class="text-muted">Got some spare time in evening? You can earn too.</p>
                 </div>
             </div>

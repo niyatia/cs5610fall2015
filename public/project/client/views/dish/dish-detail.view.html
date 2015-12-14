@@ -1,7 +1,5 @@
 <script xmlns="http://www.w3.org/1999/html">// initialize with defaults
 $("#ratingId").rating();
-$("#ratingId2").rating();
-$("#DishRatingId").rating({hoverEnabled: false});
 </script>
 <div ng-controller="DishDetailController">
     <h1>{{model.recipe.title}}</h1>
@@ -38,6 +36,6 @@ $("#DishRatingId").rating({hoverEnabled: false});
             <button class="btn btn-success"  ng-click="model.addRating(model.recipe.newRating)">Add</button>
         </div>
         <br/> <br/> <br/>
-        <button class="btn-success glyphicon glyphicon-arrow-left" ng-click="model.goBack()"></button>
+        <button class="btn-primary glyphicon glyphicon-arrow-left" ng-click="model.goBack()"></button>
     </div>
 </div>

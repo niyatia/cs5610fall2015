@@ -18,16 +18,21 @@
         };
 
         function getUser(loggedInUser){
-            console.log("login test 1");
-            $rootScope.loggedInUser = loggedInUser;
-            if($rootScope.loggedInUser.userType == 0){
-                $location.url("/user-home");
+            console.log(loggedInUser);
+            if(loggedInUser != null){
+                $rootScope.loggedInUser = loggedInUser;
+                if($rootScope.loggedInUser.userType == 0){
+                    $location.url("/user-home");
+                }
+                if($rootScope.loggedInUser.userType == 1){
+                    $location.url("/chef-home");
+                }
+                if($rootScope.loggedInUser.userType == 2){
+                    $location.url("/driver-home");
+                }
             }
-            if($rootScope.loggedInUser.userType == 1){
-                $location.url("/chef-profile");
-            }
-            if($rootScope.loggedInUser.userType == 2){
-                $location.url("/driver-profile");
+            else{
+                model.message = "Invalid username or password";
             }
         }
     }

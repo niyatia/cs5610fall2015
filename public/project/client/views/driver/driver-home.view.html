@@ -1,0 +1,75 @@
+<div ng-controller="DriverHomeController">
+    <h3>Welcome, {{model.driver.fullname}}</h3>
+    <div ng-show="model.upcomingOrder">
+        <div style="float: left">
+            <label>Your upcoming delivery:</label>
+        </div>
+        <div style="float: right">
+            <button ng-click="model.delivered()">Delivered</button>
+        </div>
+
+
+    <div class="container-fluid">
+        <div>
+            <label>From:</label>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                <th>Chef name</th>
+                <th>Chef phone</th>
+                <th>Chef email</th>
+                <th>Chef Address</th>
+                <th>Chef zip</th>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{model.chef.fullname}}</td>
+                    <td>{{model.chef.phone}}</td>
+                    <td>{{model.chef.email}}</td>
+                    <td>{{model.chef.address}}</td>
+                    <td>{{model.chef.zip}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <label>To:</label>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                <th>Customer name</th>
+                <th>Customer phone</th>
+                <th>Customer email</th>
+                <th>Customer Address</th>
+                <th>Customer zip</th>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{model.customer.fullname}}</td>
+                    <td>{{model.customer.phone}}</td>
+                    <td>{{model.customer.email}}</td>
+                    <td>{{model.customer.address}}</td>
+                    <td>{{model.customer.zip}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+
+    <label>Your completed deliveries:</label>
+    <table class="table table-responsive table-bordered">
+        <thead>
+        <th>OrderId</th>
+        <th>CustomerId</th>
+        <th>CustomerEmail</th>
+        <th>Order Date</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="order in model.completedOrders">
+            <td>{{order._id}}</td>
+            <td>{{order.customerId}}</td>
+            <td>{{order.customerEmail}}</td>
+            <td>{{order.created}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

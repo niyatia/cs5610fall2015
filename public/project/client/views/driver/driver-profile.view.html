@@ -1,5 +1,5 @@
-<div ng-controller="RegisterController" class="container-fluid">
-    <h2 class="page-header">Register as Driver</h2>
+<div ng-controller="DriverProfileController" class="container-fluid">
+    <h2 class="page-header">Update Profile</h2>
     <form class="contact-form" name="myForm">
         <label class="errorValidationText"  ng-show= "myForm.userName.$invalid && myForm.userName.$touched ||
                                             myForm.name.$invalid && myForm.name.$touched ||
@@ -8,54 +8,54 @@
                                             myForm.phone.$invalid && myForm.phone.$touched ||
                                             myForm.address.$invalid && myForm.address.$touched ||
                                             myForm.zip.$invalid && myForm.zip.$touched" >Highlighted fields are required.</label>
-        <label class="errorValidationText"  ng-show= " myForm.password.$touched && myForm.verifyPassword.$touched && (model.newUser.verifyPassword != '') && (model.newUser.password != '')
-                                                        && (model.newUser.password != model.newUser.verifyPassword)" >Passwords do not match.</label>
+        <label class="errorValidationText"  ng-show= " myForm.password.$touched && myForm.verifyPassword.$touched && (model.verifyPassword != '') && (model.password != '')
+                                                        && (model.password != model.verifyPassword)" >Passwords do not match.</label>
         <div>
             <div class="form-group col-sm-6" ng-class="{'has-error': myForm.userName.$invalid && myForm.userName.$touched}">
                 <label class="control-label" for="userName" >Username: </label>
-                <input ng-model="model.newUser.username" ng-required="true" type="text" name="userName" id="userName" placeholder="Username" class="form-control">
+                <input ng-model="model.username" ng-required="true" type="text" name="userName" id="userName" placeholder="Username" class="form-control">
             </div>
             <div class="form-group col-sm-6"  ng-class="{'has-error': myForm.name.$invalid && myForm.name.$touched}">
                 <label for="name" class="control-label ">Full name: </label>
-                <input ng-model="model.newUser.fullname" ng-required="true" type="text" name="name" id="name" placeholder="Full name" class="form-control">
+                <input ng-model="model.fullname" ng-required="true" type="text" name="name" id="name" placeholder="Full name" class="form-control">
             </div>
 
             <div class="form-group col-sm-6"  ng-class="{'has-error': myForm.password.$invalid && myForm.password.$touched}">
                 <label for="password" class="control-label">Password: </label>
-                <input ng-model="model.newUser.password" ng-required="true" type="password" name="password" id="password" placeholder="Password" class="form-control">
+                <input ng-model="model.password" ng-required="true" type="password" name="password" id="password" placeholder="Password" class="form-control">
             </div>
 
-            <div class="form-group col-sm-6" ng-class="{'has-error' : (model.newUser.verifyPassword != '') && (model.newUser.password != model.newUser.verifyPassword)}">
+            <div class="form-group col-sm-6" ng-class="{'has-error' : (model.verifyPassword != '') && (model.password != model.verifyPassword)}">
                 <label for="verifyPassword" class="control-label">Verify Password: </label>
-                <input ng-model="model.newUser.verifyPassword" type="password" name="verifyPassword" id="verifyPassword" placeholder="Verify Password" class="form-control">
+                <input ng-model="model.verifyPassword" type="password" name="verifyPassword" id="verifyPassword" placeholder="Verify Password" class="form-control">
             </div>
 
             <div class="form-group col-sm-6"  ng-class="{'has-error': myForm.email.$invalid && myForm.email.$touched}">
                 <label for="email" class="control-label">Email: </label>
-                <input ng-model="model.newUser.email" ng-required="true" type="email" name="email" id="email" placeholder="Email" class="form-control">
+                <input ng-model="model.email" ng-required="true" type="email" name="email" id="email" placeholder="Email" class="form-control">
             </div>
 
             <div class="form-group col-sm-6"  ng-class="{'has-error': myForm.phone.$invalid && myForm.phone.$touched}">
                 <label for="phone" class="control-label">Phone: </label>
-                <input ng-model="model.newUser.phone" ng-required="true" type="number" name="phone" id="phone" placeholder="Phone" class="form-control">
+                <input ng-model="model.phone" ng-required="true" type="number" name="phone" id="phone" placeholder="Phone" class="form-control">
             </div>
 
             <div class="form-group col-sm-6" ng-class="{'has-error': myForm.carId.$invalid && myForm.carId.$touched}">
                 <label for="carId">Car Id: </label>
-                <input ng-required="true" ng-model="model.newUser.carId" type="text" name="carId" id="carId" placeholder="Car Id" class="form-control">
+                <input ng-required="true" ng-model="model.carId" type="text" name="carId" id="carId" placeholder="Car Id" class="form-control">
             </div>
             <div class="form-group col-sm-6" ng-class="{'has-error': myForm.licenseId.$invalid && myForm.licenseId.$touched}">
                 <label for="licenseId" class="control-label">License Id: </label>
-                <input ng-required="true" ng-model="model.newUser.licenseId" type="text" name="licenseId" id="licenseId" placeholder="License Id" class="form-control">
+                <input ng-required="true" ng-model="model.licenseId" type="text" name="licenseId" id="licenseId" placeholder="License Id" class="form-control">
             </div>
 
             <div class="form-group col-sm-6"   ng-class="{'has-error': myForm.address.$invalid && myForm.address.$touched}">
                 <label for="address" class="control-label ">Address: </label>
-                <input ng-model="model.newUser.address" ng-required="true" type="text" name="address" id="address" placeholder="Address" class="form-control">
+                <input ng-model="model.address" ng-required="true" type="text" name="address" id="address" placeholder="Address" class="form-control">
             </div>
             <div class="form-group col-sm-6"  ng-class="{'has-error': myForm.zip.$invalid && myForm.zip.$touched}">
                 <label for="zip" class="control-label">Zip Code: </label>
-                <input ng-model="model.newUser.zip" ng-required="true" type="number" name="zip" id="zip" placeholder="Zip Code" class="form-control">
+                <input ng-model="model.zip" ng-required="true" type="number" name="zip" id="zip" placeholder="Zip Code" class="form-control">
             </div>
 
             <input type="number" ng-model="newUser.userType" class="hidden">
@@ -64,7 +64,7 @@
                     <button ng-disabled="myForm.userName.$invalid || myForm.name.$invalid || myForm.password.$invalid ||
                                      myForm.email.$invalid || myForm.phone.$invalid || myForm.address.$invalid ||
                                       myForm.zip.$invalid || myForm.carId.$invalid || myForm.licenseId.$invalid"
-                            ng-click="model.register(2)" type="submit" class="btn btn-primary">Register</button>
+                            ng-click="model.update()" type="submit" class="btn btn-primary">Update</button>
                 </div>
             </div>
         </div>

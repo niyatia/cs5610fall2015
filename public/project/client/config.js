@@ -14,7 +14,7 @@
             })
             .when("/user-home",
             {
-                templateUrl: "views/user-profile/user-home.view.html",
+                templateUrl: "views/user/user-home.view.html",
                 controller: "UserHomeController",
                 controllerAs: "model",
                 resolve : {
@@ -23,7 +23,7 @@
             })
             .when("/user-profile",
             {
-                templateUrl: "views/user-profile/user-profile.view.html",
+                templateUrl: "views/user/user-profile.view.html",
                 controller: "UserProfileController",
                 controllerAs: "model",
                 resolve : {
@@ -32,7 +32,7 @@
             })
             .when("/user-order",
             {
-                templateUrl: "views/user-profile/user-order.view.html",
+                templateUrl: "views/user/user-order.view.html",
                 controller: "UserOrderController",
                 controllerAs: "model",
                 resolve : {
@@ -76,7 +76,7 @@
                 }
             })
             .when("/paymentDetails", {
-                templateUrl: "views/user-profile/payment-details.view.html",
+                templateUrl: "views/user/payment-details.view.html",
                 controller: "UserProfileController",
                 controllerAs: "model",
                 resolve : {
@@ -85,7 +85,7 @@
 
             })
             .when("/thankyou", {
-                templateUrl: "views/user-profile/thankyou.view.html",
+                templateUrl: "views/user/thankyou.view.html",
                 controller: "UserProfileController",
                 controllerAs: "model",
                 resolve : {
@@ -100,16 +100,34 @@
                     loggedIn : checkLoggedIn
                 }
             })
-            .when("/chef-profile", {
-                templateUrl: "views/chef-profile/chef-profile.view.html",
+            .when("/chef-home", {
+                templateUrl: "views/chef/chef-home.view.html",
+                controller: "ChefHomeController",
+                controllerAs: "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
+            })
+            .when("/chef-profile",
+            {
+                templateUrl: "views/chef/chef-profile.view.html",
                 controller: "ChefProfileController",
                 controllerAs: "model",
                 resolve : {
                     loggedIn : checkLoggedIn
                 }
             })
-            .when("/driver-profile", {
-                templateUrl: "views/driver-profile/driver-profile.view.html",
+            .when("/driver-home", {
+                templateUrl: "views/driver/driver-home.view.html",
+                controller: "DriverHomeController",
+                controllerAs: "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
+            })
+            .when("/driver-profile",
+            {
+                templateUrl: "views/driver/driver-profile.view.html",
                 controller: "DriverProfileController",
                 controllerAs: "model",
                 resolve : {

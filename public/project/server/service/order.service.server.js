@@ -2,7 +2,9 @@ module.exports = function(app, model, paypal, transporter) {
 
     app.post("/api/project/order", createDish);
     app.get("/api/project/order/customerId=:customerId", findOrdersByCustomerId);
+    app.get("/api/project/order/driverId=:driverId", findOrdersByDriverId);
     app.get("/api/project/order/chefname=:chefname", findOrders);
+    app.put("/api/project/order/orderId=:orderId", updateOrder);
 
     function createDish(req, res) {
         var newOrder = req.body;
@@ -69,7 +71,7 @@ module.exports = function(app, model, paypal, transporter) {
                                 .createOrder(order)
                                 .then(function(newOrder) {
                                     console.log("payment done");
-                                    var mailOptions = {
+                                    var mailToCustomer = {
                                         from: 'homemadedinnerapp@gmail.com', // sender address
                                         to: order.customerEmail, // list of receivers
                                         subject: 'Your dinner is on the way!', // Subject line
@@ -77,7 +79,23 @@ module.exports = function(app, model, paypal, transporter) {
                                     };
 
                                     // send mail with defined transport object
-                                    transporter.sendMail(mailOptions, function(error, info){
+                                    transporter.sendMail(mailToCustomer, function(error, info){
+                                        if(error){
+                                            return console.log(error);
+                                        }
+                                        console.log('Message sent: ' + info.response);
+
+                                    });
+
+                                    var mailToDriver = {
+                                        from: 'homemadedinnerapp@gmail.com', // sender address
+                                        to: order.driverEmail, // list of receivers
+                                        subject: 'You have new Order to deliver!', // Subject line
+                                        text: 'Please deliver following order from chef address to customer address.' // plaintext body
+                                    };
+
+                                    // send mail with defined transport object
+                                    transporter.sendMail(mailToDriver, function(error, info){
                                         if(error){
                                             return console.log(error);
                                         }
@@ -107,6 +125,18 @@ module.exports = function(app, model, paypal, transporter) {
             });
     }
 
+    function findOrdersByDriverId(req,res){
+        var driverId = req.params.driverId;
+        console.log(driverId);
+        model
+            .findOrdersByDriverId(driverId)
+            .then(function(myOrders){
+                console.log(myOrders);
+                res.json(myOrders);
+            });
+    }
+
+
     function findOrders(req,res){
         var chefname = req.params.chefname;
         console.log(chefname);
@@ -114,6 +144,16 @@ module.exports = function(app, model, paypal, transporter) {
             .findOrders(chefname)
             .then(function(myOrders){
                 console.log(myOrders);
+                res.json(myOrders);
+            });
+    }
+
+    function updateOrder(req, res){
+        var orderId = req.params.orderId;
+        var order = req.body;
+        model
+            .updateOrder(orderId, order)
+            .then(function(myOrders){
                 res.json(myOrders);
             });
     }

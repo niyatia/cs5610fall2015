@@ -1,6 +1,8 @@
-<div ng-controller="ChefProfileController">
-<h1>Welcome, {{model.user.fullname}}</h1>
-    <a class="navbar-right" href="" ng-click="model.addDish()">Add a dish</a>
+<div ng-controller="ChefHomeController">
+    <div class="container-fluid">
+        <h4 class="navbar-left">Welcome, {{model.user.fullname}}</h4>
+        <a class="navbar-right btn-primary" href="" ng-click="model.addDish()">Add dish</a>
+    </div>
     <label>Your remaining dishes:</label>
     <table class="table table-responsive table-bordered">
         <thead>

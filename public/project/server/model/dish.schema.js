@@ -9,7 +9,8 @@ module.exports = function(mongoose) {
         image: String,
         chef: String,
         chefEmail: String,
-        rating: Number
+        rating: Number,
+        created:  { type: Date, default: Date.now }
     }, {collection: "project.dish"});
 
     return DishSchema;

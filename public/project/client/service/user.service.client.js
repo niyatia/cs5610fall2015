@@ -26,6 +26,9 @@
                 .success(function(user){
                     console.log(user);
                     deferred.resolve(user);
+                })
+                .error(function(error){
+                    deferred.reject(error);
                 });
 
             return deferred.promise;

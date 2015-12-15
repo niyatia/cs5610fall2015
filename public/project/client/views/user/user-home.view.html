@@ -1,7 +1,7 @@
 <div ng-controller="UserHomeController">
     <nav class="sub-header">
         <ul  class="nav navbar-nav navbar-right">
-            <li ng-show="loggedInUser"  >  <a ng-show="model.loggedInUser" href="" ng-click="model.checkOut()" class="glyphicon glyphicon-shopping-cart">Check out</a></li>
+            <li ng-show="loggedInUser"  >  <a ng-show="model.loggedInUser" href="" ng-click="model.checkOut()"><span class="glyphicon glyphicon-shopping-cart"></span>Check out</a></li>
             <li ng-show="loggedInUser"  >  <a ng-show="model.loggedInUser" href="" ng-click="model.myOrders()" class="glyphicon glyphicon-tasks">My Orders</a></li>
         </ul>
     </nav>

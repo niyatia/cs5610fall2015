@@ -9,10 +9,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h4 class="pull-left">Welcome {{model.user.fullname}}</h4>
+                <h4 ng-show="loggedInUser" class="pull-left">Welcome {{model.user.fullname}}</h4>
                 <div class="pull-right">
                     <ul class="sub-header" >
-                        <li ng-show="loggedInUser"  >  <a  style="color:darkslategrey" ng-show="model.loggedInUser" href="" ng-click="model.checkOut()"><span class="glyphicon glyphicon-shopping-cart"></span>Check out</a></li>
+                        <li ng-show="loggedInUser" >  <a  style="color:darkslategrey" ng-show="model.loggedInUser" href="" ng-click="model.checkOut()"><span class="glyphicon glyphicon-shopping-cart"></span>Check out</a></li>
                         <li ng-show="loggedInUser"  >  <a  style="color:darkslategrey" ng-show="model.loggedInUser" href="" ng-click="model.myOrders()"><span class="glyphicon glyphicon-tasks"></span>My Orders</a></li>
                     </ul>
                 </div>

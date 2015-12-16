@@ -41,6 +41,7 @@
         <div>
             <h4 >Payment Information</h4>
             <a href="http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm">Use credit card details from this link for successful payment</a>
+            <label class="errorValidationText">{{model.error}}</label>
         </div>
     <form class="contact-form" name="MyForm">
         <div class="form-group"  ng-class="{'has-error': myForm.cardType.$invalid && myForm.cardType.$touched}">
@@ -77,10 +78,10 @@
         <div class="form-group"  ng-class="{'has-error': myForm.selectMonth.$invalid && myForm.selectMonth.$touched}">
             <label class="control-label">Expiry Date:</label>
             <div>
-                <select style="width:50px;" ng-required="true" name="selectMonth" id="selectMonth"
+                <select  ng-required="true" name="selectMonth" id="selectMonth"
                         ng-options="month for month in model.months"
                         ng-model="model.cardDetails.expire_month"></select>
-                <select style="width:50px;" ng-required="true" name="selectYear" id="selectYear"
+                <select ng-required="true" name="selectYear" id="selectYear"
                         ng-options="year for year in model.years"
                         ng-model="model.cardDetails.expire_year"></select>
             </div>

@@ -25,11 +25,11 @@
                     console.log(orderComplete);
                     if(orderComplete.error == "VALIDATION_ERROR"){
                         error = "VALIDATION_ERROR";
-                        return error;
+                        return deferred.reject(error);
                     }
                     else if(orderComplete.error == "PAYMENT_ERROR"){
                         error = "PAYMENT_ERROR";
-                        return error;
+                        return deferred.reject(error);
                     }
                     else {
                         deferred.resolve(orderComplete);

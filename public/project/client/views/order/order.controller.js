@@ -60,16 +60,28 @@
             };
 
             OrderService.placeOrder(order)
-                .then(function(orders){
-                    console.log(orders);
-                    model.dataloaded = true;
-                    if(orders.error == "VALIDATION_ERROR"){
-                        model.cardError = "Incorrect cardNumber";
-                    }
-                    else {
-                       $location.url("/thankyou");
-                    }
-                });
+                .then(orderCreated, orderError);
+        }
+
+        function orderCreated(orders){
+            console.log(orders);
+            model.dataloaded = true;
+            if(orders.error == "VALIDATION_ERROR"){
+                model.cardError = "Incorrect cardNumber";
+            }
+            else {
+                $location.url("/thankyou");
+            }
+        }
+
+        function orderError(error){
+            model.dataloaded = true;
+            if(orders.error == "VALIDATION_ERROR"){
+                model.cardError = "Incorrect cardNumber";
+            }
+            else{
+                model.error = "There was an error in payment. Please try again later.";
+            }
         }
 
         function calculateTotalAmount(){

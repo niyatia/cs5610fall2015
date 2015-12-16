@@ -2,6 +2,7 @@ module.exports = function(app, model, multipart) {
 
     app.get("/api/project/dish/username=:username", filterDishByUsername);
     app.get("/api/project/dish", findAllDishes);
+    app.get("/api/project/dish/search=:keyword", findDishByKeyword);
     app.get("/api/project/dish/dishId=:dishId", findDishById);
     app.get("/api/project/dish/cuisine", getCuisines);
     app.get("/api/project/dish/type", getTypes);
@@ -13,6 +14,15 @@ module.exports = function(app, model, multipart) {
         var username = req.params.username;
         model
             .filterDishByUsername(username)
+            .then(function(dish){
+                res.json(dish);
+            });
+    }
+
+    function findDishByKeyword(req, res) {
+        var keyword = req.params.keyword;
+        model
+            .findDishByKeyword(keyword)
             .then(function(dish){
                 res.json(dish);
             });

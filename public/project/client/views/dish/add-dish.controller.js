@@ -11,6 +11,7 @@
 
         getCuisines();
         getTypes();
+
         function getCuisines() {
             DishService.getCuisines().then(function(cuisines) {
                 model.cuisines = cuisines;
@@ -25,20 +26,15 @@
         model.add = add;
 
         function add(newDish){
-            console.log(image);
-            console.log(image);
-            if($rootScope.image) {
+            if($rootScope.resizedImage) {
                 console.log($rootScope.resizedImage);
                 newDish.image = $rootScope.resizedImage;
             }
-            console.log(newDish);
 
-           // model.recipe.image = model.image;
             newDish.chef = $rootScope.loggedInUser.username;
             newDish.chefEmail = $rootScope.loggedInUser.email;
             DishService.createDish(newDish)
                 .then(function (recipe){
-                    console.log(recipe);
                     $location.url("/chef-home");
             });
         }

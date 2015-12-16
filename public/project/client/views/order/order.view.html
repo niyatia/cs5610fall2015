@@ -37,9 +37,12 @@
         </tr>
     </table>
     <h4>Total Amount:</h4> <h4>{{model.totalAmount}}</h4>
-
-    <h4>Payment Information</h4>
-    <form class="form-horizontal col-sm-offset-1">
+    <div class="col-sm-10" >
+        <div>
+            <h4>Payment Information</h4>
+            <a href="http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm">Use credit card details from this link for successful payment</a>
+        </div>
+    <form class="contact-form">
         <div class="form-group">
             <label for="cardType" class="control-label">Card Type:</label>
             <select ng-model = "model.cardDetails.type" class="form-control" id="cardType" placeholder="Card Type">
@@ -88,4 +91,5 @@
             </div>
         </div>
     </form>
+    </div>
 </div>

@@ -1,16 +1,6 @@
 <div ng-controller="HeaderController as model">
-    <nav class="navbar-fixed-top">
-        <div class="col-sm-6 col-xs-8 social" style="float: right">
-            <ul class="social-share">
-                <li><a href="https://www.facebook.com/homemadedinner.chennai"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="https://twitter.com/search?q=homemadedinner&src=typd"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="https://plus.google.com/u/1/110909623986515780122/posts"><i class="fa fa-google-plus"></i></a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -18,14 +8,14 @@
                     <span class="icon-bar"></span>
                 </button>
             <a href="#/home" class="navbar-brand">Home-made Dinner</a>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
+                <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right" >
                     <li ng-hide="loggedInUser"  ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/user-register">Register</a></li>
                     <li ng-hide="loggedInUser"  ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
                     <li  ng-show="loggedInUser"  ng-class="{'active' : $location.url().indexOf('profile') != -1}"><a ng-click="model.profile()" href="">Profile</a></li>
                     <li ng-show="loggedInUser"  ><a ng-click="model.logout()" href="">Logout</a></li>
                 </ul>
-            </div>
+                </div>
         </div>
     </nav>
 </div>

@@ -10,6 +10,7 @@
             filterDishByUsername: filterDishByUsername,
             findAllDishes: findAllDishes,
             findDishById : findDishById,
+            findDishByKeyword : findDishByKeyword,
             getCuisines : getCuisines,
             getTypes : getTypes,
             createDish: createDish,
@@ -23,6 +24,19 @@
             var deferred = $q.defer();
 
             $http.get("/api/project/dish/username=" + username)
+                .success(function(dishes){
+                    console.log(dishes);
+                    deferred.resolve(dishes);
+                    console.log("returned from service.client");
+                });
+
+            return deferred.promise;
+        }
+
+        function findDishByKeyword(keyword) {
+            var deferred = $q.defer();
+
+            $http.get("/api/project/dish/search=" + keyword)
                 .success(function(dishes){
                     console.log(dishes);
                     deferred.resolve(dishes);

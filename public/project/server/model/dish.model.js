@@ -8,6 +8,7 @@ module.exports = function(mongoose, db){
     var api = {
         filterDishByUsername: filterDishByUsername,
         findAllDishes: findAllDishes,
+        findDishByKeyword : findDishByKeyword,
         findDishById: findDishById,
         getCuisines : getCuisines,
         getTypes : getTypes,
@@ -25,6 +26,25 @@ module.exports = function(mongoose, db){
         dishModel.find({chef: username}, function(err, dishes){
             deferred.resolve(dishes);
         });
+        return deferred.promise;
+    }
+
+    function findDishByKeyword(keyword) {
+        console.log("Search by keywrd " + keyword);
+        var deferred = q.defer();
+        dishModel.find({quantity: {$gt: 0}})
+            .find({$or: [ {title: {$regex: keyword, $options: "i"}},
+                          {cuisine: {$regex: keyword, $options: "i"} },
+                          {type : {$regex: keyword, $options: "i"}}
+            ]})
+            .sort({addedOn: -1})
+            .find(function(err, foodItems) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(foodItems);
+                }
+            });
         return deferred.promise;
     }
 

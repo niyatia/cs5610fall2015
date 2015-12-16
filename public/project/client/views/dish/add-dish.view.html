@@ -4,7 +4,7 @@
         <div class="form-group">
             <label for="title" class="col-sm-2 control-label">Title: </label>
             <div class="col-sm-10">
-                <input ng-model="model.recipe.title" type="text" name="title" id="title" placeholder="Title" class="form-control">
+                <input ng-model="model.recipe.title" ng-required="true" type="text" name="title" id="title" placeholder="Title" class="form-control">
                 <p class="errorValidationText" ng-show="myForm.title.$invalid && myForm.title.$touched">Please pick a valid title with atleast 4 characters.</p>
             </div>
         </div>
@@ -30,33 +30,35 @@
         <div class="form-group">
             <label for="price" class="col-sm-2 control-label">Price: </label>
             <div class="col-sm-10">
-                <input name="price" ng-model="model.recipe.price" type="number" name="price" id="price" placeholder="Price" class="form-control">
-                <p class="errorValidationText" ng-show="myForm.price.$error.pattern">Please enter a valid number</p>
-                <p class="errorValidationText" ng-show="myForm.price.$invalid && myForm.price.$touched">Please enter price of food item.</p>
+                <input name="price" ng-required="true" min="1"   ng-model="model.recipe.price" type="number" name="price" id="price" placeholder="Price" class="form-control">
+                <p class="errorValidationText" ng-show="myForm.price.$invalid && myForm.price.$touched">Please enter price of food item more than $1.</p>
             </div>
         </div>
         <div class="form-group">
             <label for="quantity" class="col-sm-2 control-label">Quantity: </label>
             <div class="col-sm-10">
-                <input ng-model="model.recipe.quantity" type="number" name="quantity" id="quantity" placeholder="Quantity" class="form-control">
+                <input ng-required="true" ng-model="model.recipe.quantity" type="number" name="quantity" id="quantity" placeholder="Quantity" class="form-control">
+                <p class="errorValidationText" ng-show="myForm.quantity.$invalid && myForm.quantity.$touched">Please enter quantity.</p>
             </div>
         </div>
         <div class="form-group">
             <label for="ingredients" class="col-sm-2 control-label">Ingredients: </label>
             <div class="col-sm-10">
-                <input ng-model="model.recipe.ingredients" type="text" name="ingredients" id="ingredients" placeholder="Ingredients" class="form-control">
+                <input ng-required="true" ng-model="model.recipe.ingredients" type="text" name="ingredients" id="ingredients" placeholder="Ingredients" class="form-control">
+                <p class="errorValidationText" ng-show="myForm.ingredients.$invalid && myForm.ingredients.$touched">Please enter ingredients.</p>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error': model.image = null}">
             <label for="image" class="col-sm-2 control-label ">Image</label>
             <div class="col-sm-10">
-                <input type="file" accept="image/*" class="form-control" id="image"
+                <input ng-required="true" type="file" accept="image/*" class="form-control" id="image" name="image"
                        onchange="angular.element(this).scope().imageChanged(this)">
+                <p class="errorValidationText" ng-show= " myForm.image.$touched && (model.image == '')">Please upload image.</p>
             </div>
         </div>
-        <div id="display"></div>
+        <div class="hidden" id="display"></div>
         <input ng-model="recipe.chef" class="hidden"/>
-        <div class="form-group">
+        <div class="form-group" >
             <div class="col-sm-offset-2 col-sm-10">
                 <button ng-click="model.add(model.recipe)" type="submit" class="btn btn-default">Add</button>
             </div>

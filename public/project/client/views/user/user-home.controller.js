@@ -4,7 +4,7 @@
         .module("HomeMadeDinnerApp")
         .controller("UserHomeController", UserHomeController)
 
-    function UserHomeController ($rootScope, $location, DishService, OrderService) {
+    function UserHomeController ($rootScope, $location, DishService, OrderService, $sce) {
 
         var model = this;
         if($rootScope.loggedInUser){
@@ -17,12 +17,16 @@
             model.loggedInUser = false;
         }
 
+        model.searchDish = searchDish;
 
-        model.updateProfile = updateProfile;
-
-        function updateProfile(){
-            $location.url("/user");
+        function searchDish(keyword){
+            DishService.findDishByKeyword(keyword)
+                .then(function(dishes){
+                   model.dishes = dishes;
+                   model.userSelectedDishes = [];
+                });
         }
+
 
         model.myOrders = getMyOrders;
 

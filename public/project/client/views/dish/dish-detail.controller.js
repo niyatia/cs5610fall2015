@@ -8,9 +8,7 @@
         var model = this;
         model.recipe = $rootScope.recipe;
         model.fromMyOrders = $rootScope.fromMyOrders;
-        console.log(model.fromMyOrders);
-        console.log($rootScope.recipe);
-        model.goBack = goBack;
+
         model.addRating = addRating;
 
         function addRating(newRating){
@@ -49,12 +47,6 @@
                         })
                     $location.url("/user-order");
                 });
-        }
-        function goBack(){
-            if(model.fromMyOrders == true)
-                $location.url("/user-order");
-            else
-                $location.url("/user-home");
         }
     }
 

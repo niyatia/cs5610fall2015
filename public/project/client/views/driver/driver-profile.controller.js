@@ -29,6 +29,8 @@
                 email: model.email,
                 phone: model.phone,
                 address: model.address,
+                carId: model.carId,
+                licenseId: model.licenseId,
                 zip: model.zip,
                 userType : model.userType
             };

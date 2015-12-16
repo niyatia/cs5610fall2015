@@ -8,13 +8,29 @@
 
         var model = this;
         if($rootScope.loggedInUser){
-            console.log($rootScope.loggedInUser);
             model.user = $rootScope.loggedInUser;
             model.loggedInUser = true;
         }
         else{
-            console.log($rootScope.loggedInUser);
+
             model.loggedInUser = false;
+        }
+
+        initDishes();
+
+        function initDishes() {
+            DishService.findAllDishes()
+                .then(function (listOfDish) {
+                    for(var i = 0; i < listOfDish.length; i++){
+                        console.log(listOfDish[i].quantityOver);
+                        listOfDish[i].quantityOver = false;
+                        console.log(listOfDish[i].quantityOver);
+                    }
+
+                    model.dishes = listOfDish;
+
+                    model.userSelectedDishes = [];
+                });
         }
 
         model.searchDish = searchDish;
@@ -38,26 +54,9 @@
                 });
         }
 
-        initDishes();
-        function initDishes() {
-            DishService.findAllDishes()
-                .then(function (listOfDish) {
-                    for(var i = 0; i < listOfDish.length; i++){
-                        console.log(listOfDish[i].quantityOver);
-                        listOfDish[i].quantityOver = false;
-                        console.log(listOfDish[i].quantityOver);
-                    }
-
-                    model.dishes = listOfDish;
-
-                    model.userSelectedDishes = [];
-                });
-        }
-
         model.dishDetail = dishDetail;
 
         function dishDetail(index){
-            console.log("inside create dialog");
             $rootScope.fromMyOrders = false;
             $rootScope.recipe = model.dishes[index];
             $location.url("/recipeDetails");

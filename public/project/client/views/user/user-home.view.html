@@ -1,6 +1,7 @@
+
 <div ng-controller="UserHomeController">
 
-        <nav style="background: inherit;" class="navbar navbar-inverse">
+        <div style="background: inherit;">
             <div class="container">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
@@ -8,15 +9,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="#/home" style="color:darkslategrey" class="navbar-brand">Welcome {{model.user.fullname}}</a>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right" >
+                <h4 class="pull-left">Welcome {{model.user.fullname}}</h4>
+                <div class="pull-right">
+                    <ul class="sub-header" >
                         <li ng-show="loggedInUser"  >  <a  style="color:darkslategrey" ng-show="model.loggedInUser" href="" ng-click="model.checkOut()"><span class="glyphicon glyphicon-shopping-cart"></span>Check out</a></li>
                         <li ng-show="loggedInUser"  >  <a  style="color:darkslategrey" ng-show="model.loggedInUser" href="" ng-click="model.myOrders()"><span class="glyphicon glyphicon-tasks"></span>My Orders</a></li>
                     </ul>
                 </div>
             </div>
-        </nav>
+        </div>
 
     <div>
         <div class="center">
@@ -57,7 +58,7 @@
                         </p >
                         <p ng-show="model.loggedInUser" class="truncate media-text-color expandable">
                             Add to cart
-                            <a  ng-click="model.addToCart($index)" class="btn btn-default">
+                            <a  ng-click="model.addToCart($index)" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </a>
                         </p>

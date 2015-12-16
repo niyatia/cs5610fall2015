@@ -14,9 +14,16 @@
                 password : model.password
             }
             UserService.findUserByUsernameAndPassword(user)
-                .then(getUser);
+                .then(getUser, getError);
+
         };
 
+        function getError(error){
+            if(error){
+                console.log(error);
+                model.message = "Invalid username or password";
+            }
+        }
         function getUser(loggedInUser){
             console.log(loggedInUser);
             if(loggedInUser != null){

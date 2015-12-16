@@ -1,10 +1,12 @@
-<div ng-controller="ChefHomeController">
+<div ng-controller="ChefHomeController"  class="container-fluid">
     <div class="container-fluid">
         <h4 class="navbar-left">Welcome, {{model.user.fullname}}</h4>
-        <a class="navbar-right btn-primary" href="" ng-click="model.addDish()">Add dish</a>
+        <a class="navbar-right btn-success" href="" ng-click="model.addDish()"><span class="btn-success glyphicon glyphicon-plus"></span>Add dish</a>
     </div>
     <label>Your remaining dishes:</label>
+
     <table class="table table-responsive table-bordered">
+
         <thead>
         <th>Title</th>
         <th>Cuisine</th>
@@ -27,39 +29,24 @@
     </table>
 
     <label>Your Orders:</label>
-
-    <table class="table table-responsive table-bordered table-striped">
-        <thead>
-        <th>Order</th>
-        <th>
-            TotalAmount
-        </th>
-        <th>
-            &nbsp;
-        </th>
-        <th>
-            &nbsp;
-        </th>
-        <th>
-            &nbsp;
-        </th>
-        </thead>
-        <tbody ng-repeat="row in model.orders">
-        <tr>{{row._id}}</tr>
-        <tr>{{row.totalAmount}}</tr>
-        <tr>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Rating</th>
+    <table class="table table-responsive table-bordered">
+        <th>OrderId</th>
+        <th>Customer Email</th>
+        <th>Total Amount</th>
+        <th>Title</th>
+        <th>Rating</th>
+        <th>Type</th>
+        <th>Quantity</th>
+        <tr class="tr-for" ng-repeat-start="chapter in model.orders"></tr>
+        <tr ng-repeat-start="section in chapter.dishes" ng-repeat-end>
+            <td>{{chapter._id}}</td>
+            <td>{{chapter.customerEmail}}</td>
+            <td>{{chapter.totalAmount}}</td>
+            <td>{{section.title}}</td>
+            <td>{{section.rating}}</td>
+            <td>{{section.type}}</td>
+            <td>{{section.quantity}}</td>
         </tr>
-        <tr ng-repeat="sub in row.dishes">
-            <td>{{sub.title}}</td>
-            <td>{{sub.price}}</td>
-            <td>{{sub.quantity}}</td>
-            <td>{{sub.rating}}</td>
-
-        </tr>
-        </tbody>
+        <tr class="tr-end" ng-repeat-end></tr>
     </table>
 </div>

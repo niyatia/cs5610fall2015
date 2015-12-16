@@ -39,54 +39,56 @@
     <h4>Total Amount:</h4> <h4>{{model.totalAmount}}</h4>
     <div class="col-sm-10" >
         <div>
-            <h4>Payment Information</h4>
+            <h4 >Payment Information</h4>
             <a href="http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm">Use credit card details from this link for successful payment</a>
         </div>
-    <form class="contact-form">
-        <div class="form-group">
+    <form class="contact-form" name="MyForm">
+        <div class="form-group"  ng-class="{'has-error': myForm.cardType.$invalid && myForm.cardType.$touched}">
             <label for="cardType" class="control-label">Card Type:</label>
-            <select ng-model = "model.cardDetails.type" class="form-control" id="cardType" placeholder="Card Type">
+            <select name="cardType" ng-required="true" ng-model = "model.cardDetails.type" class="form-control" id="cardType" placeholder="Card Type">
                 <option>visa</option>
                 <option>mastercard</option>
+                <option>discovery</option>
                 </select>
         </div>
-        <div class="form-group">
+        <div class="form-group"  ng-class="{'has-error': myForm.firstname.$invalid && myForm.firstname.$touched}">
             <label for="firstname" class="control-label">First Name:</label>
-            <input ng-model = "model.cardDetails.firstname" type="text" class="form-control" id="firstname" placeholder="Cardholder Name">
+            <input name="firstname" ng-required="true" ng-model = "model.cardDetails.firstname" type="text" class="form-control" id="firstname" placeholder="First Name">
         </div>
-        <div class="form-group">
+        <div class="form-group"  ng-class="{'has-error': myForm.lastname.$invalid && myForm.lastname.$touched}">
             <label for="lastname" class="control-label">Last Name:</label>
-            <input ng-model = "model.cardDetails.lastname" type="text" class="form-control" id="lastname" placeholder="Cardholder Name">
+            <input  name="lastname" ng-required="true" ng-model = "model.cardDetails.lastname" type="text" class="form-control" id="lastname" placeholder="Last Name">
         </div>
-        <div class="form-group">
+        <div class="form-group"  ng-class="{'has-error': myForm.cardNumber.$invalid && myForm.cardNumber.$touched}">
             <div>
                 <label for="cardNumber" class="control-label">Card Number:</label>
                 <label ng-model = "model.cardError" id="cardError" class="label-danger">{{model.cardError}}</label>
             </div>
             <div>
-                <input ng-model = "model.cardDetails.cardNumber" type="number" class="form-control" id="cardNumber" placeholder="Card Number">
+                <input name="cardNumber" ng-required="true" ng-model = "model.cardDetails.cardNumber" type="number" class="form-control" id="cardNumber" placeholder="Card Number">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group"  ng-class="{'has-error': myForm.cvv.$invalid && myForm.cvv.$touched}">
             <label for="cvv" class="control-label">CVV:</label>
             <div>
-                <input ng-model = "model.cardDetails.cvv" type="number" class="form-control" id="cvv" placeholder="CVV">
+                <input maxlength="3"  ng-required="true" ng-model = "model.cardDetails.cvv" name="cvv" type="password" class="form-control" id="cvv" placeholder="CVV">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group"  ng-class="{'has-error': myForm.selectMonth.$invalid && myForm.selectMonth.$touched}">
             <label class="control-label">Expiry Date:</label>
             <div>
-                <select name="selectMonth" id="selectMonth"
+                <select style="width:50px;" ng-required="true" name="selectMonth" id="selectMonth"
                         ng-options="month for month in model.months"
                         ng-model="model.cardDetails.expire_month"></select>
-                <select name="selectYear" id="selectYear"
+                <select style="width:50px;" ng-required="true" name="selectYear" id="selectYear"
                         ng-options="year for year in model.years"
                         ng-model="model.cardDetails.expire_year"></select>
             </div>
         </div>
         <div class="form-group">
             <div>
-                <button ng-click="model.pay()" type="submit" class="form-control btn btn-default">Check out</button>
+                <button ng-disabled="myForm.firstname.$invalid || myForm.lastname.$invalid ||
+                myForm.cardNumber.$invalid || myForm.cvv.$invalid || myForm.selectMonth.$invalid || myForm.selectYear.$invalid" ng-click="model.pay()" type="submit" class="form-control btn btn-primary">Pay</button>
                     </span>
             </div>
         </div>

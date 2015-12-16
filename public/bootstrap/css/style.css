@@ -10,6 +10,17 @@
     color : #000000;
 }
 
+.sub-header{
+    float: right;
+    display: inline-block;
+    list-style: none;
+}
+
+ul.sub-header li{
+    display: inline-block;
+    list-style: none;
+}
+
 .social{
     text-align: center;
 
@@ -415,4 +426,11 @@ padding: 25%;
 #image-fixed-search {
     width: 300px;
     height: 250px;
+}
+
+.truncate {
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

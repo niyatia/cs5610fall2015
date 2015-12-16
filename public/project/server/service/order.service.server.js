@@ -91,7 +91,8 @@ module.exports = function(app, model, paypal, transporter) {
                                         from: 'homemadedinnerapp@gmail.com', // sender address
                                         to: order.driverEmail, // list of receivers
                                         subject: 'You have new Order to deliver!', // Subject line
-                                        text: 'Please deliver following order from chef address to customer address.' // plaintext body
+                                        text: 'Please deliver the order'+ order._id +'from chef address to customer address. ' +
+                                        'Check http://localhost:3000/project/client/#/driver-home for more details.' // plaintext body
                                     };
 
                                     // send mail with defined transport object

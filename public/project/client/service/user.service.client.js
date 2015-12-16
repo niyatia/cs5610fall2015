@@ -28,6 +28,7 @@
                     deferred.resolve(user);
                 })
                 .error(function(error){
+                    console.log(error);
                     deferred.reject(error);
                 });
 

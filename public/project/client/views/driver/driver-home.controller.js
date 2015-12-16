@@ -51,6 +51,7 @@
             console.log(model.upcomingOrder);
             OrderService.updateOrder(model.upcomingOrder._id, model.upcomingOrder)
                 .then(function(myOrders){
+                    model.upcomingOrder = null;
                     model.completedOrders = myOrders;
                 });
         }

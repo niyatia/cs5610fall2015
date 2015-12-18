@@ -10,7 +10,7 @@
             <a href="#/home" class="navbar-brand">Home-made Dinner</a>
                 <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right" >
-                    <li ><a target="_blank" href="https://docs.google.com/document/d/17ma8v9GP3pzV_mSB646OEXGVMtAlchGW340N4eaUrMI/edit">System Credentials</a></li>
+                    <li ><a target="_blank" href="https://docs.google.com/a/husky.neu.edu/document/d/17ma8v9GP3pzV_mSB646OEXGVMtAlchGW340N4eaUrMI/edit?usp=sharing">System Credentials</a></li>
                     <li ng-hide="loggedInUser"  ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/user-register">Register</a></li>
                     <li ng-hide="loggedInUser"  ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
                     <li  ng-show="loggedInUser"  ng-class="{'active' : $location.url().indexOf('profile') != -1}"><a ng-click="model.profile()" href="">Profile</a></li>
